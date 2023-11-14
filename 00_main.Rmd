@@ -1,0 +1,115 @@
+---
+title: "00_main.Rmd"
+output: html_document
+date: "2023-11-13"
+---
+
+---
+title: ""
+bibliography: library.bib
+csl: apa6.csl
+document-params: "10pt, letterpaper"
+
+author-information: > 
+    
+abstract: >
+
+keywords: >
+    psychology; cognitive development; learning
+
+    
+output: 
+    cogsci2016::cogsci_paper
+    
+  
+nocite: | 
+ 
+
+final-submission: \cogscifinalcopy
+---
+
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=3, fig.height=3, fig.crop = F, 
+                      fig.pos = "tb", fig.path='figs/',
+                      echo=F, warning=F, cache=F, 
+                      message=F, sanitize = T)
+```
+
+
+```{r}
+library(tidyverse)
+library(here)
+library(lme4)
+library(lmerTest)
+library(broom.mixed)
+library(magrittr)
+library(pbkrtest)
+```
+
+Load packages & datasets
+
+```{r}
+library(tidyverse)
+library(here)
+library(lme4)
+library(lmerTest)
+library(broom.mixed)
+library(magrittr)
+library(pbkrtest)
+
+infant_d <- read_csv(here("data/infants/infant_processed_data.csv"))
+```
+# Load models
+```{r}
+
+model_1a <- readRDS(here("cached_models/infants/model_1a.rds"))
+model_2a<- readRDS(here("cached_models/infants/model_2a.rds"))
+model_2b<- readRDS( here("cached_models/infants/model_2b.rds"))
+model_2c <- readRDS( here("cached_models/infants/model_2c.rds"))
+model_2d <- readRDS(here("cached_models/infants/model_2d.rds"))
+model_3a <- readRDS(here("cached_models/infants/model_3a.rds"))
+model_3b <- readRDS(here("cached_models/infants/model_3b.rds"))
+model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
+
+```
+
+
+
+# Introduction 
+
+# ```{r child = "01_introduction.Rmd"}
+# ```
+
+
+## Methods
+
+```{r child = "02_methods_infants.Rmd"}
+```
+
+## Results
+
+```{r child = "03_results_infants.Rmd"}
+```
+
+## Methods
+
+# ```{r child = "04_experiment2_methods.Rmd"}
+# ```
+
+## Results
+
+# ```{r child = "05_experiment2_results.Rmd"}
+# 
+# ```
+
+# Discussion 
+
+# ```{r child = "06_general_discussion.Rmd"}
+# ```
+
+# References 
+
+\setlength{\parindent}{-0.1in} 
+\setlength{\leftskip}{0.125in}
+\noindent
