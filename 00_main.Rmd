@@ -1,32 +1,17 @@
 ---
-title: "00_main.Rmd"
-output: html_document
+title: "Rational curiosity predicts the dynamics of habituation and dishabituation in infants and adults"
+author: "Your Name"
 date: "2023-11-13"
----
-
----
-title: ""
 bibliography: library.bib
-csl: apa6.csl
-document-params: "10pt, letterpaper"
-
-author-information: > 
-    
-abstract: >
-
-keywords: >
-    psychology; cognitive development; learning
-
-    
-output: 
-    cogsci2016::cogsci_paper
-    
-  
-nocite: | 
- 
-
-final-submission: \cogscifinalcopy
+output:
+  bookdown::pdf_book:
+    citation_package: biblatex
+    keep_tex: true
 ---
+
+
+[@doshi2023cortical; @hebart2020revealing; @yamins2014performance].
+
 
 
 ```{r global_options, include=FALSE}
@@ -47,9 +32,9 @@ library(magrittr)
 library(pbkrtest)
 ```
 
-Load packages & datasets
 
 ```{r}
+#Load packages & datasets
 library(tidyverse)
 library(here)
 library(lme4)
@@ -60,9 +45,8 @@ library(pbkrtest)
 
 infant_d <- read_csv(here("data/infants/infant_processed_data.csv"))
 ```
-# Load models
 ```{r}
-
+# Load models
 model_1a <- readRDS(here("cached_models/infants/model_1a.rds"))
 model_2a<- readRDS(here("cached_models/infants/model_2a.rds"))
 model_2b<- readRDS( here("cached_models/infants/model_2b.rds"))
@@ -75,22 +59,26 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 ```
 
 
+# Abstract
+```{r child = "01_abstract.Rmd"}
+
+```
 
 # Introduction 
+```{r child = "02_introduction.Rmd"}
 
-# ```{r child = "01_introduction.Rmd"}
-# ```
-
-
-## Methods
-
-```{r child = "02_methods_infants.Rmd"}
 ```
+
+# Rational Action, Nosy Choice for Habituation model
+```{r child = "03_RANCH.Rmd"}
+
+```
+
 
 ## Results
 
-```{r child = "03_results_infants.Rmd"}
-```
+#```{r child = "04_results_infants.Rmd"}
+#```
 
 ## Methods
 
@@ -100,7 +88,6 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 ## Results
 
 # ```{r child = "05_experiment2_results.Rmd"}
-# 
 # ```
 
 # Discussion 
@@ -109,6 +96,8 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 # ```
 
 # References 
+
+
 
 \setlength{\parindent}{-0.1in} 
 \setlength{\leftskip}{0.125in}
