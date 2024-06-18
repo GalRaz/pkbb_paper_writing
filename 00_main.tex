@@ -1,0 +1,185 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{biblatex}
+\addbibresource{library.bib}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Rational curiosity predicts the dynamics of habituation and dishabituation in infants and adults},
+  pdfauthor={Your Name},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Rational curiosity predicts the dynamics of habituation and dishabituation in infants and adults}
+\author{Your Name}
+\date{2023-11-13}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\autocite{doshi2023cortical,hebart2020revealing,yamins2014performance}.
+
+\hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+How do we decide what to look at and when to stop looking? Even very young infants engage in active visual selection, looking less and less as stimuli are repeated (habituation) and regaining interest when novel stimuli are subsequently introduced (dishabituation). The mechanisms underlying these looking time changes remain uncertain, however, due to limits on both the scope of existing formal models and the empirical precision of measurements of infant behavior. We develop the Rational Action, Noisy Choice for Habituation (RANCH) model, which operates over raw images and makes quantitative predictions of participants' looking behaviors. In a series of pre-registered experiments, we measure infants' and adults' looking time across a range of stimulus exposure durations for both repeated and novel stimuli and show that they are predicted by RANCH. Our model also makes out-of-sample predictions about the magnitude of adult and infant dishabituation to a range of novel stimuli in an independent experiment. By framing looking behaviors as rational decision-making, this work identifies how the dynamics of learning and exploration guide our visual attention from infancy through adulthood.
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+From birth, humans engage in active learning. Even before they gain independent mobility, infants make choices about what to look at and when to stop looking \autocite{haith1980rules,raz2020learning}. Developmental psychologists have both studied this process of visual decision-making and also relied on it as a key methodological tool, particularly two key phenomena: habituation and dishabituation. Habituation occurs when infants show reduced interest upon repeated exposure to the same stimulus, whereas dishabituation entails renewed interest following the subsequent introduction of a novel stimulus. Dishabituation, also known as novelty preference, is often leveraged to infer infants' perceptual and cognitive abilities \autocite{aslin2007s,baillargeon1985object,fantz1963pattern}: in order for an infant to dishabituate, they must distinguish between the original stimulus and the novel one. Despite the robust documentation of habituation and dishabituation in the literature, the mechanisms underlying these changes in gaze duration remain poorly understood. In this paper, we bridge this gap by introducing a rational model of habituation and dishabituation. We show that this rational model makes quantitative predictions of looking times toward different stimuli.
+
+An important early conceptual model of infant looking time posited that habituation and dishabituation are influenced by the amount of information to be encoded by the infant from the stimulus \autocite{hunter1988multifactor}. Initially, infants look longer at stimuli containing substantial unprocessed information, showing a familiarity preference (Fig. 1A). As exposure accumulates, less information remains unprocessed, leading to shorter looking time at the original stimulus and by comparison, relatively longer looking time to a new stimulus (i.e.~novelty preference). While this model has had significant influence, the absence of specifications regarding the encoding process or a quantitative definition of information to be encoded have permitted post-hoc interpretations of looking time measurements. For instance, when infants are looking longer at stimulus A than stimulus B, researchers could interpret the looking time difference as either a novelty preference or a familiarity preference. This interpretive ambiguity has spurred repeated concerns regarding whether looking time measurements should form the basis for key assertions in developmental psychology \autocite{blumberg2023protracted,haith1998put,paulus2022should}. In other words, developmental psychology needs formal models that make quantitative predictions, but the prevailing model proposed by Hunter \& Ames (1988) can not provide the necessary clarity to support robust inferences.
+
+In contrast, more recent computational models aim to formalize the mechanisms underlying looking time changes. One family of models characterize infants' looking behaviors through information-theoretic metrics derived from ideal observer models: the models acquire probability distribution from event sequence and derive information-theoretic measures from the ideal learner's belief before and after each event \autocite{kidd2012goldilocks,poli2020infants,poli2023eight}. For instance, \textcite{kidd2012goldilocks} developed a model that used surprise to quantify the extent to which the model learned from each observation. This measure correlated well with infants' looking behavior via a U-shaped curve: infants were least likely to look away when the surprisal of the event was neither too high nor too low (Fig. 1B).
+
+While these models provide quantitative fits to variation in looking time, they are not models of how an agent makes the decisions of whether to keep looking at the same stimulus or to look at something else. Instead, these models describe correlations between model-derived, information-theoretic measures and infant overall looking towards whole sequences of events. Relatedly, these models do not explain why infants would ever look at one static stimulus for a long time, rather than encode it instantaneously -- there is no accounting of perceptual noise that needs to overcome by taking multiple perceptual samples that would justify why looking extends over time (c.f. Callaway, Rangel, \& Griffiths, 2021; Kersten, Mamassian, \& Yuille, 2004). Owing to this constraint, these models can only be used to predict infant behavior in a specific paradigm: looking to a continuous stream of discrete stimuli. This paradigm is a significant deviation from the more common looking time paradigm in which the participants gradually encoded individual stimulus items in a self-paced manner. It is unclear whether the success of these quantitative models can be generalized to the more common looking time paradigms.
+
+To address these issues, we developed the Rational Action, Noisy Choice for Habituation (RANCH) model \autocite{cao2023habituation}. RANCH describes an agent's looking behavior as rational exploration based on a sequence of noisy perceptual samples. The model construes the looking time paradigm as a series of binary decisions: to keep sampling from the current stimulus, or to look at anything else. The model makes sampling decisions based on the Expected Information Gain (EIG) of the upcoming perceptual sample, choosing to keep looking or look away based on which one would in expectation yield the most information; it therefore can be seen as a rational analysis of looking behavior \autocite{lieder2020resource,oaksford1994rational}. Rational analyses of behavior model decision-making as optimally adapted to the environment, given specific constraints. Identifying a behavior as rational provides a framework for predicting and influencing future actions, and facilitates the development of formal connections between human behavior and the environment in which it occurs \autocite{anderson1991human}.
+
+Previously, we validated this rational analysis using a large dataset of adults engaging in a self-paced looking paradigm. We asked adults to look at sequences of stimuli consisting of a repeating familiar background stimulus (resulting in habituation), and a single, novel deviant stimulus after varying familiarization durations (resulting in dishabituation). Effects of prior exposure and novelty on adults' looking time were well captured by RANCH \autocite{cao2023habituation}.
+
+Here, we ask how well RANCH describes the dynamics of infant habituation and dishabituation, and compare it to other classic models of infant attention. Figure 1C shows schematic predictions of RANCH for the experimental setting described above: variable prior exposure to a familiar stimulus, followed by a novel or a familiar stimulus. Rational exploration of a simple perceptual concept results in a monotonic decrease of attention to familiar items as a function of prior exposure.
+
+One critical challenge for differentiating formal theories of looking time in infants is that looking time measurements are noisy, and many infant experiments provide only limited precision in their estimates of key quantities {[}\url{https://www.researchgate.net/publication/291951412_Test-Retest_Reliability_in_Infant_Speech}; \url{https://onlinelibrary.wiley.com/doi/full/10.1111/infa.12337_Perception_Tasks}; {]}. In the current work, we develop a novel, within-subject experimental design that allows us to sensitively measure infants' looking time in experiments. Beyond validating RANCH's predictions in infants, this paradigm enables us to conduct interpretable developmental comparisons of parameter fits between infants and adults -- since the experimental design was analogous to each other -- thereby characterizing how the mechanisms underlying looking time may change over development.
+
+In addition, we incorporated recent progress in convolutional neural networks (CNNs) to allow RANCH to learn from raw images. Previous models have relied on using arbitrary representations of stimuli (e.g.~object location, CITE; hand-specified binary feature vector, CITE). However, recent CNNs have offered insights into how the visual system encodes objects \autocite{doshi2023cortical,hebart2020revealing,yamins2014performance}. The activations of these brain-inspired neural networks form embedding spaces, each of which can be seen as a quantitative hypothesis about how humans represent visual stimuli \autocite{schrimpf2020integrative}. In RANCH, we leveraged these principled stimulus representations to enable RANCH to learn from raw images. In other words, RANCH can `see' an experiment in a way similar to the one infants saw, and make predictions for previously unseen experiments using novel stimuli.
+
+Last but not least, while previously we have shown that RANCH can successfully model habituation and dishabituation, we now test RANCH's ability to predict responses in new data. To conduct these tests, we first fit RANCH's parameters to a training data set from the habituation-dishabituation experiment in which participants saw sequences of stimuli. Then, we use the best-fitting parameters to generate predictions for a new experiment designed to measure subtle differences in dishabituation magnitude based on stimulus similarity. In this experiment, we systematically varied the similarity between habituation and dishabituation stimuli such that dishabituation stimuli differed in their pose angle, their number, their identity, or their animacy. This experiment tests a prediction from \textcite{hunter1988multifactor} model of habituation and dishabituation: that observers' dishabituation magnitude should be related to the similarity between the habituated stimulus and the novel stimulus. The more dissimilar two stimuli are, the more one should dishabituate to the novel stimulus.
+
+The goal of this paper is to investigate the computational mechanisms underlying habituation and dishabituation by testing to what extent these behaviors can be explained by a rational analysis of looking time. To preview our results, we found support for the view that habituation and dishabituation are driven by rational curiosity by showing that RANCH predicts looking time in adults and infants. Furthermore, we also tested the importance of individual assumptions RANCH made via target ablation simulations. Removal of components of perceptual representation, learning progress, and decision making all result in substantially worse fit to data. Finally, we generate predictions for the novel task in which we vary the similarity between the habituation and dishabituation stimulus, and find that RANCH also captures the particular ordering of the dishabituation magnitude as a function of stimulus dissimilarity, thereby predicting a novel qualitative phenomenon (graded dishabituation) without ever being trained on it.
+
+\hypertarget{rational-action-nosy-choice-for-habituation-model}{%
+\section{Rational Action, Nosy Choice for Habituation model}\label{rational-action-nosy-choice-for-habituation-model}}
+
+Rational Action, Noisy Choice for Habituation model (RANCH) is a Bayesian perception and action model in which a learner makes optimal perceptual sampling decisions \cite{cao2023habituation}. In the current implementation, we conceptualized the learning problem in habituation as learning a visual concept -- a probabilistic representation of the stimuli it experiences. The model achieves learning through observing a series of noisy perceptual samples from a sequence of stimuli. During the learning process, the model makes decisions about how many samples to receive of each stimulus before moving to the next stimulus. The number of samples that the model takes on each stimulus is then used as a proxy for looking time duration at each sample.
+
+RANCH provides a probabilistic framework for making perceptual decisions. In this section, we will describe the three modular components RANCH includes: the perceptual representation, learning model, and decision model.
+
+\hypertarget{perceptual-representations}{%
+\subsection{Perceptual representations}\label{perceptual-representations}}
+
+We use the deep convolutional neural network ResNet-50 to encode the stimuli used in behavioral experiments. ResNet-50 is an architecture that has been widely used in computer vision (CITE, CITE, CITE). A total of 50 layers are implemented in this architecture: it starts with a convolution layer, includes several groups of residual blocks that help preserve information through the network, and ends with a global average pooling layer and a fully connected layer for classification. In addition to its influence in computer vision, ResNet-50 is also an impactful tool in cognitive neuroscience since it is capable of producing visual representations aligned with humans (CITE, CITE, CITE).
+
+ResNet-50 is by no means the only possible candidate for deriving perceptual representations. We also explored alternative models trained with different data, but we did not find a significant difference between ResNet-50 and the other (often more complicated) models (See SI).
+
+\hypertarget{learning-model}{%
+\subsection{Learning model}\label{learning-model}}
+
+In the current instantiation, RANCH models looking behaviors in habituation experiments as Bayesian concept learning (CITE, CITE, CITE). The model learns the concept through a series of noisy perceptual samples taken from the stimulus. The concept to be learned is parameterized by \(\mu,\sigma\), which represents beliefs about the location and variance of the presented concept in the embedding space. The concept \(\mu,\sigma\) generates exemplars \(y\), which is equivalent to the stimulus seen by the human participants. But RANCH does not directly learn from the stimulus. Instead, it learns from the series of noisy perceptual samples \(\bar{z}\) generated by the exemplar. The noisy perceptual sample is corrupted by zero-mean noise, represented by \(\epsilon\). A plate diagram is shown in Figure 1B. At each time step, the model takes one perceptual sample to update the prior following the Bayes Rule (Eq1).
+
+EQUATION 1.
+
+\hypertarget{decision-model-and-linking-hypothesis}{%
+\subsection{Decision model and linking hypothesis}\label{decision-model-and-linking-hypothesis}}
+
+The Bayesian learning model did not address how the model decides to keep sampling the same stimulus or to move on to the next stimulus. We enable RANCH's decision-making process by calculating the Expected Information Gain (EIG) of the next perceptual sample. EIG is a metric used under the rational analysis of information seeking behavior (CITE, CITE, CITE). RANCH then uses a softmax choice (with temperature = 1, Eq 2) between the information theoretic measures of the next sample and a constant ``world EIG'' (Eq 2). The constant here is assumed to be the amount of information gain provided by the environment when the model looks away from the stimulus.
+
+EQUATION 2
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+\#\texttt{\{r\ child\ =\ "04\_results\_infants.Rmd"\}\ \#}
+
+\hypertarget{methods}{%
+\subsection{Methods}\label{methods}}
+
+\hypertarget{r-child-04_experiment2_methods.rmd}{%
+\section{\texorpdfstring{\texttt{\{r\ child\ =\ "04\_experiment2\_methods.Rmd"\}\ \#}}{\{r child = "04\_experiment2\_methods.Rmd"\} \#}}\label{r-child-04_experiment2_methods.rmd}}
+
+\hypertarget{results-1}{%
+\subsection{Results}\label{results-1}}
+
+\hypertarget{r-child-05_experiment2_results.rmd}{%
+\section{\texorpdfstring{\texttt{\{r\ child\ =\ "05\_experiment2\_results.Rmd"\}\ \#}}{\{r child = "05\_experiment2\_results.Rmd"\} \#}}\label{r-child-05_experiment2_results.rmd}}
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+\hypertarget{r-child-06_general_discussion.rmd}{%
+\section{\texorpdfstring{\texttt{\{r\ child\ =\ "06\_general\_discussion.Rmd"\}\ \#}}{\{r child = "06\_general\_discussion.Rmd"\} \#}}\label{r-child-06_general_discussion.rmd}}
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\setlength{\parindent}{-0.1in} 
+\setlength{\leftskip}{0.125in}
+
+\noindent
+
+\printbibliography
+
+\end{document}
