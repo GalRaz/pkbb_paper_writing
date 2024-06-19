@@ -63,9 +63,9 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 ```
 
 # RANCH predicts habituation and dishabituation in relation to exposure duration
-#```{r child = "04_experiment1.Rmd"}
+```{r child = "04_experiment1.Rmd"}
 
-#```
+```
 
 ## Methods
 
