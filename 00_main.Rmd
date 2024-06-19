@@ -10,18 +10,6 @@ output:
 ---
 
 
-[@doshi2023cortical; @hebart2020revealing; @yamins2014performance].
-
-
-
-```{r global_options, include=FALSE}
-knitr::opts_chunk$set(fig.width=3, fig.height=3, fig.crop = F, 
-                      fig.pos = "tb", fig.path='figs/',
-                      echo=F, warning=F, cache=F, 
-                      message=F, sanitize = T)
-```
-
-
 ```{r}
 library(tidyverse)
 library(here)
@@ -74,10 +62,9 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 
 ```
 
+# RANCH predicts habituation and dishabituation in relation to exposure duration
+#```{r child = "04_experiment1.Rmd"}
 
-## Results
-
-#```{r child = "04_results_infants.Rmd"}
 #```
 
 ## Methods

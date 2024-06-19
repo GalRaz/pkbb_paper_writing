@@ -1,0 +1,112 @@
+---
+title: "03_results_infants.Rmd"
+output: html_document
+date: "2023-11-13"
+---
+
+
+```{r eval=FALSE, include=FALSE}
+
+# exclude invalid trials
+infant_d %<>% filter(!exclude)
+
+# get age
+mean_age = infant_d %>% distinct(unique_id, age) %>% pull(age) %>% mean()
+sd_age = infant_d %>% distinct(unique_id, age) %>% pull(age) %>% sd()
+
+test_df = infant_d %>% filter(fam_or_test == 'test') %>% mutate(fam_duration = as.numeric(fam_duration), 
+                                                                animal = as.factor(animal), 
+                                                                centered_age = (age - mean_age) / sd_age)
+
+
+# checking for non-linearity model
+model_1a <- lmer(log(LT) ~ poly(fam_duration,2) *test_type + block_num + (1 | unique_id), data = test_df)
+
+# fam pref (EXPLORATORY)
+model_2a <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 1))
+
+model_2b <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 3))
+
+model_2c <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 4))
+
+# fam pref pre-registered
+model_2d <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration <= 4 & fam_duration != 0))
+
+# dishabituation
+model_3a <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 8))
+
+model_3b <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 9))
+
+model_3c <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration >= 8))
+
+saveRDS(model_1a, here("cached_models/infants/model_1a.rds"))
+saveRDS(model_2a, here("cached_models/infants/model_2a.rds"))
+saveRDS(model_2b, here("cached_models/infants/model_2b.rds"))
+saveRDS(model_2c, here("cached_models/infants/model_2c.rds"))
+saveRDS(model_2d, here("cached_models/infants/model_2d.rds"))
+saveRDS(model_3a, here("cached_models/infants/model_3a.rds"))
+saveRDS(model_3b, here("cached_models/infants/model_3b.rds"))
+saveRDS(model_3c, here("cached_models/infants/model_3c.rds"))
+
+```
+
+```{r}
+model_1a_df <- tidy(model_1a) %>% mutate_if(is.numeric, round, 2)
+model_2a_df <- tidy(model_2a) %>% mutate_if(is.numeric, round, 2)
+model_2b_df <- tidy(model_2b) %>%  mutate_if(is.numeric, round, 2)
+model_2c_df <- tidy(model_2c) %>%  mutate_if(is.numeric, round, 2)
+model_2d_df <- tidy(model_2d) %>%  mutate_if(is.numeric, round, 2)
+model_3a_df <-tidy(model_3a) %>%  mutate_if(is.numeric, round, 2)
+model_3b_df <-tidy(model_3b) %>%  mutate_if(is.numeric, round, 2)
+model_3c_df <-tidy(model_3c) %>%  mutate_if(is.numeric, round, 2)
+
+```
+
+Data and analysis are available at XXX. We pre-registered several linear mixed-effects models to test for habituation, novelty preferences and familiarity preferences in our paradigm. All models included a fixed effect of block number, and a random effect of subject. We did not include a random effect of stimulus since we found that the variance of this random effect was small relative to the subject effects and fitting our mixed-effects models with random effects of stimulus caused convergence issues.
+
+To test the prediction that partial encoding elicits familiarity preferences, while complete encoding elicits novelty preferences, we pre-registered a model which allows for a non-linear interaction between exposure duration by adding a quadratic effect of exposure duration, and its interaction with novelty. We found that neither the main effect, nor the interaction of that quadratic term were significant, while the interaction of novelty with the linear term was significant (Table 1). This result suggests that looking at the deviant increased as a function familiarization duration (Fig. 3), but that there was no special effect of partial encoding as posited by @hunter1988multifactor. Furthermore, there was a significant decrease in looking time to the familiar items as a function of familiarization duration, indicating that infants habituated to familiar stimuli in our paradigm ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Novelty preferences (i.e. longer looking at the deviant than the background) were significant after 8 ($\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001) and 9 exposures ($\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001), as well as in the combined dataset ($\beta$ = `r filter(model_3c_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3c_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3c_df, term == "test_typenov")$statistic`; *p* < 0.001).
+
+We next tested specifically for familiarity preferences in our dataset. Similar to the preschooler experiment, we hypothesized that familiarity preferences are most likely to emerge in test events following short exposure durations. To do so, we ran mixed-effects models which fit looking time at test events following short exposures specifically, with novelty as a predictor. However, we did not find a significant effect of novelty on looking time after 1 ($\beta$ = `r filter(model_2a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_2a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_2a_df, term == "test_typenov")$statistic`; *p* =  `r filter(model_2a_df, term == "test_typenov")$p.value`), 3 ($\beta$ = `r filter(model_2b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_2b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_2b_df, term == "test_typenov")$statistic`; *p* =  `r filter(model_2b_df, term == "test_typenov")$p.value`) or 4 exposures ($\beta$ = `r filter(model_2c_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_2c_df, term == "test_typenov")$std.error`; *t* = `r filter(model_2c_df, term == "test_typenov")$statistic`; *p* =  `r filter(model_2c_df, term == "test_typenov")$p.value`). Even when maximizing power by combining test events following all three short exposure durations, there was no evidence of familiarity preferences ($\beta$ = `r filter(model_2d_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_2d_df, term == "test_typenov")$std.error`; *t* = `r filter(model_2d_df, term == "test_typenov")$statistic`; *p* =  `r filter(model_2d_df, term == "test_typenov")$p.value`). 
+
+Lastly, to address whether the youngest infants in our sample may show familiarity preferences, we ran an exploratory analysis asking whether age interacted with the effect of novelty in the individual or combined short exposure blocks. We found no evidence of age playing a role (all p's > 0.4).
+
+\captionsetup{belowskip=45pt,aboveskip=4pt}
+
+```{r infant_results, echo = FALSE, fig.env = "figure", fig.pos = "h", fig.align='left', fig.width=3.5, fig.height=3, set.cap.width=T, num.cols.cap=1, fig.cap = "Looking time to background and deviant test events as a function of exposure duration. We found evidence of habituation and novelty prefences, but not familiarity preferences. Y-axis is log-transformed to reflect the transformation of looking time in mixed effects models. The gray point at exposure duration 0 and the corresponding dashed reference line show baseline looking time without prior exposure."}
+
+# exclude invalid trials
+infant_d %<>% filter(!exclude) 
+
+plot_df = infant_d %>% select(-c("...1")) %>% mutate(test_type = case_when(fam_duration == 0 ~ 'baseline', test_type == 'fam' ~ 'background', test_type == 'nov' ~ 'deviant'), test_type = factor(test_type, levels = c('baseline', 'background', 'deviant'))) %>% arrange(experiment, subject_num, block_num)
+
+ggplot(plot_df %>% filter(fam_or_test == 'test'), aes(x=as.numeric(fam_duration), y=LT, group=test_type, color = test_type)) + geom_point(alpha=0.1, size = 2, position = position_jitterdodge(jitter.width = 0.2)) + stat_summary(fun.data = "mean_cl_boot", geom = "pointrange", position = position_dodge(width = 1), size = 0.6) + xlab('exposure duration') + ylab('Looking time (s)') + labs(color = 'Test type') + theme_classic(base_size = 15) + theme(strip.text.x = element_text(size = 20, colour = "black")) + scale_x_continuous(breaks = c(0, 1,2,3,4,6,8,9)) + geom_smooth(method ="lm", alpha = 0.4) + scale_y_log10() + geom_hline(yintercept = plot_df %>% filter(test_type == 'baseline') %>% pull(LT) %>% mean(), linetype = "dashed") + scale_y_continuous(breaks = c(3,10, 18, 27)) + theme(legend.title=element_blank(), 
+    legend.position = "bottom",
+    legend.box.margin=margin(-10,-10,-10,-10),
+    legend.margin=margin(3,3,3,3),
+    legend.text = element_text(size = 14)) + scale_color_manual(values = c("blue", "red"), limits = c('background', 'deviant')) +
+    coord_cartesian(ylim=c(3, 35))
+
+
+```
+
+
+# NEEDS UPDATING
+\captionsetup{belowskip=5pt,aboveskip=5pt}
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{lrrrrrr}
+  \hline
+ Predictor & Coefficient & Std error & t & df & p value \\
+  \hline
+(Intercept) & 2.99 & 0.11 & 27.20 & 175.84 & \textless{ 0.001} \\
+  \textbf{Exposure duration} & -5.01 & 0.95 & -5.25 & 269.60 & \textless{ 0.001} \\
+  \textbf{Squared exposure duration} & 0.09 & 0.91 & 0.098 & 266.09 & 0.92 \\
+  \textbf{Novelty} & 0.22 & 0.09 & 2.44 & 269.98 & 0.016 \\
+  \textbf{Block number} & -0.16 & 0.02 & -6.55 & 269.04 & \textless{ 0.001} \\
+  \textbf{Exposure duration} : \textbf{Novelty} & 6.92 & 1.65 & 4.20 & 271.34 & \textless{ 0.001} \\
+  \textbf{Squared exposure duration} : \textbf{Novelty} & -0.23 & 1.68 & -0.16 & 270.34 & 0.874 \\
+   \hline
+\end{tabular}
+\caption{Mixed effects model results testing for a non-linearity in infant looking time.}\label{wrap-tab:1}
+\end{table*}

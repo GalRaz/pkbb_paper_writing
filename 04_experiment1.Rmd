@@ -1,0 +1,40 @@
+A key difference between the models in Figure 1 is their prediction with regard to the effect of familiarity on looking time. To address this, we collected looking time data from both infants and adults in an experiment where we varied exposure duration to a familiar stimulus, and measured subsequent looking time to a novel vs. familiar stimulus. We then let RANCH "see" the same stimuli and procedure used in our behavioral experiments. We then evaluated the model’s performance against the behavioral datasets.
+
+## Behavioral experiments
+###Infant experiment 
+We tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` in Exp A, `r n_subject_expB` in Exp B and `r n_subject_expC` in Exp C (`r total_n` ($M_{age}$ = `r mean_age` months, `r sex$n[sex$sex == 'F']` female). Infants were tested in a novel experimental paradigm in which exposure duration to the stimuli were manipulated in a within-subject design (FIGURE @DESIGN). Each infant was tested with XXX blocks. In each block there was an exposure phase and a test trial. During the exposure phase, infants were presented with one stimulus, repeated 0 to 9 times. After the exposure phase, infants’ looking time was measured on a test trial. The test trial showed either the same stimulus as the preceding trials, or a new stimulus.  
+
+
+###Adult experiment 
+We ran a self-paced looking time paradigm experiment on Prolific, collecting data from XXXX adult participants (FIGURE). The stimuli used in the adult experiment are drawn from the same stimuli set used in the infant experiment. During the experiment, participants were asked to watch sequences of animations at their own pace, and they could press a key to proceed to the next trial whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence of animations has two stimuli: the familiar stimulus and the novel stimulus. The familiar stimulus repeated over and over again within a sequence, whereas the novel stimulus only appeared once and it appeared at either the second, the fourth, or the sixth position in the sequence. 
+Modeling Procedure
+
+The overall modeling strategy is for RANCH to ‘see’ the experiment the same way as the participants do. RANCH learned from the embeddings derived from the stimuli used in the experiments, and the modeling procedure mirrored the experimental set-up used in the infants experiment and adult experiment respectively (Fig. 2). 
+
+To simulate the infant experiment, the model was first presented with a series of repeating stimuli. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase is similar to the exposure phase infants went through, since during the exposure phase infants had no control over the progression of the stimuli sequence. After the familiarization sequence, the model was presented with the test trial, which either has a novel stimulus or a familiar stimulus (i.e. the repeated stimulus) . The number of samples the model took on this test trial was the “looking time” that the model produced.  
+
+In contrast, to simulate the adult experiment, RANCH makes decisions on when and whether to progress to the next trial in the sequence. At each animation in the sequence, the model takes a certain number of samples before deciding to move on to the next animation, until the end of the sequence. Like the adult experiment, the sequence has a familiar stimulus that repeats throughout the sequence, and a novel stimulus that appears once. The model predicts looking times to each stimulus in the sequence. 
+
+
+##Evaluating model with behavioral results 
+
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (STATS). We also found evidence for infants’ dishabituation: looking time for the novel test trials was longer than the familiar trial (STATS). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (STATS). 
+
+
+RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set’s performance by running a K-fold validation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson’s r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??). 
+
+
+##Comparison with alternative linking hypotheses 
+We also compared the performance of RANCH when using EIG, which is the fully rational linking hypothesis, to other, proxy-based linking hypothesis used in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying 'learning progress', while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants’ looking behaviors (CITE, CITE). We then compared the model’s performance based on the parameter that provides the best fits to the full dataset. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Infants: STATS; Adults: STATS). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: STATS). We also found that the noisy perception assumption and the learning assumptions were both critical to RANCH’s performance.
+
+##Comparison with lesioned model 
+
+We also examined the importance of RANCH’s key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (“No noise model”), and the other model assumes the sampling decision was random instead of based on the learning model (“No learning model”).  Both lesioned models provided poor fits for the behavioral datasets (STATS). 
+
+##Parameter Interpretation / Developmental Comparison
+One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH’s fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see ‘Joint Scaling’ under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that sd_epsilon played a key role in improving fit. Conceptually, sd_epsilon represents an agent's beliefs about how much noise there is in their own perceptual input. We found that this value tends to be high for infants, and low for adults ([SUPPLEMENTARY FIGURES WITH HISTOGRAM OF RMSE COLORED BY PARAMETER VALUES]). 
+
+##Discussion 
+Through within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs. novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. 1A & 1B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. 1C). 
+
+We next turn to test RANCH’s ability to make predictions in a novel dataset. 

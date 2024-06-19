@@ -37,6 +37,46 @@
 \makeatother
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -89,7 +129,136 @@
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\autocite{doshi2023cortical,hebart2020revealing,yamins2014performance}.
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.0     v tibble    3.2.1
+## v lubridate 1.9.2     v tidyr     1.3.1
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(here)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## here() starts at /Users/galraz/Developer/pkbb_paper_writing
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lme4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: Matrix
+## 
+## Attaching package: 'Matrix'
+## 
+## The following objects are masked from 'package:tidyr':
+## 
+##     expand, pack, unpack
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lmerTest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lmerTest'
+## 
+## The following object is masked from 'package:lme4':
+## 
+##     lmer
+## 
+## The following object is masked from 'package:stats':
+## 
+##     step
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(broom.mixed)}
+\FunctionTok{library}\NormalTok{(magrittr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'magrittr'
+## 
+## The following object is masked from 'package:purrr':
+## 
+##     set_names
+## 
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(pbkrtest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Load packages \& datasets}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(here)}
+\FunctionTok{library}\NormalTok{(lme4)}
+\FunctionTok{library}\NormalTok{(lmerTest)}
+\FunctionTok{library}\NormalTok{(broom.mixed)}
+\FunctionTok{library}\NormalTok{(magrittr)}
+\FunctionTok{library}\NormalTok{(pbkrtest)}
+
+\NormalTok{infant\_d }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"data/infants/infant\_processed\_data.csv"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## Rows: 1162 Columns: 13
+## -- Column specification
+## -------------------------------------------------------- Delimiter: "," chr
+## (5): experiment, fam_or_test, unique_id, test_type, sex dbl (7): ...1,
+## subject_num, animal, block_num, fam_duration, LT, age lgl (1): exclude
+## i Use `spec()` to retrieve the full column specification for this data. i
+## Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## * `` -> `...1`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load models}
+\NormalTok{model\_1a }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_1a.rds"}\NormalTok{))}
+\NormalTok{model\_2a}\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_2a.rds"}\NormalTok{))}
+\NormalTok{model\_2b}\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{( }\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_2b.rds"}\NormalTok{))}
+\NormalTok{model\_2c }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{( }\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_2c.rds"}\NormalTok{))}
+\NormalTok{model\_2d }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_2d.rds"}\NormalTok{))}
+\NormalTok{model\_3a }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_3a.rds"}\NormalTok{))}
+\NormalTok{model\_3b }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_3b.rds"}\NormalTok{))}
+\NormalTok{model\_3c }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{( }\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_3c.rds"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{abstract}{%
 \section{Abstract}\label{abstract}}
@@ -101,21 +270,27 @@ How do we decide what to look at and when to stop looking? Even very young infan
 
 From birth, humans engage in active learning. Even before they gain independent mobility, infants make choices about what to look at and when to stop looking \autocite{haith1980rules,raz2020learning}. Developmental psychologists have both studied this process of visual decision-making and also relied on it as a key methodological tool, particularly two key phenomena: habituation and dishabituation. Habituation occurs when infants show reduced interest upon repeated exposure to the same stimulus, whereas dishabituation entails renewed interest following the subsequent introduction of a novel stimulus. Dishabituation, also known as novelty preference, is often leveraged to infer infants' perceptual and cognitive abilities \autocite{aslin2007s,baillargeon1985object,fantz1963pattern}: in order for an infant to dishabituate, they must distinguish between the original stimulus and the novel one. Despite the robust documentation of habituation and dishabituation in the literature, the mechanisms underlying these changes in gaze duration remain poorly understood. In this paper, we bridge this gap by introducing a rational model of habituation and dishabituation. We show that this rational model makes quantitative predictions of looking times toward different stimuli.
 
-An important early conceptual model of infant looking time posited that habituation and dishabituation are influenced by the amount of information to be encoded by the infant from the stimulus \autocite{hunter1988multifactor}. Initially, infants look longer at stimuli containing substantial unprocessed information, showing a familiarity preference (Fig. 1A). As exposure accumulates, less information remains unprocessed, leading to shorter looking time at the original stimulus and by comparison, relatively longer looking time to a new stimulus (i.e.~novelty preference). While this model has had significant influence, the absence of specifications regarding the encoding process or a quantitative definition of information to be encoded have permitted post-hoc interpretations of looking time measurements. For instance, when infants are looking longer at stimulus A than stimulus B, researchers could interpret the looking time difference as either a novelty preference or a familiarity preference. This interpretive ambiguity has spurred repeated concerns regarding whether looking time measurements should form the basis for key assertions in developmental psychology \autocite{blumberg2023protracted,haith1998put,paulus2022should}. In other words, developmental psychology needs formal models that make quantitative predictions, but the prevailing model proposed by Hunter \& Ames (1988) can not provide the necessary clarity to support robust inferences.
+An important early conceptual model of infant looking time posited that habituation and dishabituation are influenced by the amount of information to be encoded by the infant from the stimulus \autocite{hunter1988multifactor}. Initially, infants look longer at stimuli containing substantial unprocessed information, showing a familiarity preference (Fig. \ref{fig:conceptual}A). As exposure accumulates, less information remains unprocessed, leading to shorter looking time at the original stimulus and by comparison, relatively longer looking time to a new stimulus (i.e.~novelty preference). While this model has had significant influence, the absence of specifications regarding the encoding process or a quantitative definition of information to be encoded have permitted post-hoc interpretations of looking time measurements. For instance, when infants are looking longer at stimulus A than stimulus B, researchers could interpret the looking time difference as either a novelty preference or a familiarity preference. This interpretive ambiguity has spurred repeated concerns regarding whether looking time measurements should form the basis for key assertions in developmental psychology \autocite{blumberg2023protracted,haith1998put,paulus2022should}. In other words, developmental psychology needs formal models that make quantitative predictions, but the prevailing model proposed by \textcite{hunter1988multifactor} can not provide the necessary clarity to support robust inferences.
 
-In contrast, more recent computational models aim to formalize the mechanisms underlying looking time changes. One family of models characterize infants' looking behaviors through information-theoretic metrics derived from ideal observer models: the models acquire probability distribution from event sequence and derive information-theoretic measures from the ideal learner's belief before and after each event \autocite{kidd2012goldilocks,poli2020infants,poli2023eight}. For instance, \textcite{kidd2012goldilocks} developed a model that used surprise to quantify the extent to which the model learned from each observation. This measure correlated well with infants' looking behavior via a U-shaped curve: infants were least likely to look away when the surprisal of the event was neither too high nor too low (Fig. 1B).
+In contrast, more recent computational models aim to formalize the mechanisms underlying looking time changes. One family of models characterize infants' looking behaviors through information-theoretic metrics derived from ideal observer models: the models acquire probability distribution from event sequence and derive information-theoretic measures from the ideal learner's belief before and after each event \autocite{kidd2012goldilocks,poli2020infants,poli2023eight}. For instance, \textcite{kidd2012goldilocks} developed a model that used surprise to quantify the extent to which the model learned from each observation. This measure correlated well with infants' looking behavior via a U-shaped curve: infants were least likely to look away when the surprisal of the event was neither too high nor too low (\ref{fig:conceptual}B).
 
-While these models provide quantitative fits to variation in looking time, they are not models of how an agent makes the decisions of whether to keep looking at the same stimulus or to look at something else. Instead, these models describe correlations between model-derived, information-theoretic measures and infant overall looking towards whole sequences of events. Relatedly, these models do not explain why infants would ever look at one static stimulus for a long time, rather than encode it instantaneously -- there is no accounting of perceptual noise that needs to overcome by taking multiple perceptual samples that would justify why looking extends over time (c.f. Callaway, Rangel, \& Griffiths, 2021; Kersten, Mamassian, \& Yuille, 2004). Owing to this constraint, these models can only be used to predict infant behavior in a specific paradigm: looking to a continuous stream of discrete stimuli. This paradigm is a significant deviation from the more common looking time paradigm in which the participants gradually encoded individual stimulus items in a self-paced manner. It is unclear whether the success of these quantitative models can be generalized to the more common looking time paradigms.
+While these models provide quantitative fits to variation in looking time, they are not models of how an agent makes the decisions of whether to keep looking at the same stimulus or to look at something else. Instead, these models describe correlations between model-derived, information-theoretic measures and infant overall looking towards whole sequences of events. Relatedly, these models do not explain why infants would ever look at one static stimulus for a long time, rather than encode it instantaneously -- there is no accounting of perceptual noise that needs to overcome by taking multiple perceptual samples that would justify why looking extends over time \autocites[c.f.][]{callaway2021fixation,kersten2004object}. Owing to this constraint, these models can only be used to predict infant behavior in a specific paradigm: looking to a continuous stream of discrete stimuli. This paradigm is a significant deviation from the more common looking time paradigm in which the participants gradually encoded individual stimulus items in a self-paced manner. It is unclear whether the success of these quantitative models can be generalized to the more common looking time paradigms.
 
 To address these issues, we developed the Rational Action, Noisy Choice for Habituation (RANCH) model \autocite{cao2023habituation}. RANCH describes an agent's looking behavior as rational exploration based on a sequence of noisy perceptual samples. The model construes the looking time paradigm as a series of binary decisions: to keep sampling from the current stimulus, or to look at anything else. The model makes sampling decisions based on the Expected Information Gain (EIG) of the upcoming perceptual sample, choosing to keep looking or look away based on which one would in expectation yield the most information; it therefore can be seen as a rational analysis of looking behavior \autocite{lieder2020resource,oaksford1994rational}. Rational analyses of behavior model decision-making as optimally adapted to the environment, given specific constraints. Identifying a behavior as rational provides a framework for predicting and influencing future actions, and facilitates the development of formal connections between human behavior and the environment in which it occurs \autocite{anderson1991human}.
 
 Previously, we validated this rational analysis using a large dataset of adults engaging in a self-paced looking paradigm. We asked adults to look at sequences of stimuli consisting of a repeating familiar background stimulus (resulting in habituation), and a single, novel deviant stimulus after varying familiarization durations (resulting in dishabituation). Effects of prior exposure and novelty on adults' looking time were well captured by RANCH \autocite{cao2023habituation}.
 
-Here, we ask how well RANCH describes the dynamics of infant habituation and dishabituation, and compare it to other classic models of infant attention. Figure 1C shows schematic predictions of RANCH for the experimental setting described above: variable prior exposure to a familiar stimulus, followed by a novel or a familiar stimulus. Rational exploration of a simple perceptual concept results in a monotonic decrease of attention to familiar items as a function of prior exposure.
+Here, we ask how well RANCH describes the dynamics of infant habituation and dishabituation, and compare it to other classic models of infant attention. Figure \ref{fig:conceptual}C shows schematic predictions of RANCH for the experimental setting described above: variable prior exposure to a familiar stimulus, followed by a novel or a familiar simulus. Rational exploration of a simple perceptual concept results in a monotonic decrease of attention to familiar items as a function of prior exposure.
 
-One critical challenge for differentiating formal theories of looking time in infants is that looking time measurements are noisy, and many infant experiments provide only limited precision in their estimates of key quantities {[}\url{https://www.researchgate.net/publication/291951412_Test-Retest_Reliability_in_Infant_Speech}; \url{https://onlinelibrary.wiley.com/doi/full/10.1111/infa.12337_Perception_Tasks}; {]}. In the current work, we develop a novel, within-subject experimental design that allows us to sensitively measure infants' looking time in experiments. Beyond validating RANCH's predictions in infants, this paradigm enables us to conduct interpretable developmental comparisons of parameter fits between infants and adults -- since the experimental design was analogous to each other -- thereby characterizing how the mechanisms underlying looking time may change over development.
+\begin{figure}
+\centering
+\includegraphics{00_main_files/figure-latex/conceptual-1.pdf}
+\caption{\label{fig:conceptual}Conceptual models of looking to novel vs.~familiar items according to three models of infant attention: A) The partial encoding model proposed by Hunter \& Ames (1988) which suggests a shift from familiarity to novelty preferences, B) The Goldilocks model proposed by Kidd et al.~(2012) which suggests that infants prefer to attend to intermediately surprising events, and C) the `optimal curiosity' model introduced by Cao et al.~(2023) which suggests that infants are maximizing expected information gain from noisy perceptual samples.}
+\end{figure}
 
-In addition, we incorporated recent progress in convolutional neural networks (CNNs) to allow RANCH to learn from raw images. Previous models have relied on using arbitrary representations of stimuli (e.g.~object location, CITE; hand-specified binary feature vector, CITE). However, recent CNNs have offered insights into how the visual system encodes objects \autocite{doshi2023cortical,hebart2020revealing,yamins2014performance}. The activations of these brain-inspired neural networks form embedding spaces, each of which can be seen as a quantitative hypothesis about how humans represent visual stimuli \autocite{schrimpf2020integrative}. In RANCH, we leveraged these principled stimulus representations to enable RANCH to learn from raw images. In other words, RANCH can `see' an experiment in a way similar to the one infants saw, and make predictions for previously unseen experiments using novel stimuli.
+One critical challenge for differentiating formal theories of looking time in infants is that looking time measurements are noisy, and many infant experiments provide only limited precision in their estimates of key quantities \autocite{cristia2016test,debolt2020robust}. In the current work, we develop a novel, within-subject experimental design that allows us to sensitively measure infants' looking time in experiments. Beyond validating RANCH's predictions in infants, this paradigm enables us to conduct interpretable developmental comparisons of parameter fits between infants and adults -- since the experimental design was analogous to each other -- thereby characterizing how the mechanisms underlying looking time may change over development.
+
+In addition, we incorporated recent progress in convolutional neural networks (CNNs) to allow RANCH to learn from raw images. Previous models have relied on using arbitrary representations of stimuli \autocites[e.g.~object location,][]{kidd2012goldilocks}[hand-specified binary feature vector,][]{cao2023habituation}. However, recent CNNs have offered insights into how the visual system encodes objects \autocite{doshi2023cortical,hebart2020revealing,yamins2014performance}. The activations of these brain-inspired neural networks form embedding spaces, each of which can be seen as a quantitative hypothesis about how humans represent visual stimuli \autocite{schrimpf2020integrative}. In RANCH, we leveraged these principled stimulus representations to enable RANCH to learn from raw images. In other words, RANCH can `see' an experiment in a way similar to the one infants saw, and make predictions for previously unseen experiments using novel stimuli.
 
 Last but not least, while previously we have shown that RANCH can successfully model habituation and dishabituation, we now test RANCH's ability to predict responses in new data. To conduct these tests, we first fit RANCH's parameters to a training data set from the habituation-dishabituation experiment in which participants saw sequences of stimuli. Then, we use the best-fitting parameters to generate predictions for a new experiment designed to measure subtle differences in dishabituation magnitude based on stimulus similarity. In this experiment, we systematically varied the similarity between habituation and dishabituation stimuli such that dishabituation stimuli differed in their pose angle, their number, their identity, or their animacy. This experiment tests a prediction from \textcite{hunter1988multifactor} model of habituation and dishabituation: that observers' dishabituation magnitude should be related to the similarity between the habituated stimulus and the novel stimulus. The more dissimilar two stimuli are, the more one should dishabituate to the novel stimulus.
 
@@ -124,35 +299,52 @@ The goal of this paper is to investigate the computational mechanisms underlying
 \hypertarget{rational-action-nosy-choice-for-habituation-model}{%
 \section{Rational Action, Nosy Choice for Habituation model}\label{rational-action-nosy-choice-for-habituation-model}}
 
-Rational Action, Noisy Choice for Habituation model (RANCH) is a Bayesian perception and action model in which a learner makes optimal perceptual sampling decisions \cite{cao2023habituation}. In the current implementation, we conceptualized the learning problem in habituation as learning a visual concept -- a probabilistic representation of the stimuli it experiences. The model achieves learning through observing a series of noisy perceptual samples from a sequence of stimuli. During the learning process, the model makes decisions about how many samples to receive of each stimulus before moving to the next stimulus. The number of samples that the model takes on each stimulus is then used as a proxy for looking time duration at each sample.
+Rational Action, Noisy Choice for Habituation model (RANCH) is a Bayesian perception and action model in which a learner makes optimal perceptual sampling decisions \autocite{cao2023habituation}. In the current implementation, we conceptualized the learning problem in habituation as learning a visual concept -- a probabilistic representation of the stimuli it experiences. The model achieves learning through observing a series of noisy perceptual samples from a sequence of stimuli. During the learning process, the model makes decisions about how many samples to receive of each stimulus before moving to the next stimulus. The number of samples that the model takes on each stimulus is then used as a proxy for looking time duration at each sample.
 
 RANCH provides a probabilistic framework for making perceptual decisions. In this section, we will describe the three modular components RANCH includes: the perceptual representation, learning model, and decision model.
 
 \hypertarget{perceptual-representations}{%
 \subsection{Perceptual representations}\label{perceptual-representations}}
 
-We use the deep convolutional neural network ResNet-50 to encode the stimuli used in behavioral experiments. ResNet-50 is an architecture that has been widely used in computer vision (CITE, CITE, CITE). A total of 50 layers are implemented in this architecture: it starts with a convolution layer, includes several groups of residual blocks that help preserve information through the network, and ends with a global average pooling layer and a fully connected layer for classification. In addition to its influence in computer vision, ResNet-50 is also an impactful tool in cognitive neuroscience since it is capable of producing visual representations aligned with humans (CITE, CITE, CITE).
+We use the deep convolutional neural network (CNN) ResNet-50 to encode the stimuli used in behavioral experiments. ResNet-50 is an architecture that has been widely used in computer vision \autocite{he2016deep}. A total of 50 layers are implemented in this architecture: it starts with a convolution layer, includes several groups of residual blocks that help preserve information through the network, and ends with a global average pooling layer and a fully connected layer for classification. We used a version of ResNet-50 that was pretrained on ImageNet \autocite{deng2009imagenet}. Training on ImageNet optimizes the Resnet-50's activations for image classification, and we can use these activations as an perceptual ``embedding space''. When we pass new stimuli through a pre-trained network, we extract these activations to obtain principled embeddings of stimuli. We used the first three principal components of the embedding space to limit the dimensionality of the downstream learning problem.
 
-ResNet-50 is by no means the only possible candidate for deriving perceptual representations. We also explored alternative models trained with different data, but we did not find a significant difference between ResNet-50 and the other (often more complicated) models (See SI).
+ResNet-50 is by no means the only possible CNN for deriving perceptual representations. We also explored alternative models, such as a CNN trained on SayCam data \autocite{orhan2020self} or a CNN whose representations were aligned to human behavior \autocite{lee2022rapid}. However, we did not find substantial differences between the embedding spaces provided by ResNet-50 and other (often more complicated) models (See SI).
 
 \hypertarget{learning-model}{%
 \subsection{Learning model}\label{learning-model}}
 
-In the current instantiation, RANCH models looking behaviors in habituation experiments as Bayesian concept learning (CITE, CITE, CITE). The model learns the concept through a series of noisy perceptual samples taken from the stimulus. The concept to be learned is parameterized by \(\mu,\sigma\), which represents beliefs about the location and variance of the presented concept in the embedding space. The concept \(\mu,\sigma\) generates exemplars \(y\), which is equivalent to the stimulus seen by the human participants. But RANCH does not directly learn from the stimulus. Instead, it learns from the series of noisy perceptual samples \(\bar{z}\) generated by the exemplar. The noisy perceptual sample is corrupted by zero-mean noise, represented by \(\epsilon\). A plate diagram is shown in Figure 1B. At each time step, the model takes one perceptual sample to update the prior following the Bayes Rule (Eq1).
+In the current instantiation, RANCH models looking behaviors in habituation experiments as Bayesian concept learning \autocite{goodman2008rational,tenenbaum1999bayesian}. The model learns the concept through a series of noisy perceptual samples taken from a stimulus. The concept to be learned is parameterized by \(\mu,\sigma\), which represents beliefs about the location and variance of the presented concept in the embedding space. The concept \(\mu,\sigma\) generates exemplars \(y\), which is equivalent to the stimulus seen by the human participants. But RANCH does not directly learn from the stimulus. Instead, it learns from the series of noisy perceptual samples \(\bar{z}\) generated by the exemplar. The noisy perceptual sample is corrupted by zero-mean noise, represented by \(\epsilon\). A plate diagram is shown in Figure \ref{fig:RANCH}B. At each time step, the model takes one perceptual sample to update the prior following the Bayes Rule:
 
-EQUATION 1.
+\[p(\mu, \sigma | \bar{z}) = \frac{p(\bar{z} | \mu, \sigma) * p(\mu, \sigma)}{p(\bar{z})}\]
 
 \hypertarget{decision-model-and-linking-hypothesis}{%
 \subsection{Decision model and linking hypothesis}\label{decision-model-and-linking-hypothesis}}
 
-The Bayesian learning model did not address how the model decides to keep sampling the same stimulus or to move on to the next stimulus. We enable RANCH's decision-making process by calculating the Expected Information Gain (EIG) of the next perceptual sample. EIG is a metric used under the rational analysis of information seeking behavior (CITE, CITE, CITE). RANCH then uses a softmax choice (with temperature = 1, Eq 2) between the information theoretic measures of the next sample and a constant ``world EIG'' (Eq 2). The constant here is assumed to be the amount of information gain provided by the environment when the model looks away from the stimulus.
+The Bayesian learning model did not address how the model decides to keep sampling the same stimulus or to move on to the next stimulus. We enable RANCH's decision-making process by calculating the expected information gain (EIG) of the next perceptual sample, which we define as the average KL-divergence across a grid of possible next observations. EIG is a metric used under the rational analysis of information-seeking behavior \autocite{anderson1991human,oaksford1994rational}. RANCH then uses a softmax choice (with temperature = 1) between the information theoretic measures of the next sample and a constant ``environmental EIG''. The constant here is assumed to be the amount of information gain provided by the environment when the learner looks away from the stimulus.
 
-EQUATION 2
+\begin{figure}
+\centering
+\includegraphics{00_main_files/figure-latex/RANCH-1.pdf}
+\caption{\label{fig:RANCH}Three components of RANCH: A) Perceptual representation: Obtaining stimulus embeddings from ResNet-50 final layer activations, B) Learning model: Plate diagram for Gaussian concept learning from noisy observations, C) Decision model: RANCH repeatedly samples until environmental EIG outweighs EIG from another sample.}
+\end{figure}
 
-\hypertarget{results}{%
-\subsection{Results}\label{results}}
+\hypertarget{implementation}{%
+\subsection{Implementation}\label{implementation}}
 
-\#\texttt{\{r\ child\ =\ "04\_results\_infants.Rmd"\}\ \#}
+RANCH has a series of parameters: the learner's priors over the concept to be learned (\(\mu\), \(\sigma\)), the learner's priors over their perceptual noise (\(\epsilon\)) and the environmental EIG (\(EIG_{env}\)). We conducted an iterative grid search over these parameters.
+
+Given that the element of accounting for the learner's own noise breaks the conjugacy of updating the concept mean and variance, we resorted to grid approximation to perform the sample-by-sample Bayesian updates. We discretized the grids over \(\mu\), \(sigma\), \(y\) (exemplars) and \(z\) (noisy samples) to perform inference, as well as the grid of possible next observations when computing EIG.
+
+To average out noise resulting from grid approximation, we ran each combination of parameter setting and trial type 100 times. To avoid bias, these 100 simulations used 20 different ``jitters'' - such that the exact location of the points in the discrete grids was randomly chosen. We used the number of samples the model decided to take from each stimulus as a proxy for looking time, effectively converting the binary choice of ``look'' or ``look away'' to a continuous variable. We then average the number of samples across the 1000 runs.
+
+This computationally intensive process required significant resources. The grid approximation, combined with repeated simulations, demanded high-performance cluster GPUs to perform vectorized computation using a PyTorch implementation of our model. Running a single parameter setting through an experiment took approximately 10 hours on a GPU - by distributing different parameter settings across GPUs, a full parameter search took about 3 days of compute.
+
+\hypertarget{ranch-predicts-habituation-and-dishabituation-in-relation-to-exposure-duration}{%
+\section{RANCH predicts habituation and dishabituation in relation to exposure duration}\label{ranch-predicts-habituation-and-dishabituation-in-relation-to-exposure-duration}}
+
+\#```\{r child = ``04\_experiment1.Rmd''\}
+
+\#```
 
 \hypertarget{methods}{%
 \subsection{Methods}\label{methods}}
@@ -160,8 +352,8 @@ EQUATION 2
 \hypertarget{r-child-04_experiment2_methods.rmd}{%
 \section{\texorpdfstring{\texttt{\{r\ child\ =\ "04\_experiment2\_methods.Rmd"\}\ \#}}{\{r child = "04\_experiment2\_methods.Rmd"\} \#}}\label{r-child-04_experiment2_methods.rmd}}
 
-\hypertarget{results-1}{%
-\subsection{Results}\label{results-1}}
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
 
 \hypertarget{r-child-05_experiment2_results.rmd}{%
 \section{\texorpdfstring{\texttt{\{r\ child\ =\ "05\_experiment2\_results.Rmd"\}\ \#}}{\{r child = "05\_experiment2\_results.Rmd"\} \#}}\label{r-child-05_experiment2_results.rmd}}
