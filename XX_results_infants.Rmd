@@ -5,62 +5,7 @@ date: "2023-11-13"
 ---
 
 
-```{r eval=FALSE, include=FALSE}
 
-# exclude invalid trials
-infant_d %<>% filter(!exclude)
-
-# get age
-mean_age = infant_d %>% distinct(unique_id, age) %>% pull(age) %>% mean()
-sd_age = infant_d %>% distinct(unique_id, age) %>% pull(age) %>% sd()
-
-test_df = infant_d %>% filter(fam_or_test == 'test') %>% mutate(fam_duration = as.numeric(fam_duration), 
-                                                                animal = as.factor(animal), 
-                                                                centered_age = (age - mean_age) / sd_age)
-
-
-# checking for non-linearity model
-model_1a <- lmer(log(LT) ~ poly(fam_duration,2) *test_type + block_num + (1 | unique_id), data = test_df)
-
-# fam pref (EXPLORATORY)
-model_2a <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 1))
-
-model_2b <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 3))
-
-model_2c <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 4))
-
-# fam pref pre-registered
-model_2d <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration <= 4 & fam_duration != 0))
-
-# dishabituation
-model_3a <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 8))
-
-model_3b <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 9))
-
-model_3c <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration >= 8))
-
-saveRDS(model_1a, here("cached_models/infants/model_1a.rds"))
-saveRDS(model_2a, here("cached_models/infants/model_2a.rds"))
-saveRDS(model_2b, here("cached_models/infants/model_2b.rds"))
-saveRDS(model_2c, here("cached_models/infants/model_2c.rds"))
-saveRDS(model_2d, here("cached_models/infants/model_2d.rds"))
-saveRDS(model_3a, here("cached_models/infants/model_3a.rds"))
-saveRDS(model_3b, here("cached_models/infants/model_3b.rds"))
-saveRDS(model_3c, here("cached_models/infants/model_3c.rds"))
-
-```
-
-```{r}
-model_1a_df <- tidy(model_1a) %>% mutate_if(is.numeric, round, 2)
-model_2a_df <- tidy(model_2a) %>% mutate_if(is.numeric, round, 2)
-model_2b_df <- tidy(model_2b) %>%  mutate_if(is.numeric, round, 2)
-model_2c_df <- tidy(model_2c) %>%  mutate_if(is.numeric, round, 2)
-model_2d_df <- tidy(model_2d) %>%  mutate_if(is.numeric, round, 2)
-model_3a_df <-tidy(model_3a) %>%  mutate_if(is.numeric, round, 2)
-model_3b_df <-tidy(model_3b) %>%  mutate_if(is.numeric, round, 2)
-model_3c_df <-tidy(model_3c) %>%  mutate_if(is.numeric, round, 2)
-
-```
 
 Data and analysis are available at XXX. We pre-registered several linear mixed-effects models to test for habituation, novelty preferences and familiarity preferences in our paradigm. All models included a fixed effect of block number, and a random effect of subject. We did not include a random effect of stimulus since we found that the variance of this random effect was small relative to the subject effects and fitting our mixed-effects models with random effects of stimulus caused convergence issues.
 

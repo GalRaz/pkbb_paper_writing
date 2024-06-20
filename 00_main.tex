@@ -37,46 +37,6 @@
 \makeatother
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -124,141 +84,6 @@
 
 \begin{document}
 \maketitle
-
-{
-\setcounter{tocdepth}{2}
-\tableofcontents
-}
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.4     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.1
-## v ggplot2   3.5.0     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.1
-## v purrr     1.0.2     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(here)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## here() starts at /Users/galraz/Developer/pkbb_paper_writing
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(lme4)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Loading required package: Matrix
-## 
-## Attaching package: 'Matrix'
-## 
-## The following objects are masked from 'package:tidyr':
-## 
-##     expand, pack, unpack
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(lmerTest)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'lmerTest'
-## 
-## The following object is masked from 'package:lme4':
-## 
-##     lmer
-## 
-## The following object is masked from 'package:stats':
-## 
-##     step
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(broom.mixed)}
-\FunctionTok{library}\NormalTok{(magrittr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'magrittr'
-## 
-## The following object is masked from 'package:purrr':
-## 
-##     set_names
-## 
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(pbkrtest)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#Load packages \& datasets}
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\FunctionTok{library}\NormalTok{(here)}
-\FunctionTok{library}\NormalTok{(lme4)}
-\FunctionTok{library}\NormalTok{(lmerTest)}
-\FunctionTok{library}\NormalTok{(broom.mixed)}
-\FunctionTok{library}\NormalTok{(magrittr)}
-\FunctionTok{library}\NormalTok{(pbkrtest)}
-
-\NormalTok{infant\_d }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"data/infants/infant\_processed\_data.csv"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## New names:
-## Rows: 1162 Columns: 13
-## -- Column specification
-## -------------------------------------------------------- Delimiter: "," chr
-## (5): experiment, fam_or_test, unique_id, test_type, sex dbl (7): ...1,
-## subject_num, animal, block_num, fam_duration, LT, age lgl (1): exclude
-## i Use `spec()` to retrieve the full column specification for this data. i
-## Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## * `` -> `...1`
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Load models}
-\NormalTok{model\_1a }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_1a.rds"}\NormalTok{))}
-\NormalTok{model\_2a}\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_2a.rds"}\NormalTok{))}
-\NormalTok{model\_2b}\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{( }\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_2b.rds"}\NormalTok{))}
-\NormalTok{model\_2c }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{( }\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_2c.rds"}\NormalTok{))}
-\NormalTok{model\_2d }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_2d.rds"}\NormalTok{))}
-\NormalTok{model\_3a }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_3a.rds"}\NormalTok{))}
-\NormalTok{model\_3b }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_3b.rds"}\NormalTok{))}
-\NormalTok{model\_3c }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{( }\FunctionTok{here}\NormalTok{(}\StringTok{"cached\_models/infants/model\_3c.rds"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{abstract}{%
 \section{Abstract}\label{abstract}}
@@ -350,19 +175,21 @@ A key difference between the models in Figure 1 is their prediction with regard 
 \hypertarget{infant-experiment}{%
 \subsubsection{Infant experiment}\label{infant-experiment}}
 
-We tested infants in a novel experimental paradigm in which exposure duration to the stimuli were manipulated in a within-subject design \ref{fig:design} (Experiment 1). Each infant saw six blocks. In each block there was an familiarizaiton phase and a test trial. During the familiarization, infants were presented with one stimulus, repeated 0 to 9 times. After the familiarization, infants' looking time was measured on a test trial. The test trial showed either the same stimulus as the preceding trials, or a new stimulus. We ran three versions of this experiment, each with three different familiarization durations. We tested a combined sample of 103 7-10 month old infants, with 310 infants in Exp 1A (0, 4 or 8 repetitions), 408 infants in Exp 1B (1, 3 or 9 repetitions) and 444 infants in Exp 1C (2, 4 or 6 repetitions; total n=103 (\(M_{age}\) = 9.38 months, 47 female).
+We tested infants in a novel experimental paradigm in which exposure duration to the stimuli were manipulated in a within-subject design \ref{fig:design} (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarizaiton phase and a test trial. During the familiarization, infants were presented with one stimulus, repeated 0 to 9 times. After the familiarization, infants' looking time was measured on a test trial. The test trial showed either the same stimulus as the preceding trials, or a new stimulus. We ran three versions of this experiment, each with three different familiarization durations. We tested a combined sample of 103 7-10 month old infants, with 31 infants in Exp 1A (0, 4 or 8 repetitions), 35 infants in Exp 1B (1, 3 or 9 repetitions) and 37 infants in Exp 1C (2, 4 or 6 repetitions; total n=103, \(M_{age}\)=9.38 months, 47 female).
 
 \hypertarget{adult-experiment}{%
 \subsubsection{Adult experiment}\label{adult-experiment}}
 
-We ran a self-paced looking time paradigm experiment on Prolific, collecting data from XXXX adult participants (FIGURE). The stimuli used in the adult experiment are drawn from the same stimuli set used in the infant experiment. During the experiment, participants were asked to watch sequences of animations at their own pace, and they could press a key to proceed to the next trial whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence of animations has two stimuli: the familiar stimulus and the novel stimulus. The familiar stimulus repeated over and over again within a sequence, whereas the novel stimulus only appeared once and it appeared at either the second, the fourth, or the sixth position in the sequence.
-Modeling Procedure
+We ran a self-paced looking time paradigm experiment on Prolific, collecting data from XXXX adult participants \ref{fig:design} (Experiment 1, Adults). The stimuli used in the adult experiment are drawn from the same stimuli set used in the infant experiment. During the experiment, participants were asked to watch sequences of animations at their own pace, and they could press a key to proceed to the next trial whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence of animations has two stimuli: the familiar stimulus and the novel stimulus. The familiar stimulus repeated over and over again within a sequence, whereas the novel stimulus only appeared once and it appeared at either the second, the fourth, or the sixth position in the sequence.
 
-The overall modeling strategy is for RANCH to `see' the experiment the same way as the participants do. RANCH learned from the embeddings derived from the stimuli used in the experiments, and the modeling procedure mirrored the experimental set-up used in the infants experiment and adult experiment respectively (Fig. 2).
+\hypertarget{modeling-procedure}{%
+\subsubsection{Modeling Procedure}\label{modeling-procedure}}
 
-To simulate the infant experiment, the model was first presented with a series of repeating stimuli. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase is similar to the exposure phase infants went through, since during the exposure phase infants had no control over the progression of the stimuli sequence. After the familiarization sequence, the model was presented with the test trial, which either has a novel stimulus or a familiar stimulus (i.e.~the repeated stimulus) . The number of samples the model took on this test trial was the ``looking time'' that the model produced.
+The overall modeling strategy is for RANCH to `see' the experiment the same way as the participants do. RANCH learned from the embeddings derived from the stimuli used in the experiments, and the modeling procedure mirrored the experimental set-up used in the infants experiment and adult experiment respectively (\ref{fig:design}).
 
-In contrast, to simulate the adult experiment, RANCH makes decisions on when and whether to progress to the next trial in the sequence. At each animation in the sequence, the model takes a certain number of samples before deciding to move on to the next animation, until the end of the sequence. Like the adult experiment, the sequence has a familiar stimulus that repeats throughout the sequence, and a novel stimulus that appears once. The model predicts looking times to each stimulus in the sequence.
+To simulate the infant experiment, the model was first presented with a series of repeating stimuli. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase is similar to the exposure phase infants went through, since during the exposure phase infants had no control over the progression of the stimuli sequence. After the familiarization sequence, the model was presented with the test trial, which either has a novel stimulus or a familiar stimulus (i.e.~the repeated stimulus). The number of samples the model took on this test trial was the ``looking time'' that the model produced.
+
+To simulate the self-paced adult experiment, RANCH makes decisions on how many samples to take on every trial, until the end of the sequence. As in the adult experiment, the sequence has a familiar stimulus that repeats throughout the sequence, and a novel stimulus that appears once. The model therefore predicts looking times to each stimulus in the sequence.
 
 \begin{figure}
 \centering
@@ -373,9 +200,9 @@ In contrast, to simulate the adult experiment, RANCH makes decisions on when and
 \hypertarget{evaluating-model-with-behavioral-results}{%
 \subsection{Evaluating model with behavioral results}\label{evaluating-model-with-behavioral-results}}
 
-The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (STATS). We also found evidence for infants' dishabituation: looking time for the novel test trials was longer than the familiar trial (STATS). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (STATS).
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (\(\beta\) = -4.55; \emph{SE} = 0.92; \emph{t} = -4.92; \emph{p} \textless{} 0.001). We also found evidence for infants' dishabituation: looking time for the novel test trials was longer than the familiar trial after long exposures (after 8 repetitions: \(\beta\) = 0.82; \emph{SE} = 0.22; \emph{t} = 3.81; \emph{p} \textless{} 0.001, after 9 repetitions: \(\beta\) = 0.51; \emph{SE} = 0.12; \emph{t} = 4.21; \emph{p} \textless{} 0.001). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (STATS). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf.~\ref{fig:conceptual}A\&B).
 
-RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set's performance by running a K-fold validation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson's r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??).
+RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set's performance by running a K-fold crossvalidation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson's r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??).
 
 \hypertarget{comparison-with-alternative-linking-hypotheses}{%
 \subsection{Comparison with alternative linking hypotheses}\label{comparison-with-alternative-linking-hypotheses}}
@@ -399,23 +226,86 @@ Through within-subjects measurements of looking time, we examined the sensitivit
 
 We next turn to test RANCH's ability to make predictions in a novel dataset.
 
-\hypertarget{methods}{%
-\subsection{Methods}\label{methods}}
+\hypertarget{ranch-predicts-stimulus-similarity-based-dishabituation-in-infants-and-adults}{%
+\section{RANCH predicts stimulus similarity-based dishabituation in infants and adults}\label{ranch-predicts-stimulus-similarity-based-dishabituation-in-infants-and-adults}}
 
-\hypertarget{r-child-04_experiment2_methods.rmd}{%
-\section{\texorpdfstring{\texttt{\{r\ child\ =\ "04\_experiment2\_methods.Rmd"\}\ \#}}{\{r child = "04\_experiment2\_methods.Rmd"\} \#}}\label{r-child-04_experiment2_methods.rmd}}
+Beyond predicting non-linearities in attentional preferences during encoding (Fig. 1B), \textcite{hunter1988multifactor} also predicted that after complete encoding of a stimulus,dishabituation magnitude should be linked to the similarity between two stimuli: the more dissimilar the novel stimulus is to the habituation stimulus, the more participants should dishabituate. We designed an experiment testing the relationship between stimuli similarity and dishabituation magnitude by systematically varying the similarity between the familiar stimuli and the novel stimuli. Instantiating RANCH provides an explicit notion of similarity through the use of ResNet50-derived image embeddings. We can therefore test whether RANCH also predicts such similarity-based differences in dishabituation magnitude. We showed that the best-fitting parameters trained from the previous behaviors predict infants and adults behaviors in the new experiment. In other words, RANCH is capable of making out-of-sample predictions about novel behaviors that it was not trained on.
 
-\hypertarget{results}{%
-\subsection{Results}\label{results}}
+\hypertarget{behavioral-experiment}{%
+\subsection{Behavioral Experiment}\label{behavioral-experiment}}
 
-\hypertarget{r-child-05_experiment2_results.rmd}{%
-\section{\texorpdfstring{\texttt{\{r\ child\ =\ "05\_experiment2\_results.Rmd"\}\ \#}}{\{r child = "05\_experiment2\_results.Rmd"\} \#}}\label{r-child-05_experiment2_results.rmd}}
+\hypertarget{infant-experiment-1}{%
+\subsubsection{Infant experiment}\label{infant-experiment-1}}
 
-\hypertarget{discussion-1}{%
-\section{Discussion}\label{discussion-1}}
+To study whether infants show similarity-based dishabituation between the habituation and novel stimulus, we ran an experiment via Zoom (n=50, age range=7-10 months, \(M_{age}\)=268.1), and an exact replication via Lookit (n =64, age range=6-12 months, \(M_{age}\)=289.47). We presented infants with a series of blocks, each again consisting of a familiarization and a test trial (\ref{fig:design} (Experiment 2, Infants)). Instead of modifying prior exposure as in the previous experiment, here infants were always familiarized 8 or 9 times with an animal (corresponding to the amount of exposure that caused robust dishabituation in the previous experiment). After familiarization, infants saw a test trial, which could relate to the familiar animal in one of five ways: they either saw the same animal again (background), the same animal facing in the opposite direction (pose), a different animal facing the same way (identity), two instances of the same animal side-by-side (number), or an inanimate vegetable or fruit (animacy).
 
-\hypertarget{r-child-06_general_discussion.rmd}{%
-\section{\texorpdfstring{\texttt{\{r\ child\ =\ "06\_general\_discussion.Rmd"\}\ \#}}{\{r child = "06\_general\_discussion.Rmd"\} \#}}\label{r-child-06_general_discussion.rmd}}
+\hypertarget{adult-experiment-1}{%
+\subsubsection{Adult experiment}\label{adult-experiment-1}}
+
+This adult experiment was procedurally similar to the previous experiment and has similar adaptation to the infant experiment. Participants (N = 468) saw a sequence of animation, with repeating stimulus and one novel stimulus that appears at the end of the sequence. Since adults have longer attention span, we can test adults in all permutations of the familiar stimulus and novel stimulus. The familiar stimuli were either animals or vegetables, facing eighth left or right, coming in either one or a pair. Like the infant experiment, the novel stimulus can be different from the familiar stimulus in one of the four ways: pose, identity, number, or animacy.
+
+(\(\beta\) = -4.55; \emph{SE} = 0.92; \emph{t} = -4.92; \emph{p} )
+
+\hypertarget{model-evaluation}{%
+\subsection{Model Evaluation}\label{model-evaluation}}
+
+We successfully captured similarity-based dishabituation in both infants and adults:
+Similar to the previous experiment, infants showed dishabituation to all novel test trials (identity: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.08; \emph{p} = 0.04, number: \(\beta\) = 0.32; \emph{SE} = 0.17; \emph{t} = 1.92; \emph{p} = 0.06, animacy: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.02; \emph{p} = 0.05), except the pose violation, which elicited no significant dishabituation. There was also evidence that the magnitude of dishabituation was related to the similarity of the novel trial: Infants looking time followed the pre-registered expected ordering: animacy \textgreater{} number \textgreater{} identity \textgreater{} pose \textgreater{} background. A control experiment suggested infants showed no baseline differences in looking time between categories (See SI).
+
+Our exact replication via Lookit showed similar, though not identical results: We again found that animacy and number resulted in the strongest dishabituation in infants, and pose violations did not elicit dishabituation. However, unlike the Zoom study, the identity violation did not elicit significant dishabituation in our Lookit study. We suggest potential reasons in the general discussion.
+
+In adults, like in previous experiments, we found evidence for habituation (STATS). More importantly, we also found evidence for graded dishabituation: the dishabituation magnitude to animacy violations is larger than to number violations (STATS) and to pose violations (STATS). Same pattern was found for identity type novelty (STATS). However, animacy type novelty was not different from identity type novelty, nor was the number type novelty different from the pose type novelty (STATS). Qualitatively, we found that the ordering for dishabituation magnitude was animacy (STATS) \textgreater{} identity (STATS) \textgreater{} pose (STATS) \textgreater{} and number (STATS).
+
+We next tested whether RANCH made similar predictions. We used the same modeling procedure described in the previous experiment, simulating the infant and adult experiment respectively. We converted the raw images into the embeddings and assembled the stimuli into the sequences that participants saw in each block.
+
+Using the previously obtained parameters, we found that RANCH generalized to the new dataset (Adults: STATS; Infants: STATS). Moreover, RANCH also showed a qualitative ordering of the dishabituation magnitude: animacy \textgreater{} identity \textgreater{} number \textgreater{} pose. This ordering was in line with the CNN-derived embedding distances between the different stimulus categories (SI Figure of embedding distances).
+
+Taken together, though there were some discrepancies between the qualitative ordering between infants, adults and RANCH (discussed below), our analyses show that RANCH is not only capable of capturing habituation and dishabituation, but also can generalize to a new task and make predictions about dishabituation magnitude in relation to stimulus similarity.
+
+\hypertarget{general-discussion}{%
+\section{General Discussion}\label{general-discussion}}
+
+Measuring habituation and dishabituation has been a key way to gaining insight into the infant mind, but the computational underpinnings are not well understood. Here, we seeked to understand to what extent these behaviors can be understood as rational exploration of noisy perceptual samples. To do so, we introduced a rational learner model, RANCH, which takes noisy samples from stimuli and makes sampling decisions based on the next sample's EIG. RANCH makes continuous predictions about infants' looking times to familiar vs.~novel stimuli when varying prior exposure. We found that model fit was robust to parameters, and that KL and EIG provided better model fits than surprisal. Furthermore, lesioned models showed that both the learning and noise components of RANCH were essential to its performance. We also found that the key difference between infants and adults was the learner's prior on their noise - the model preferred higher noise to fit the infant data than when fitting the adult data. After fitting RANCH to this exposure duration experiment, we also tested its ability to make predictions on a new task, where we varied the way in which a familiar stimulus is violated by changing its pose, number, identity or animacy. We find that, without any new tuning of the model to the new task, RANCH predicts a gradient in the magnitude of dishabituation similar to the gradient observed in looking time data.
+
+\hypertarget{novel-within-subjects-designs}{%
+\subsection{Novel within-subjects designs}\label{novel-within-subjects-designs}}
+
+To test our model, we developed novel paradigms for within-infant measurements of habituation and dishabituation. These novel designs allowed us to go beyond testing simple qualitative predictions (i.e.~longer versus shorter looking duration). Instead, we validated RANCH's continuous predictions about the relationship between prior exposure and looking to novel vs.~familiar stimuli (Experiment 1) and between perceptual distance and looking (Experiment 2), within subjects. Scaling this approach through remote infant behavior testing and automated gaze coding via iCatcher+ \autocite{erel2023icatcher} has allowed us to collect within-subject data from N infants.
+
+\hypertarget{graded-dishabituation-in-humans-and-models}{%
+\subsection{Graded dishabituation in humans and models}\label{graded-dishabituation-in-humans-and-models}}
+
+Our findings in Experiment 2 warrants further discussion. In particular, the number violation resulted in interesting patterns across age groups and RANCH: The number of samples RANCH preferred to take from number violations was less than identity violations but more than pose violations, similar to adults. Infants however looked at number violations more than identity violations. This discrepancy between the model and adults on the one hand, and infants on the other hand could be explained by a variety of factors.
+
+RANCH is designed for representing single objects, not multiple objects, therefore any dishabituation to number violations results primarily from simple, low-level perceptual distances, rather than dishabituation to number per-se. To the extent that the dishabituation observed in the data exceeds RANCH's, we can say that this points to other, conceptual sources of surprise that cannot be explained purely by low-level visual differences. This is consistent with infant literature showing that infants are sensitive to changes in number specifically, rather than visual changes generally \autocite{wynn1998psychological,feigenson2004core}. Adults on the other hand did not show this exaggerated effect of number violations, possibly because adults' processing was shallower in our task, which is supported by their shorter reaction times.
+
+Infants' stronger dishabituation to number violations than predicted by RANCH was replicated by our Lookit experiment. However, unlike in the original Zoom experiment, the Lookit experiment did not elicit significant dishabituation to identity violations. This is in contrast to our findings in both Experiment 1 and Experiment 2, where identity violations after long familiarizations caused longer looking times than looking to the background. There may be two possible reasons for this discrepancy: First, while in the Zoom study experimenters terminated trials when infants looked away for three seconds, the Lookit experiment used fixed trial durations due to the asynchronous set-up. While in both experiments looking times are still calculated using a standard criterion off-look \autocite{horowitz1972infant}, the infant-contingency of the Zoom experiment likely increases the data quality and results in higher sensitivity to smaller effects. Similarly, an experimenter being present via Zoom allows them to ensure a quiet testing environment and adjust the flow of the experiment to the participant - previous comparisons between Zoom and asynchronous studies similarly suggest that effects via Zoom tend to be larger.
+
+\hypertarget{unique-strengths-of-ranch-framework}{%
+\subsection{Unique strengths of RANCH framework}\label{unique-strengths-of-ranch-framework}}
+
+A key strength of RANCH is the cognitive interpretability of its parameters. Previous Bayesian models of infant attention have leveraged parameter interpretability to draw conclusions about the computational mechanisms underlying individual differences in attention \autocite{poli2024individual}. Here, we use parameter fits of RANCH to study population differences: By applying a ``joint scaling'' procedure in which we scale model samples to infant and adult simultaneously, we could identify which parameters had to be different between infant and adults to account for their different patterns of looking time. When searching for parameters, we found that a key developmental difference was that learner's beliefs about the magnitude of their own noise is higher in infants than for adults.
+
+Another strength is RANCH's ability to model looking on a more fine-grained timescale. Prior research has largely resorted modeling on the trial-level, and asking about correlations between behavior on a given trial (e.g.~looking time) and certain information-theoretic proxies, such as KL or surprisal \autocite{kidd2012goldilocks,poli2023eight}. However, a proper rational analysis with EIG is not possible at this resolution, because models that carve up time in terms of trials, rather than samples, do not allow for asking questions about future information gain. It is only in moment-by-moment modeling frameworks like RANCH that we can implement the formal rational analysis \autocite{oaksford1994rational,anderson1991human}, in which learners ask ``How much information do I expect to gain from taking another sample from the stimulus?''. The ability to conduct the rational analysis enhances our understanding of habituation as optimally adapted to environmental constraints \autocite[see e.g.][for a different rational analysis of habituation]{gershman2024habituation}. Still, replacing EIG with information-theoretic proxies in our setting can help us examine whether participants' behavior seems to follow an EIG-based, or a proxy-based, linking hypothesis. In our analyses we found that though KL divergence performed comparably to EIG, the surprisal-based model was worse at fitting both infant and adult data.
+
+\hypertarget{no-evidence-for-familiarity-preferences}{%
+\subsection{No evidence for familiarity preferences}\label{no-evidence-for-familiarity-preferences}}
+
+A key feature of our experimental data, as well as our model, is that at no point, even for the shortest familiarization durations, we find longer looking to familiar than to novel stimuli. This finding contrasts with predictions made by a prominent model of infant attention (\ref{fig:conceptual}A)), which posit that at intermediate levels of encoding, familiar stimuli should become more interesting than novel stimuli. The intuition is that some initial familiarity with a stimulus may allow a viewer to ``break into'' the information there is to gain from the stimulus - a completely novel stimulus may be too complex or foreign for extended attention to be worth it. In the learning setting of simple perceptual learning, the rational analysis and participants do not seem to favor this strategy. This suggests that limited exposure does not generically lead to familiarity preferences in any experimental paradigm.
+
+Of course, the absence of familiarity preferences in our results does not rule out their existence in general. First, familiarity preferences may be more subtle than novelty preferences, so that the statistical power that is needed to find familiarity preferences is higher than that achieved in the current study. A current large-scale study by the ManyBabies consortium which aims to test the predictions made by \textcite{hunter1988multifactor} may give insight into this possibility \autocite{kosie2023manybabies}. In addition, the learning problem that participants are solving likely plays a critical role in whether they will exhibit familiarity preferences. This context-dependence is reflected in meta-analyses investigating familiarity preferences in different paradigms. For example, when tested on word segmentation in their native language, infants show persistent preferences for familiar stimuli throughout the first year \autocite{bergmann2016development}. In contrast, when tested on statistical learning of novel words, infants show consistent preferences for novel stimuli, from 4-month- to 11 months of age \autocite{black2017quantifying}.
+
+\hypertarget{formal-theories-of-learning-and-attention}{%
+\subsection{Formal theories of learning and attention}\label{formal-theories-of-learning-and-attention}}
+
+These seemingly contradictory results highlight the need for theories that formalize accounts of how the learning problem influences attention. \textcite{dubey2020reconciling} give an example of such a formal account by showing that when past and present events are correlated, rational agents, under some assumptions, develop a tendency to attend to familiar stimuli to prepare for the most likely future events, while in uncorrelated environments, novelty preferences are optimal. On the other hand, ideal learners attempting to maximize their expected information gain consistently seek novelty when trying to learn a single concept. Formal models of the learning problem being solved in experiments may therefore give more principled and precise predictions beyond identifying factors like ``prior exposure'' as determinants of attentional preferences.
+
+Importantly, RANCH's predictions outlined in this paper apply to the specific case: the learner makes noisy observations of 1) stimuli from a specific embedding space, 2) updates its beliefs about the location of a single concept and 3) makes sampling decisions based on EIG. The modular structure of RANCH makes it so that each of these components (embedding space, learning model and linking hypothesis) could be modified, likely leading to different predictions. For example, the embedding space could be chosen to more closely resemble a psychologically validated perceptual space \autocite[e.g.][]{lee2022rapid}, though in this case, we found that such an alternative did not significantly impact model fit (REF to SI with Lee \& DiCarlo model). Similarly, the learning problem could be modified to account for the idea that participants may not just be learning a single concept, but rather are also deciding whether a stimulus should prompt the creation of a new concept or not.
+
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
+
+Infants are active learners. Since birth, they actively explore their environment through selective attention. Looking time, a widely used measure in developmental psychology, leverages this ability to help make inferences about infants' conceptual and perceptual capacity. However, past literature tends to use looking time measure as a qualitative outcome (e.g.~infants either look longer or shorter at a particular stimuli), rather than a graded, continuous measure (e.g.~how long infants would look at certain stimuli). In our work, we provided strong evidence that looking time is a graded measure and can be predicted quantitatively by a model that posits that infants' looking time is driven by rational curiosity. This work not only puts the methodological foundations of infant looking time research on firmer ground, but also contributes to our understanding of rational exploration behaviors throughout developmental trajectories.
 
 \hypertarget{references}{%
 \section{References}\label{references}}

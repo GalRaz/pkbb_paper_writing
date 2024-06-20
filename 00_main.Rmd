@@ -7,21 +7,10 @@ output:
   bookdown::pdf_book:
     citation_package: biblatex
     keep_tex: true
+    toc: false
 ---
 
-
-```{r}
-library(tidyverse)
-library(here)
-library(lme4)
-library(lmerTest)
-library(broom.mixed)
-library(magrittr)
-library(pbkrtest)
-```
-
-
-```{r}
+```{r, include = FALSE}
 #Load packages & datasets
 library(tidyverse)
 library(here)
@@ -31,9 +20,12 @@ library(broom.mixed)
 library(magrittr)
 library(pbkrtest)
 
-infant_d <- read_csv(here("data/infants/infant_processed_data.csv"))
+exp1_infant_d <- read_csv(here("data/infants/exp1.csv"))
+exp2_zoom_infant_d <- read_csv(here("data/infants/exp2_zoom.csv"))
+exp2_lookit_infant_d <- read_csv(here("data/infants/exp2_lookit.csv"))
+
 ```
-```{r}
+```{r, include = FALSE}
 # Load models
 model_1a <- readRDS(here("cached_models/infants/model_1a.rds"))
 model_2a<- readRDS(here("cached_models/infants/model_2a.rds"))
@@ -67,23 +59,19 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 
 ```
 
-##  RANCH predicts stimulus similarity-based dishabituation in infants and adults
+# RANCH predicts stimulus similarity-based dishabituation in infants and adults
 
 ```{r child = "05_experiment2.Rmd"}
+
 ```
 
-## Results
+# General Discussion 
 
-# ```{r child = "05_experiment2_results.Rmd"}
-# ```
+```{r child = "06_GD.Rmd"}
 
-# Discussion 
-
-# ```{r child = "06_general_discussion.Rmd"}
-# ```
+```
 
 # References 
-
 
 
 \setlength{\parindent}{-0.1in} 
