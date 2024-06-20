@@ -67,10 +67,10 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 
 ```
 
-## Methods
+##  RANCH predicts stimulus similarity-based dishabituation in infants and adults
 
-# ```{r child = "04_experiment2_methods.Rmd"}
-# ```
+```{r child = "05_experiment2.Rmd"}
+```
 
 ## Results
 
