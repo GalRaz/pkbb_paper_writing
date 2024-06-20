@@ -331,7 +331,7 @@ The Bayesian learning model did not address how the model decides to keep sampli
 \hypertarget{implementation}{%
 \subsection{Implementation}\label{implementation}}
 
-RANCH has a series of parameters: the learner's priors over the concept to be learned (\(\mu\), \(\sigma\)), the learner's priors over their perceptual noise (\(\epsilon\)) and the environmental EIG (\(EIG_{env}\)). We conducted an iterative grid search over these parameters.
+RANCH has a series of parameters: the learner's priors over the concept to be learned (\(\mu\), \(\sigma\)), the learner's priors over their perceptual noise (\(\sigma_{\epsilon}\)) and the environmental EIG (\(EIG_{env}\)). We conducted an iterative grid search over these parameters.
 
 Given that the element of accounting for the learner's own noise breaks the conjugacy of updating the concept mean and variance, we resorted to grid approximation to perform the sample-by-sample Bayesian updates. We discretized the grids over \(\mu\), \(sigma\), \(y\) (exemplars) and \(z\) (noisy samples) to perform inference, as well as the grid of possible next observations when computing EIG.
 
@@ -370,24 +370,32 @@ In contrast, to simulate the adult experiment, RANCH makes decisions on when and
 \caption{\label{fig:design}Experimental deisgn}
 \end{figure}
 
-\#\#Evaluating model with behavioral results
+\hypertarget{evaluating-model-with-behavioral-results}{%
+\subsection{Evaluating model with behavioral results}\label{evaluating-model-with-behavioral-results}}
 
 The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (STATS). We also found evidence for infants' dishabituation: looking time for the novel test trials was longer than the familiar trial (STATS). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (STATS).
 
 RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set's performance by running a K-fold validation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson's r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??).
 
-\#\#Comparison with alternative linking hypotheses
+\hypertarget{comparison-with-alternative-linking-hypotheses}{%
+\subsection{Comparison with alternative linking hypotheses}\label{comparison-with-alternative-linking-hypotheses}}
+
 We also compared the performance of RANCH when using EIG, which is the fully rational linking hypothesis, to other, proxy-based linking hypothesis used in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying `learning progress', while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants' looking behaviors (CITE, CITE). We then compared the model's performance based on the parameter that provides the best fits to the full dataset. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Infants: STATS; Adults: STATS). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: STATS). We also found that the noisy perception assumption and the learning assumptions were both critical to RANCH's performance.
 
-\#\#Comparison with lesioned model
+\hypertarget{comparison-with-lesioned-model}{%
+\subsection{Comparison with lesioned model}\label{comparison-with-lesioned-model}}
 
 We also examined the importance of RANCH's key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (``No noise model''), and the other model assumes the sampling decision was random instead of based on the learning model (``No learning model''). Both lesioned models provided poor fits for the behavioral datasets (STATS).
 
-\#\#Parameter Interpretation / Developmental Comparison
-One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH's fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see `Joint Scaling' under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that sd\_epsilon played a key role in improving fit. Conceptually, sd\_epsilon represents an agent's beliefs about how much noise there is in their own perceptual input. We found that this value tends to be high for infants, and low for adults ({[}SUPPLEMENTARY FIGURES WITH HISTOGRAM OF RMSE COLORED BY PARAMETER VALUES{]}).
+\hypertarget{parameter-interpretation-developmental-comparison}{%
+\subsection{Parameter Interpretation / Developmental Comparison}\label{parameter-interpretation-developmental-comparison}}
 
-\#\#Discussion
-Through within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs.~novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. 1A \& 1B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. 1C).
+One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH's fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see `Joint Scaling' under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that sd\_epsilon played a key role in improving fit. Conceptually, \(\sigma_{\epsilon}\) represents an agent's beliefs about how much noise there is in their own perceptual input. We found that this value tends to be high for infants, and low for adults ({[}SUPPLEMENTARY FIGURES WITH HISTOGRAM OF RMSE COLORED BY PARAMETER VALUES{]}).
+
+\hypertarget{discussion}{%
+\subsection{Discussion}\label{discussion}}
+
+Through within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs.~novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. \ref{fig:conceptual}A \& \ref{fig:conceptual}B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. \ref{fig:conceptual}C).
 
 We next turn to test RANCH's ability to make predictions in a novel dataset.
 
@@ -403,8 +411,8 @@ We next turn to test RANCH's ability to make predictions in a novel dataset.
 \hypertarget{r-child-05_experiment2_results.rmd}{%
 \section{\texorpdfstring{\texttt{\{r\ child\ =\ "05\_experiment2\_results.Rmd"\}\ \#}}{\{r child = "05\_experiment2\_results.Rmd"\} \#}}\label{r-child-05_experiment2_results.rmd}}
 
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
+\hypertarget{discussion-1}{%
+\section{Discussion}\label{discussion-1}}
 
 \hypertarget{r-child-06_general_discussion.rmd}{%
 \section{\texorpdfstring{\texttt{\{r\ child\ =\ "06\_general\_discussion.Rmd"\}\ \#}}{\{r child = "06\_general\_discussion.Rmd"\} \#}}\label{r-child-06_general_discussion.rmd}}

@@ -22,7 +22,7 @@ grid::grid.raster(img)
 ```
 
 ## Implementation
-RANCH has a series of parameters: the learner’s priors over the concept to be learned ($\mu$, $\sigma$), the learner’s priors over their perceptual noise ($\epsilon$) and the environmental EIG ($EIG_{env}$). We conducted an iterative grid search over these parameters.
+RANCH has a series of parameters: the learner’s priors over the concept to be learned ($\mu$, $\sigma$), the learner’s priors over their perceptual noise ($\sigma_{\epsilon}$) and the environmental EIG ($EIG_{env}$). We conducted an iterative grid search over these parameters.
 
 Given that the element of accounting for the learner’s own noise breaks the conjugacy of updating the concept mean and variance, we resorted to grid approximation to perform the sample-by-sample Bayesian updates. We discretized the grids over $\mu$, $sigma$, $y$ (exemplars) and $z$ (noisy samples) to perform inference, as well as the grid of possible next observations when computing EIG. 
 
