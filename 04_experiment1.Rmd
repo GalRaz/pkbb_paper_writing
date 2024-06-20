@@ -1,28 +1,28 @@
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 # Load data
 
 # Number of subjects
-total_n = infant_d %>% pull(unique_id) %>% unique() %>% length()
+total_n = exp1_infant_d %>% pull(unique_id) %>% unique() %>% length()
 
 # number of subjects after exclusions
-total_n_after_exclusion = infant_d %>% filter(!exclude) %>% pull(unique_id) %>% unique() %>% length()
+total_n_after_exclusion = exp1_infant_d %>% filter(!exclude) %>% pull(unique_id) %>% unique() %>% length()
 
 # experiment-specific sample size
-n_subject_expA = infant_d %>% filter(str_detect(unique_id, "A")) %>% unique() %>% nrow()
-n_subject_expB = infant_d %>% filter(str_detect(unique_id, "B")) %>% unique() %>% nrow()
-n_subject_expC = infant_d %>% filter(str_detect(unique_id, "C")) %>% unique() %>% nrow()
+n_subject_expA = exp1_infant_d %>% filter(str_detect(unique_id, "A")) %>% pull(unique_id) %>% unique() %>% length()
+n_subject_expB = exp1_infant_d %>% filter(str_detect(unique_id, "B")) %>% pull(unique_id) %>% unique() %>% length()
+n_subject_expC = exp1_infant_d %>% filter(str_detect(unique_id, "C")) %>% pull(unique_id) %>% unique() %>% length()
 
 # age and sex
-mean_age <- infant_d %>% group_by(unique_id) %>% summarize(age_in_months = mean(age)/30) %>% pull(age_in_months) %>% mean() %>% round(2)
+mean_age <- exp1_infant_d %>% group_by(unique_id) %>% summarize(age_in_months = mean(age)/30) %>% pull(age_in_months) %>% mean() %>% round(2)
 
-age_sex_df = infant_d %>% distinct(unique_id, age, sex) %>% mutate(age_in_months = age/30) 
+age_sex_df = exp1_infant_d %>% distinct(unique_id, age, sex) %>% mutate(age_in_months = age/30) 
 mean_age = age_sex_df %>% pull(age_in_months) %>% mean() %>% round(2)
 sex = age_sex_df %>% count(sex)
 
 # exclusions
 
-complete_exclusions <- infant_d %>% distinct(unique_id, exclude) %>% 
+complete_exclusions <- exp1_infant_d %>% distinct(unique_id, exclude) %>% 
   group_by(unique_id) %>% filter(n() == 1, exclude) 
 
 n_complete_exclusions = total_n - total_n_after_exclusion
@@ -35,9 +35,68 @@ n_complete_exclusions_expC = complete_exclusions %>% filter(str_detect(unique_id
 
 
 # exclusions
-excluded_df = infant_d %>% filter(!unique_id %in% complete_exclusions$unique_id)
+excluded_df = exp1_infant_d %>% filter(!unique_id %in% complete_exclusions$unique_id)
 
 num_excluded_trials = excluded_df %>% filter(fam_or_test == 'test') %>% count(exclude) %>% filter(exclude) %>% pull(n)
+
+```
+
+
+
+```{r eval=FALSE, include=FALSE}
+## ONLY RUN IF MODELS NEED TO BE RERUN
+# exclude invalid trials
+exp1_infant_d %<>% filter(!exclude)
+
+# get age
+mean_age = exp1_infant_d %>% distinct(unique_id, age) %>% pull(age) %>% mean()
+sd_age = exp1_infant_d %>% distinct(unique_id, age) %>% pull(age) %>% sd()
+
+test_df = exp1_infant_d %>% filter(fam_or_test == 'test') %>% mutate(fam_duration = as.numeric(fam_duration), 
+                                                                animal = as.factor(animal), 
+                                                                centered_age = (age - mean_age) / sd_age)
+
+
+# checking for non-linearity model
+model_1a <- lmer(log(LT) ~ poly(fam_duration,2) *test_type + block_num + (1 | unique_id), data = test_df)
+
+# fam pref (EXPLORATORY)
+model_2a <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 1))
+
+model_2b <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 3))
+
+model_2c <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 4))
+
+# fam pref pre-registered
+model_2d <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration <= 4 & fam_duration != 0))
+
+# dishabituation
+model_3a <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 8))
+
+model_3b <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 9))
+
+model_3c <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration >= 8))
+
+saveRDS(model_1a, here("cached_models/infants/model_1a.rds"))
+saveRDS(model_2a, here("cached_models/infants/model_2a.rds"))
+saveRDS(model_2b, here("cached_models/infants/model_2b.rds"))
+saveRDS(model_2c, here("cached_models/infants/model_2c.rds"))
+saveRDS(model_2d, here("cached_models/infants/model_2d.rds"))
+saveRDS(model_3a, here("cached_models/infants/model_3a.rds"))
+saveRDS(model_3b, here("cached_models/infants/model_3b.rds"))
+saveRDS(model_3c, here("cached_models/infants/model_3c.rds"))
+
+```
+
+```{r, include=FALSE}
+model_1a_df <- tidy(model_1a) %>% mutate_if(is.numeric, round, 2)
+model_2a_df <- tidy(model_2a) %>% mutate_if(is.numeric, round, 2)
+model_2b_df <- tidy(model_2b) %>%  mutate_if(is.numeric, round, 2)
+model_2c_df <- tidy(model_2c) %>%  mutate_if(is.numeric, round, 2)
+model_2d_df <- tidy(model_2d) %>%  mutate_if(is.numeric, round, 2)
+model_3a_df <-tidy(model_3a) %>%  mutate_if(is.numeric, round, 2)
+model_3b_df <-tidy(model_3b) %>%  mutate_if(is.numeric, round, 2)
+model_3c_df <-tidy(model_3c) %>%  mutate_if(is.numeric, round, 2)
 
 ```
 
@@ -46,7 +105,7 @@ A key difference between the models in Figure 1 is their prediction with regard 
 
 ## Behavioral experiments
 ### Infant experiment 
-We tested infants in a novel experimental paradigm in which exposure duration to the stimuli were manipulated in a within-subject design \@ref(fig:design) (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarizaiton phase and a test trial. During the familiarization, infants were presented with one stimulus, repeated 0 to 9 times. After the familiarization, infants’ looking time was measured on a test trial. The test trial showed either the same stimulus as the preceding trials, or a new stimulus. We ran three versions of this experiment, each with three different familiarization durations. We tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` infants in Exp 1A (0, 4 or 8 repetitions), `r n_subject_expB` infants in Exp 1B (1, 3 or 9 repetitions) and `r n_subject_expC` infants in Exp 1C (2, 4 or 6 repetitions; total n=`r total_n` ($M_{age}$ = `r mean_age` months, `r sex$n[sex$sex == 'F']` female).
+We tested infants in a novel experimental paradigm in which exposure duration to the stimuli were manipulated in a within-subject design \@ref(fig:design) (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarizaiton phase and a test trial. During the familiarization, infants were presented with one stimulus, repeated 0 to 9 times. After the familiarization, infants’ looking time was measured on a test trial. The test trial showed either the same stimulus as the preceding trials, or a new stimulus. We ran three versions of this experiment, each with three different familiarization durations. We tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` infants in Exp 1A (0, 4 or 8 repetitions), `r n_subject_expB` infants in Exp 1B (1, 3 or 9 repetitions) and `r n_subject_expC` infants in Exp 1C (2, 4 or 6 repetitions; total n=`r total_n`, $M_{age}$=`r mean_age` months, `r sex$n[sex$sex == 'F']` female).
 
 
 ### Adult experiment 
@@ -69,10 +128,10 @@ grid::grid.raster(img)
 
 ## Evaluating model with behavioral results 
 
-The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (STATS). We also found evidence for infants’ dishabituation: looking time for the novel test trials was longer than the familiar trial (STATS). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (STATS). 
 
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). We also found evidence for infants’ dishabituation: looking time for the novel test trials was longer than the familiar trial after long exposures (after 8 repetitions: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, after 9 repetitions: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (STATS). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. \@ref(fig:conceptual)A&B).
 
-RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set’s performance by running a K-fold validation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson’s r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??). 
+RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set’s performance by running a K-fold crossvalidation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson’s r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??). 
 
 
 ## Comparison with alternative linking hypotheses 
