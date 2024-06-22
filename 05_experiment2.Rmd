@@ -5,7 +5,7 @@ m_zoom_age = exp2_zoom_infant_d %>% group_by(subject_num) %>% summarize(age = me
 n_lookit = exp2_lookit_infant_d %>% pull(subject_num) %>% unique() %>% length()
 m_lookit_age = exp2_lookit_infant_d %>% group_by(subject_num) %>% summarize(age = mean(age)) %>% pull(age) %>% mean() %>% round(2)
 
-# models
+# stats models
 exp2_zoom_infant_d$test_type = relevel(as.factor(exp2_zoom_infant_d$test_type), ref = "background")
 model_zoom <- lmer(log(LT) ~ log(block_num) + test_type + (1|subject_num), data = exp2_zoom_infant_d)
 model_zoom <- tidy(model_zoom) %>% mutate_if(is.numeric, round, 2)
@@ -13,6 +13,8 @@ model_zoom <- tidy(model_zoom) %>% mutate_if(is.numeric, round, 2)
 exp2_lookit_infant_d$violation_type = relevel(as.factor(exp2_lookit_infant_d$violation_type), ref = "background")
 model_lookit <- lmer(log(LT) ~ log(block_num) + violation_type + (1|subject_num), data = exp2_lookit_infant_d)
 model_lookit <- tidy(model_lookit) %>% mutate_if(is.numeric, round, 2)
+
+
 
 ```
 

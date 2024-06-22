@@ -19,10 +19,20 @@ library(lmerTest)
 library(broom.mixed)
 library(magrittr)
 library(pbkrtest)
+library(xtable)
 
+# behavioral data
 exp1_infant_d <- read_csv(here("data/infants/exp1.csv"))
 exp2_zoom_infant_d <- read_csv(here("data/infants/exp2_zoom.csv"))
 exp2_lookit_infant_d <- read_csv(here("data/infants/exp2_lookit.csv"))
+
+# crossvalidation results
+aligned_EIG_CV <- read_csv(here('data/infants/crossvalidation/aligned_EIG_CV.csv'))
+resnet50_EIG_CV <- read_csv(here('data/infants/crossvalidation/resnet50_EIG_CV.csv'))
+resnet50_KL_CV <- read_csv(here('data/infants/crossvalidation/resnet50_KL_CV.csv'))
+resnet50_nolearning_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nolearning_CV.csv'))
+resnet50_nonoise_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nonoise_CV.csv'))
+resnet50_surprisal_short_CV <- read_csv(here('data/infants/crossvalidation/resnet50_surprisal_short_CV.csv'))
 
 ```
 ```{r, include = FALSE}
