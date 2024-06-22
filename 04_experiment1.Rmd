@@ -89,6 +89,7 @@ saveRDS(model_3c, here("cached_models/infants/model_3c.rds"))
 ```
 
 ```{r, include=FALSE}
+# clean up stats models
 model_1a_df <- tidy(model_1a) %>% mutate_if(is.numeric, round, 2)
 model_2a_df <- tidy(model_2a) %>% mutate_if(is.numeric, round, 2)
 model_2b_df <- tidy(model_2b) %>%  mutate_if(is.numeric, round, 2)
@@ -97,11 +98,11 @@ model_2d_df <- tidy(model_2d) %>%  mutate_if(is.numeric, round, 2)
 model_3a_df <-tidy(model_3a) %>%  mutate_if(is.numeric, round, 2)
 model_3b_df <-tidy(model_3b) %>%  mutate_if(is.numeric, round, 2)
 model_3c_df <-tidy(model_3c) %>%  mutate_if(is.numeric, round, 2)
-
 ```
 
 
-A key difference between the models in Figure 1 is their prediction with regard to the effect of familiarity on looking time. To address this, we collected looking time data from both infants and adults in an experiment where we varied exposure duration to a familiar stimulus, and measured subsequent looking time to a novel vs. familiar stimulus. We then let RANCH "see" the same stimuli and procedure used in our behavioral experiments. We then evaluated the model’s performance against the behavioral datasets.
+
+A key difference between the competing models in Figure \@ref(fig:conceptual) is their prediction with regard to the effect of familiarity on looking time. To address this, we collected looking time data from both infants and adults in an experiment where we varied exposure duration to a familiar stimulus, and measured subsequent looking time to a novel vs. familiar stimulus. We then let RANCH "see" the same stimuli and procedure used in our behavioral experiments and evaluated our model’s behavior against the behavioral datasets.
 
 ## Behavioral experiments
 ### Infant experiment 
@@ -133,6 +134,21 @@ The paradigm successfully captured habituation in both infants and adults. In in
 
 RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set’s performance by running a K-fold crossvalidation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson’s r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??). 
 
+
+```{r xtable, results='asis', echo=FALSE}
+
+#table for CV stats
+CV_table = tibble(`Linking Hypothesis` =  c("EIG", "KL", "Surprisal", "No learning", "No noise"))
+
+CV_table = CV_table %>% mutate(`Mean RMSE` = c(mean(resnet50_EIG_CV$rmse), mean(resnet50_KL_CV$rmse), mean(resnet50_surprisal_short_CV$rmse), mean(resnet50_nolearning_CV$rmse), mean(resnet50_nonoise_CV$rmse))) %>% mutate(`Best RMSE` = c(min(resnet50_EIG_CV$rmse), min(resnet50_KL_CV$rmse), min(resnet50_surprisal_short_CV$rmse), min(resnet50_nolearning_CV$rmse), min(resnet50_nonoise_CV$rmse)))
+
+table <- xtable(as.matrix(CV_table %>% as.data.frame()), caption = "Table 1: Crossvalidation results")
+
+print.xtable(table, include.rownames = FALSE, comment = FALSE,
+              size="\\fontsize{8pt}{9pt}\\selectfont")
+
+
+```
 
 ## Comparison with alternative linking hypotheses 
 We also compared the performance of RANCH when using EIG, which is the fully rational linking hypothesis, to other, proxy-based linking hypothesis used in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying 'learning progress', while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants’ looking behaviors (CITE, CITE). We then compared the model’s performance based on the parameter that provides the best fits to the full dataset. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Infants: STATS; Adults: STATS). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: STATS). We also found that the noisy perception assumption and the learning assumptions were both critical to RANCH’s performance.

@@ -167,7 +167,7 @@ This computationally intensive process required significant resources. The grid 
 \hypertarget{ranch-predicts-habituation-and-dishabituation-in-relation-to-exposure-duration}{%
 \section{RANCH predicts habituation and dishabituation in relation to exposure duration}\label{ranch-predicts-habituation-and-dishabituation-in-relation-to-exposure-duration}}
 
-A key difference between the models in Figure 1 is their prediction with regard to the effect of familiarity on looking time. To address this, we collected looking time data from both infants and adults in an experiment where we varied exposure duration to a familiar stimulus, and measured subsequent looking time to a novel vs.~familiar stimulus. We then let RANCH ``see'' the same stimuli and procedure used in our behavioral experiments. We then evaluated the model's performance against the behavioral datasets.
+A key difference between the competing models in Figure \ref{fig:conceptual} is their prediction with regard to the effect of familiarity on looking time. To address this, we collected looking time data from both infants and adults in an experiment where we varied exposure duration to a familiar stimulus, and measured subsequent looking time to a novel vs.~familiar stimulus. We then let RANCH ``see'' the same stimuli and procedure used in our behavioral experiments and evaluated our model's behavior against the behavioral datasets.
 
 \hypertarget{behavioral-experiments}{%
 \subsection{Behavioral experiments}\label{behavioral-experiments}}
@@ -204,6 +204,24 @@ The paradigm successfully captured habituation in both infants and adults. In in
 
 RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set's performance by running a K-fold crossvalidation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson's r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??).
 
+\begin{table}[ht]
+\centering
+\begingroup\fontsize{8pt}{9pt}\selectfont
+\begin{tabular}{lll}
+  \hline
+linking\_hypothesis & mean\_rmse & best\_rmse \\ 
+  \hline
+EIG & 3.939031 & 3.695654 \\ 
+  KL & 3.911861 & 3.658206 \\ 
+  Surprisal & 4.396205 & 3.601190 \\ 
+  No learning & 4.462761 & 4.134690 \\ 
+  No noise & 4.224301 & 3.874851 \\ 
+   \hline
+\end{tabular}
+\endgroup
+\caption{Table 1: Crossvalidation results} 
+\end{table}
+
 \hypertarget{comparison-with-alternative-linking-hypotheses}{%
 \subsection{Comparison with alternative linking hypotheses}\label{comparison-with-alternative-linking-hypotheses}}
 
@@ -237,20 +255,18 @@ Beyond predicting non-linearities in attentional preferences during encoding (Fi
 \hypertarget{infant-experiment-1}{%
 \subsubsection{Infant experiment}\label{infant-experiment-1}}
 
-To study whether infants show similarity-based dishabituation between the habituation and novel stimulus, we ran an experiment via Zoom (n=50, age range=7-10 months, \(M_{age}\)=268.1), and an exact replication via Lookit (n =64, age range=6-12 months, \(M_{age}\)=289.47). We presented infants with a series of blocks, each again consisting of a familiarization and a test trial (\ref{fig:design} (Experiment 2, Infants)). Instead of modifying prior exposure as in the previous experiment, here infants were always familiarized 8 or 9 times with an animal (corresponding to the amount of exposure that caused robust dishabituation in the previous experiment). After familiarization, infants saw a test trial, which could relate to the familiar animal in one of five ways: they either saw the same animal again (background), the same animal facing in the opposite direction (pose), a different animal facing the same way (identity), two instances of the same animal side-by-side (number), or an inanimate vegetable or fruit (animacy).
+To study whether infants show similarity-based dishabituation between the habituation and novel stimulus, we ran an experiment via Zoom (n=50, age range=7-10 months, \(M_{age}\)=268.1), and an exact replication via Lookit (n =64, age range=6-12 months, \(M_{age}\)=289.47). We presented infants with a series of blocks, each again consisting of a familiarization and a test trial (Figure \ref{fig:design}, Experiment 2, Infants). Instead of modifying prior exposure as in the previous experiment, here infants were always familiarized 8 or 9 times with an animal (corresponding to the amount of exposure that caused robust dishabituation in the previous experiment). After familiarization, infants saw a test trial, which could relate to the familiar animal in one of five ways: they either saw the same animal again (background), the same animal facing in the opposite direction (pose), a different animal facing the same way (identity), two instances of the same animal side-by-side (number), or an inanimate vegetable or fruit (animacy).
 
 \hypertarget{adult-experiment-1}{%
 \subsubsection{Adult experiment}\label{adult-experiment-1}}
 
 This adult experiment was procedurally similar to the previous experiment and has similar adaptation to the infant experiment. Participants (N = 468) saw a sequence of animation, with repeating stimulus and one novel stimulus that appears at the end of the sequence. Since adults have longer attention span, we can test adults in all permutations of the familiar stimulus and novel stimulus. The familiar stimuli were either animals or vegetables, facing eighth left or right, coming in either one or a pair. Like the infant experiment, the novel stimulus can be different from the familiar stimulus in one of the four ways: pose, identity, number, or animacy.
 
-(\(\beta\) = -4.55; \emph{SE} = 0.92; \emph{t} = -4.92; \emph{p} )
-
 \hypertarget{model-evaluation}{%
 \subsection{Model Evaluation}\label{model-evaluation}}
 
 We successfully captured similarity-based dishabituation in both infants and adults:
-Similar to the previous experiment, infants showed dishabituation to all novel test trials (identity: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.08; \emph{p} = 0.04, number: \(\beta\) = 0.32; \emph{SE} = 0.17; \emph{t} = 1.92; \emph{p} = 0.06, animacy: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.02; \emph{p} = 0.05), except the pose violation, which elicited no significant dishabituation. There was also evidence that the magnitude of dishabituation was related to the similarity of the novel trial: Infants looking time followed the pre-registered expected ordering: animacy \textgreater{} number \textgreater{} identity \textgreater{} pose \textgreater{} background. A control experiment suggested infants showed no baseline differences in looking time between categories (See SI).
+Similar to the previous experiment, infants showed dishabituation to all novel test trials (identity: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.08; \emph{p} = 0.04, number: \(\beta\) = 0.32; \emph{SE} = 0.17; \emph{t} = 1.92; \emph{p} = 0.06, animacy: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.02; \emph{p} = 0.05), except the pose violation, which elicited no significant dishabituation. There was also evidence that the magnitude of dishabituation was related to the similarity of the novel trial: Infants looking time followed the pre-registered expected ordering: animacy \textgreater{} number \textgreater{} identity \textgreater{} pose \textgreater{} background (Figure REF). A control experiment suggested infants showed no baseline differences in looking time between categories (See SI).
 
 Our exact replication via Lookit showed similar, though not identical results: We again found that animacy and number resulted in the strongest dishabituation in infants, and pose violations did not elicit dishabituation. However, unlike the Zoom study, the identity violation did not elicit significant dishabituation in our Lookit study. We suggest potential reasons in the general discussion.
 
