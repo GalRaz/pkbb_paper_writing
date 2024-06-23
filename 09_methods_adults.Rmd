@@ -1,0 +1,30 @@
+
+
+### Adults experiment 
+
+#### Participants 
+
+Both experiments were run on Prolific (Experiment 1: N = XXX; Experiment: N = XXX). Two experiments have the same pre-registered exclusion criteria. We excluded participants if (1) the standard deviation of their reaction time across all trials was less than 0.15 (indicating key-smashing, Experiment 1: N = XXX; Experiment 2: N = XXX), (2) spent more than three absolute deviations above the median of the task completion time as reported by Prolific ( Experiment 1: N = XXX; Experiment 2: N = XXX), and (3) provided the wrong response to more than 20% of the memory task (Experiment 1: N = XXX; Experiment 2: N = XXX). A total of XXX and XXX participants met at least one of the three criteria and were excluded from the final analysis for Experiment 1 and Experiment 2, respectively. We also excluded a trial if the trial was three absolute deviations away from the median in the log-transformed space across reaction time from the remaining participants. 
+
+The final sample included XXXX participants (Experiment 1: Mean Age, SD Age; Experiment 2: Mean Age, SD Age). 
+
+#### Stimuli
+
+The stimuli used in adult experiment are identical to the ones used in infant experiment. In Experiment 1, the stimuli are selected from the animal unity set. In Experiment 2, both the animal and vegetable sets were used. 
+
+#### Procedure 
+
+Procedurally, Experiment 1 and Experiment 2 are similar. Both are self-paced visual presentation studies. Participants were instructed that they would be looking at a sequence of animated stimuli at their own pace. At each trial, then can press a key on the keyboard to move on to the next trial after a minimum viewing time of 500 ms. Each study consists of multiple blocks. Each block consists of multiple trials. Between blocks, participants answered a simple memory question (“Have you seen this animation before?”). This memory question is used as an attention check. 
+
+Each block contains multiple trials of one stimulus being repeatedly presented (the familiar trials) and one trial that shows a different stimulus (the novel trial). The novel trial always appears as the last trial. In Experiment 1, the total number of trials range from two to eleven. The novel trial was randomly drawn from the stimuli set that researchers haven’t seen before. In Experiment 2, the block consists of either two, four, or six trials. There are a total of eight types of stimuli in the familiar trials. They are all combinations of the three features that each include two levels: animacy (e.g. animate or inanimate), number (singleton or pair), and pose (facing left or facing right). The novel trial can differ from the familiar trials in one of the four dimensions: pose, number, identity, and animacy. Both experiments also have blocks that only include one stimulus (the familiar block).
+
+The order of the block is semi-randomized in both experiments. Experiment 1 has 15 blocks in total. We grouped the total number of trials in each block into five pairs of two: [2, 3], [4, 5], [6, 7], [8, 9], [10, 11], and randomly sampled 1 block length from each pair. In other words, each participant would receive 5 different lengths of repeating background trials, stratified by 5 levels. We controlled the distribution of the block lengths by making sure the first half and the second half of the experiment each has the same number of blocks with different block lengths. Experiment 2 had 24 blocks in total. We grouped the twenty-four blocks into four groups. Each group consisted of two familiar blocks and one block from each of the four novelty types. The order of blocks within each group was randomized.
+
+#### Statistical Analysis 
+
+We ran the pre-registered statistical analyses for both experiments. All statistical anlayses were ran in R using the package `lme4` [@bates2015package].
+
+For experiment 1, we ran a linear mixed effect regression predicting the log transformed of looking time with t following specification: `log(looking time) ~ trial_number + is_first_trial + trial_number * trial_type + log(block_number) + (trial_number * trial_type | subject) + (is_first_trial + trial_number | subject)`. This model allows us to investigate whether the number of familiar trials has an impact on the looking time (i.e habituation), and whether the trial type (familiar or novel) mediates the influences. This  model failed to converge. Following the pre registered procedure, we pruned the model to include only by-subject random intercept. The pruned model suggests that there is evidence for habituation and dishabituation (STATS). 
+
+For experiment 2, we ran a similar model and incorporated the effect of different novelty type. The particular model specification is as follows: `log(total_rt)` $\sim$ `trial_number +  is_first_trial +  (trial_number + is_first_trial) * stimulus_number + (trial_number + is_first_trial) * stimulus_pose +(trial_number + is_first_trial) * stimulus_animacy + (trial_number + is_first_trial) * novelty_type + log(block_number)`. The `novelty_type`  has five levels, including the background trial and four types of violation.This model can help us test two hypotheses: (1) whether our experimental paradigm captured habituation and dishabituation and (2) whether the magnitude of dishabituation was influenced by the similarity between the novel trials and the familiar trials. 
+
