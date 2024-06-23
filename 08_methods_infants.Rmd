@@ -1,0 +1,43 @@
+
+## Experimental Procedure 
+
+Below we describe in detail the experimental procedure. We use Experiment 1 to denote the experiment that manipulates exposure duration, and Experiment 2 to denote the experiment that manipulates stimuli similarity. 
+
+
+### Infants experiment
+
+#### Participants 
+
+For the exposure duration experiment, we tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` in Exp A, `r n_subject_expB` in Exp B and `r n_subject_expC` in Exp C (`r total_n` ($M_{age}$ = `r mean_age` months, `r sex$n[sex$sex == 'F']` female). `r n_complete_exclusions_exposure_duration` participants were excluded completely due to fussiness. An additional `r num_excluded_trials` individual test events were excluded (out of `r excluded_df %>% filter(fam_or_test == 'test') %>% nrow()`, `r round(100*num_excluded_trials/(excluded_df %>% filter(fam_or_test == 'test') %>% nrow()),1)`% of trials) did not make it into the final analysis.
+
+For the generalization, stimulus type experiment, we tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_generalization` in the main experiment, `r n_subject_control` in the control experiment. `r n_complete_exclusions_stim_type` participants were excluded completely due to fussiness. An additional `r num_excluded_trials` individual test events were excluded (out of `r excluded_df %>% filter(fam_or_test == 'test') %>% nrow()`, `r round(100*num_excluded_trials/(excluded_df %>% filter(fam_or_test == 'test') %>% nrow()),1)`% of trials) did not make it into the final analysis.
+
+Single trial exclusions occurred because 1) infants fussed out of the experiment at an earlier stage of the experiment, 2) infants looked at the stimuli for less than a total 2 seconds, 3) there were momentary external distractions in the home of the infant or 4) the gaze classifier performed so poorly that manual corrections were not viable. 
+
+
+#### Stimuli 
+
+In the exposure duration experiments, we presented infants with a series of animated animals, created using "Quirky Animals" assets from Unity (Fig. 1, [link to assets](https://tinyurl.com/469xxrn7)). The animals were walking, crawling or swimming, depending on the species. In a previous set studies, not included here (but see [OSF repository](https://osf.io/b3xsk/?view_only=5beeb6ed27874ae3bfe586ee2b38381a)), we showed infants a different stimulus set and failed to elicit replicable habituation, novelty or familiarity preferences. As a result, we modified the stimuli to be more appealing, and separated familiarization trials with curtains opening and closing to accentuate familiarization trials as separated occurrences of the stimulus.
+
+In the stimulus type experiments, (Fig. 1, [link to assets](https://marketplace.unity.com/packages/3d/props/food/3d-prop-vegetables-and-fruits-237790)), to introduce animacy violations, we used the “3D Prop Vegetables and Fruits” (assets from Unity and animated bouncing and rotating trajectories. To create number violations, we duplicated the videos of single animal Unity assets and pasted them side-by-side.
+
+#### Procedure 
+
+Data collection was performed synchronously on Zoom, and infants were recruited from Lookit [@scott2017lookit] and Facebook. Parents were instructed to find a quiet room with minimal distractions, place their child in a high chair (preferred) or on their lap, and to remain neutral throughout the experiment. Infants were placed as close as possible to the screen without allowing them to interact with the keyboard.
+
+Both main experiments followed a block structure, where each block was divided into two sections: 1) a familiarization period and 2) a test event. Each block was preceded by an "attention getter", a salient rotating star. During the familiarization period, the infant was familiarized to a particular animal, the background, in a series of familiarization trials. Each familiarization trial was a 5 second sequence: curtains open for 1 second, the animated animal moves in place for 3 seconds, and then the curtains close for 1 second. In the exposure duration experiments, the number of familiarization trials (the “exposure duration”) varied between blocks. In the stimulus type experiment, the number of familiarizations was always 8 or 9.
+
+During the test event, the infant saw either the same background animal again, or a novel stimulus, the deviant. The onset of the test event was not marked by any visual markers, but a bell sound played as the curtains opened, to maximize the chance of engagement during the test event. The test event used an infant-controlled procedure: the experimenter terminated the trial when the infant looked away for more than three consecutive seconds. Looking time was then defined as the total time that the infant spent looking at the screen from the onset of the stimulus until the first two consecutive seconds of the infant looking away from the screen. If the infant did not look away after 60 seconds of being presented with the test event, the next block automatically began and infants’ looking time for that test event was recorded as 60 seconds.
+
+In the exposure duration experiments, the deviant stimulus was always another animal. In the stimulus type experiments, one of four properties of the background animal could be violated: pose, identity, number or animacy. 
+
+In the exposure duration experiments, each infant saw six blocks: Three different exposure durations (0, 4 and 8 in Exp. A, 1, 3 and 9 in Exp. B and 2, 4 and 6 in Exp. C) appeared twice each, once for each test event type (background or deviant). The longer exposure durations (8 or 9) were chosen based on our previous pilot studies with a different stimulus set ([OSF repository](https://osf.io/b3xsk/?view_only=5beeb6ed27874ae3bfe586ee2b38381a)), and the shorter durations were chosen to provide limited learning experience with the background. The order of blocks was counterbalanced between infants, and pairs of animals (background and deviant) were counterbalanced to be associated with each block type. Which animal was shown as the background and which as the deviant (if it was a deviant test trial) was randomized in each block.
+
+In the stimulus type experiments, each infant saw four blocks within a session - the background trial was always one of the four test trials, and the remaining three test trials were picked randomly from the remaining four trial types (pose, identity, number, animacy).
+
+#### Looking time coding 
+
+To code the infants’ looking time we used iCatcher+, a validated tool developed for robust and automatic annotation of infants’ gaze direction from video [@erel2022icatcher]. To obtain trial-wise looking time, we merged iCatcher+ annotations with trial timing information, thereby fully replacing manual coding of looking time. The correctness of iCatcher+ coding was manually supervised to check for failed face detections or distractions.
+
+
+#### Statistical analysis

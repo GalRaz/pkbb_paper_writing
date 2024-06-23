@@ -1,14 +1,14 @@
 
-## Perceptual representations 
+## Model Specifications
+
+### Perceptual representations 
 
 We derived principled low dimensional representations of our stimuli from ResNet50 [@he2016deep]. We ran a Principal Component Analysis and used the first three principal components. This decision was made due to the computational demands of our model. Each added dimension would increase the total run time exponentially. The first three components capture 57.9% of the variance. 
 
 Given that we were using discrete grid approximation in our inference, the model was sensitive to the absolute values of the embeddings. When these embeddings values were close to or exceeded the range of the approximation grids, this would cause bias in our simulation result. We therefore scaled our embeddings down to fall squarely into our grid. This downscaling had to be more extreme for the stimulus type experiment, where embedding distances were larger, in particular for animacy violations. We ran simulations to confirm that embeddings that were too large would result in biased model behaviors (See SI).
 
 
-
-
-## Linking Hypotheses
+### Linking Hypotheses
 
 We compared two additional information theoretic measures with Expected Information Gain (EIG): Kullback–Leibler divergence and Surprisal. Each of these measures has been invoked in the literature as a plausible account for explaining looking behaviors across developmental stages [KL divergence: @poli2020infants; Surpsal: @kidd2012goldilocks]. 
 
@@ -32,7 +32,7 @@ $Surprisal_{z} = -log(p(z|\theta ))$
 We ran individual simulation and parameter search for each of the three linking hypotheses to ensure fair comparison. 
 
 
-## Scaling Procedure for Developmental Interpretation 
+### Scaling Procedure for Developmental Interpretation 
 
 To find the best fitting parameters for each age group we employ a strategy we call “joint scaling”. As in Fig. @FIXME, to evaluate model fit, we first map model samples onto looking times by finding the best linear scaling of model samples in a regression of the form `LT ~ model_samples`. The parameter set that minimizes the RMSE between the scaled model samples and looking times is what we consider the best parameter set. In the case of "joint scaling", we regress both the adult and the infant simulations against their looking times simultaneously, to find how varying the infant and adult parameters affect the fit of the scaled model samples to the adult and infant data. This joint scaling procedure puts pressure on the parameters, rather than the scaling, to account for the fact that adults’ looking times are a lot shorter than infants’ looking times. 
 

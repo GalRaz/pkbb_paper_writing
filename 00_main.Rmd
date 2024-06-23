@@ -89,6 +89,14 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 
 ```
 
+```{r child = "08_methods_infants.Rmd"}
+
+```
+
+```{r child = "09_methods_adults.Rmd"}
+
+```
+
 
 # References 
 
