@@ -8,6 +8,8 @@ output:
     citation_package: biblatex
     keep_tex: true
     toc: false
+    
+    
 ---
 
 ```{r, include = FALSE}
@@ -80,6 +82,13 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 ```{r child = "06_GD.Rmd"}
 
 ```
+
+# Methods and Materials 
+
+```{r child = "07_methods_model_spec.Rmd"}
+
+```
+
 
 # References 
 
