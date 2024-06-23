@@ -140,7 +140,7 @@ RANCH predicted habituation and dishabituation in both infants and adults. We ev
 #table for CV stats
 CV_table = tibble(`Linking Hypothesis` =  c("EIG", "KL", "Surprisal", "No learning", "No noise"))
 
-CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(resnet50_EIG_CV$rmse), mean(resnet50_KL_CV$rmse), mean(resnet50_surprisal_short_CV$rmse), mean(resnet50_nolearning_CV$rmse), mean(resnet50_nonoise_CV$rmse))) %>% mutate(`Infants: Best RMSE` = c(min(resnet50_EIG_CV$rmse), min(resnet50_KL_CV$rmse), min(resnet50_surprisal_short_CV$rmse), min(resnet50_nolearning_CV$rmse), min(resnet50_nonoise_CV$rmse)), `Adults: Mean RMSE` = c(), `Adults: Best RMSE` = c())
+CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(resnet50_EIG_CV$rmse), mean(resnet50_KL_CV$rmse), mean(resnet50_surprisal_short_CV$rmse), mean(resnet50_nolearning_CV$rmse), mean(resnet50_nonoise_CV$rmse))) %>% mutate(`Infants: Best RMSE` = c(min(resnet50_EIG_CV$rmse), min(resnet50_KL_CV$rmse), min(resnet50_surprisal_short_CV$rmse), min(resnet50_nolearning_CV$rmse), min(resnet50_nonoise_CV$rmse)), `Adults: Mean RMSE` = , `Adults: Best RMSE` = )
 
 table <- xtable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)), caption = "Table 1: Crossvalidation results")
 
