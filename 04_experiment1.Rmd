@@ -122,7 +122,7 @@ To simulate the infant experiment, the model was first presented with a series o
 To simulate the self-paced adult experiment, RANCH makes decisions on how many samples to take on every trial, until the end of the sequence. As in the adult experiment, the sequence has a familiar stimulus that repeats throughout the sequence, and a novel stimulus that appears once. The model therefore predicts looking times to each stimulus in the sequence. 
 
 
-```{r design, echo=FALSE, fig.width=20, fig.height=14, fig.cap="Experimental deisgn"}
+```{r design, echo=FALSE, fig.width=20, fig.height=14, fig.cap="Experimental design"}
 img <- png::readPNG("figs/design_fig.png")
 grid::grid.raster(img)
 ```
@@ -140,13 +140,12 @@ RANCH predicted habituation and dishabituation in both infants and adults. We ev
 #table for CV stats
 CV_table = tibble(`Linking Hypothesis` =  c("EIG", "KL", "Surprisal", "No learning", "No noise"))
 
-CV_table = CV_table %>% mutate(`Mean RMSE` = c(mean(resnet50_EIG_CV$rmse), mean(resnet50_KL_CV$rmse), mean(resnet50_surprisal_short_CV$rmse), mean(resnet50_nolearning_CV$rmse), mean(resnet50_nonoise_CV$rmse))) %>% mutate(`Best RMSE` = c(min(resnet50_EIG_CV$rmse), min(resnet50_KL_CV$rmse), min(resnet50_surprisal_short_CV$rmse), min(resnet50_nolearning_CV$rmse), min(resnet50_nonoise_CV$rmse)))
+CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(resnet50_EIG_CV$rmse), mean(resnet50_KL_CV$rmse), mean(resnet50_surprisal_short_CV$rmse), mean(resnet50_nolearning_CV$rmse), mean(resnet50_nonoise_CV$rmse))) %>% mutate(`Infants: Best RMSE` = c(min(resnet50_EIG_CV$rmse), min(resnet50_KL_CV$rmse), min(resnet50_surprisal_short_CV$rmse), min(resnet50_nolearning_CV$rmse), min(resnet50_nonoise_CV$rmse)), `Adults: Mean RMSE` = c(), `Adults: Best RMSE` = c())
 
-table <- xtable(as.matrix(CV_table %>% as.data.frame()), caption = "Table 1: Crossvalidation results")
+table <- xtable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)), caption = "Table 1: Crossvalidation results")
 
 print.xtable(table, include.rownames = FALSE, comment = FALSE,
               size="\\fontsize{8pt}{9pt}\\selectfont")
-
 
 ```
 
@@ -155,7 +154,7 @@ We also compared the performance of RANCH when using EIG, which is the fully rat
 
 ## Comparison with lesioned model 
 
-We also examined the importance of RANCH’s key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (“No noise model”), and the other model assumes the sampling decision was random instead of based on the learning model (“No learning model”).  Both lesioned models provided poor fits for the behavioral datasets (STATS). 
+We also examined the importance of RANCH’s key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (“No noise model”), and the other model assumes the sampling decision was random instead of based on the learning model (“No learning model”). Both lesioned models provided poor fits for the behavioral datasets (Table \@ref(tab:xtable)). 
 
 ## Parameter Interpretation / Developmental Comparison
 One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH’s fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see ‘Joint Scaling’ under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that sd_epsilon played a key role in improving fit. Conceptually, $\sigma_{\epsilon}$ represents an agent's beliefs about how much noise there is in their own perceptual input. We found that this value tends to be high for infants, and low for adults ([SUPPLEMENTARY FIGURES WITH HISTOGRAM OF RMSE COLORED BY PARAMETER VALUES]). 

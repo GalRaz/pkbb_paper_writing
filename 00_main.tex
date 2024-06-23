@@ -131,7 +131,7 @@ RANCH provides a probabilistic framework for making perceptual decisions. In thi
 \hypertarget{perceptual-representations}{%
 \subsection{Perceptual representations}\label{perceptual-representations}}
 
-We use the deep convolutional neural network (CNN) ResNet-50 to encode the stimuli used in behavioral experiments. ResNet-50 is an architecture that has been widely used in computer vision \autocite{he2016deep}. A total of 50 layers are implemented in this architecture: it starts with a convolution layer, includes several groups of residual blocks that help preserve information through the network, and ends with a global average pooling layer and a fully connected layer for classification. We used a version of ResNet-50 that was pretrained on ImageNet \autocite{deng2009imagenet}. Training on ImageNet optimizes the Resnet-50's activations for image classification, and we can use these activations as an perceptual ``embedding space''. When we pass new stimuli through a pre-trained network, we extract these activations to obtain principled embeddings of stimuli. We used the first three principal components of the embedding space to limit the dimensionality of the downstream learning problem.
+We use the deep convolutional neural network (CNN) ResNet-50 to encode the stimuli used in behavioral experiments. ResNet-50 is an architecture that has been widely used in computer vision \autocite{he2016deep}. A total of 50 layers are implemented in this architecture: it starts with a convolution layer, includes several groups of residual blocks that help preserve information through the network, and ends with a global average pooling layer and a fully connected layer for classification. We used a version of ResNet-50 that was pretrained on ImageNet \autocite{deng2009imagenet}. Training on ImageNet optimizes the Resnet-50's activations for image classification, and we can use these activations as an perceptual ``embedding space''. When we pass new stimuli through a pre-trained network, we extract these activations to obtain principled embeddings of stimuli (Figure \ref{fig:RANCH}A). We used the first three principal components of the embedding space to limit the dimensionality of the downstream learning problem.
 
 ResNet-50 is by no means the only possible CNN for deriving perceptual representations. We also explored alternative models, such as a CNN trained on SayCam data \autocite{orhan2020self} or a CNN whose representations were aligned to human behavior \autocite{lee2022rapid}. However, we did not find substantial differences between the embedding spaces provided by ResNet-50 and other (often more complicated) models (See SI).
 
@@ -145,7 +145,7 @@ In the current instantiation, RANCH models looking behaviors in habituation expe
 \hypertarget{decision-model-and-linking-hypothesis}{%
 \subsection{Decision model and linking hypothesis}\label{decision-model-and-linking-hypothesis}}
 
-The Bayesian learning model did not address how the model decides to keep sampling the same stimulus or to move on to the next stimulus. We enable RANCH's decision-making process by calculating the expected information gain (EIG) of the next perceptual sample, which we define as the average KL-divergence across a grid of possible next observations. EIG is a metric used under the rational analysis of information-seeking behavior \autocite{anderson1991human,oaksford1994rational}. RANCH then uses a softmax choice (with temperature = 1) between the information theoretic measures of the next sample and a constant ``environmental EIG''. The constant here is assumed to be the amount of information gain provided by the environment when the learner looks away from the stimulus.
+The Bayesian learning model did not address how the model decides to keep sampling the same stimulus or to move on to the next stimulus. We enable RANCH's decision-making process by calculating the expected information gain (EIG) of the next perceptual sample, which we define as the average KL-divergence across a grid of possible next observations. EIG is a metric used under the rational analysis of information-seeking behavior \autocite{anderson1991human,oaksford1994rational}. RANCH then uses a softmax choice (with temperature = 1) between the information theoretic measures of the next sample and a constant ``environmental EIG''. The constant here is assumed to be the amount of information gain provided by the environment when the learner looks away from the stimulus. An algorithm table describing the overall sampling procedure is shown in (Figure \ref{fig:RANCH}C).
 
 \begin{figure}
 \centering
@@ -194,7 +194,7 @@ To simulate the self-paced adult experiment, RANCH makes decisions on how many s
 \begin{figure}
 \centering
 \includegraphics{00_main_files/figure-latex/design-1.pdf}
-\caption{\label{fig:design}Experimental deisgn}
+\caption{\label{fig:design}Experimental design}
 \end{figure}
 
 \hypertarget{evaluating-model-with-behavioral-results}{%
@@ -209,7 +209,7 @@ RANCH predicted habituation and dishabituation in both infants and adults. We ev
 \begingroup\fontsize{8pt}{9pt}\selectfont
 \begin{tabular}{lll}
   \hline
-linking\_hypothesis & mean\_rmse & best\_rmse \\ 
+Linking Hypothesis & Mean RMSE & Best RMSE \\ 
   \hline
 EIG & 3.939031 & 3.695654 \\ 
   KL & 3.911861 & 3.658206 \\ 
@@ -230,7 +230,7 @@ We also compared the performance of RANCH when using EIG, which is the fully rat
 \hypertarget{comparison-with-lesioned-model}{%
 \subsection{Comparison with lesioned model}\label{comparison-with-lesioned-model}}
 
-We also examined the importance of RANCH's key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (``No noise model''), and the other model assumes the sampling decision was random instead of based on the learning model (``No learning model''). Both lesioned models provided poor fits for the behavioral datasets (STATS).
+We also examined the importance of RANCH's key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (``No noise model''), and the other model assumes the sampling decision was random instead of based on the learning model (``No learning model''). Both lesioned models provided poor fits for the behavioral datasets (Figure \ref{tab:xtable}).
 
 \hypertarget{parameter-interpretation-developmental-comparison}{%
 \subsection{Parameter Interpretation / Developmental Comparison}\label{parameter-interpretation-developmental-comparison}}
