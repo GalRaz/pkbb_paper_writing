@@ -1,0 +1,51 @@
+
+
+```{r, parameter_robustness_infants}
+
+
+```
+
+```{r, parameter_robustness_adults}
+
+
+```
+
+
+## Developmental comparison of parameter fits
+
+A naive approach to comparison parameter fits between infants and adults would be the following: After joint scaling, pick the set of parameters for adults and infants that together minimize RMSE. If we do this, we obtain the following parameter sets: INFANT SETS, ADULT SETS.
+
+If we compare these two sets of parameters to each other, and interpret these differences, we may come to the following conclusion: RANCH fits best when infants' $\sigma_\epsilon$ is higher than that of adults, and $\beta_prior$ is higher than that of adults, suggesting that infants both expect their perception to have more noise, and that infants have more prior uncertainty about the size of the standard deviation.
+
+However, a direct comparison between these parameter sets does not give insight into the relative stability of RANCH's fit to the data if we change any of these parameters: It may be that if a parameter was slightly different, it would not make a big difference for model fit. 
+
+In order to investigate this, we want to also check the sensitivity of the model fit to changes in the parameters. To do so, we plot RMSE histograms colored by the value of a certain parameter, from a certain age group. Here we see that the overall modes of the RMSE histograms are dominated by `world EIG`, likely because this parameter is the main threshold that can account for the difference in scale between infant and adult looking times. However, of the other parameters, we see that RMSE only shows sensitivity to $\sigma_\epsilon$. Other parameters that are different between the best fits do not show this sensitivity. We therefore conclude that the main interpretable parameter difference is in $\sigma_\epsilon$, the learner's noise prior, being higher in infants than in adults.
+
+```{r, parameter_interpretation}
+
+joint_scaling_fits = read_csv('data/joint_scaling_fits.csv')
+
+param_info <- read_csv(here("data/param_info.csv"))
+
+fit_df = joint_scaling_fits %>% rename(param_id = p_i) %>% left_join(param_info %>% select(param_id, V_prior, alpha_prior, beta_prior, sd_epsilon, world_EIGs), by = "param_id" ) %>%  mutate(across(-c(rsquared,rmse), as.factor))
+
+plot_1a = ggplot(fit_df, aes(x = rmse, fill = beta_prior)) + geom_histogram() + ggtitle(expression(Colored~by~Infant~beta~Prior))
+
+plot_1b = ggplot(fit_df, aes(x = rmse, fill = sd_epsilon)) + geom_histogram() + ggtitle(expression(Colored~by~Infant~sigma[epsilon]~Prior))
+
+plot_1c = ggplot(fit_df, aes(x = rmse, fill = V_prior)) + geom_histogram() + ggtitle(expression(Colored~by~Infant~nu~Prior))
+
+fit_df = joint_scaling_fits %>% rename(param_id = p_a) %>% left_join(param_info %>% select(param_id, V_prior, alpha_prior, beta_prior, sd_epsilon, world_EIGs), by = "param_id" ) %>%  mutate(across(-c(rsquared,rmse), as.factor))
+
+plot_2a = ggplot(fit_df, aes(x = rmse, fill = beta_prior)) + geom_histogram() + ggtitle(expression(Colored~by~Adult~beta~Prior))
+
+plot_2b = ggplot(fit_df, aes(x = rmse, fill = sd_epsilon)) + geom_histogram() + ggtitle(expression(Colored~by~Adult~sigma[epsilon]~Prior))
+
+plot_2c = ggplot(fit_df, aes(x = rmse, fill = V_prior)) + geom_histogram() + 
+  ggtitle(expression(Colored~by~Adult~nu~Prior))
+
+library("gridExtra")
+
+grid.arrange(plot_1a + theme(legend.position = "none", axis.title.x = element_blank()), plot_1b + theme(legend.position = "none", axis.title.x = element_blank()), plot_1c + theme(legend.position = "none", axis.title.x = element_blank()), plot_2a + theme(legend.position = "bottom"), plot_2b + theme(legend.position = "bottom"), plot_2c + theme(legend.position = "bottom"), ncol = 3, nrow = 2) + theme(legend.position = "bottom")
+
+```
