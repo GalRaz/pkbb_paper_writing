@@ -1,6 +1,6 @@
 
 
-### Adults experiment 
+### Adult experiment 
 
 #### Participants 
 
@@ -22,9 +22,9 @@ The order of the block is semi-randomized in both experiments. Experiment 1 has 
 
 #### Statistical Analysis 
 
-We ran the pre-registered statistical analyses for both experiments. All statistical anlayses were ran in R using the package `lme4` [@bates2015package].
+We ran the pre-registered statistical analyses for both experiments. All statistical analyses were ran in R using the package `lme4` [@bates2015package].
 
-For experiment 1, we ran a linear mixed effect regression predicting the log transformed of looking time with t following specification: `log(looking time) ~ trial_number + is_first_trial + trial_number * trial_type + log(block_number) + (trial_number * trial_type | subject) + (is_first_trial + trial_number | subject)`. This model allows us to investigate whether the number of familiar trials has an impact on the looking time (i.e habituation), and whether the trial type (familiar or novel) mediates the influences. This  model failed to converge. Following the pre registered procedure, we pruned the model to include only by-subject random intercept. The pruned model suggests that there is evidence for habituation and dishabituation (STATS). 
+For experiment 1, we ran a linear mixed effect regression predicting the log transformed of looking time with the following specification: `log(looking time) ~ trial_number + is_first_trial + trial_number * trial_type + log(block_number) + (trial_number * trial_type | subject) + (is_first_trial + trial_number | subject)`. This model allows us to investigate whether the number of familiar trials has an impact on the looking time (i.e habituation), and whether the trial type (familiar or novel) mediates the influences. This  model failed to converge. Following the pre registered procedure, we pruned the model to include only by-subject random intercept. The pruned model suggests that there is evidence for habituation and dishabituation (STATS). 
 
 For experiment 2, we ran a similar model and incorporated the effect of different novelty type. The particular model specification is as follows: `log(total_rt)` $\sim$ `trial_number +  is_first_trial +  (trial_number + is_first_trial) * stimulus_number + (trial_number + is_first_trial) * stimulus_pose +(trial_number + is_first_trial) * stimulus_animacy + (trial_number + is_first_trial) * novelty_type + log(block_number)`. The `novelty_type`  has five levels, including the background trial and four types of violation.This model can help us test two hypotheses: (1) whether our experimental paradigm captured habituation and dishabituation and (2) whether the magnitude of dishabituation was influenced by the similarity between the novel trials and the familiar trials. 
 

@@ -20,25 +20,6 @@ age_sex_df = exp1_infant_d %>% distinct(unique_id, age, sex) %>% mutate(age_in_m
 mean_age = age_sex_df %>% pull(age_in_months) %>% mean() %>% round(2)
 sex = age_sex_df %>% count(sex)
 
-# exclusions
-
-complete_exclusions <- exp1_infant_d %>% distinct(unique_id, exclude) %>% 
-  group_by(unique_id) %>% filter(n() == 1, exclude) 
-
-n_complete_exclusions = total_n - total_n_after_exclusion
-
-n_complete_exclusions_expA = complete_exclusions %>% filter(str_detect(unique_id, "A")) %>% nrow()
-
-n_complete_exclusions_expB = complete_exclusions %>% filter(str_detect(unique_id, "B")) %>% nrow()
-
-n_complete_exclusions_expC = complete_exclusions %>% filter(str_detect(unique_id, "C")) %>% nrow()
-
-
-# exclusions
-excluded_df = exp1_infant_d %>% filter(!unique_id %in% complete_exclusions$unique_id)
-
-num_excluded_trials = excluded_df %>% filter(fam_or_test == 'test') %>% count(exclude) %>% filter(exclude) %>% pull(n)
-
 ```
 
 
@@ -58,7 +39,7 @@ test_df = exp1_infant_d %>% filter(fam_or_test == 'test') %>% mutate(fam_duratio
 
 
 # checking for non-linearity model
-model_1a <- lmer(log(LT) ~ poly(fam_duration,2) *test_type + block_num + (1 | unique_id), data = test_df)
+model_1a <- lmer(log(LT) ~ poly(fam_duration,2) * test_type + block_num + (1 | unique_id), data = test_df)
 
 # fam pref (EXPLORATORY)
 model_2a <- lmer(log(LT) ~ test_type + block_num + (1 | unique_id), data = test_df %>% filter(fam_duration == 1))
