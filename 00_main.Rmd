@@ -37,17 +37,17 @@ resnet50_nonoise_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nono
 resnet50_surprisal_short_CV <- read_csv(here('data/infants/crossvalidation/resnet50_surprisal_short_CV.csv'))
 
 ```
+
 ```{r, include = FALSE}
 # Load models
 model_1a <- readRDS(here("cached_models/infants/model_1a.rds"))
-model_2a<- readRDS(here("cached_models/infants/model_2a.rds"))
-model_2b<- readRDS( here("cached_models/infants/model_2b.rds"))
-model_2c <- readRDS( here("cached_models/infants/model_2c.rds"))
+model_2a <- readRDS(here("cached_models/infants/model_2a.rds"))
+model_2b <- readRDS(here("cached_models/infants/model_2b.rds"))
+model_2c <- readRDS(here("cached_models/infants/model_2c.rds"))
 model_2d <- readRDS(here("cached_models/infants/model_2d.rds"))
 model_3a <- readRDS(here("cached_models/infants/model_3a.rds"))
 model_3b <- readRDS(here("cached_models/infants/model_3b.rds"))
-model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
-
+model_3c <- readRDS(here("cached_models/infants/model_3c.rds"))
 ```
 
 
@@ -97,9 +97,12 @@ model_3c <- readRDS( here("cached_models/infants/model_3c.rds"))
 
 ```
 
+# Supplementary information 
+```{r child = "10_supplementary.Rmd"}
+
+```
 
 # References 
-
 
 \setlength{\parindent}{-0.1in} 
 \setlength{\leftskip}{0.125in}

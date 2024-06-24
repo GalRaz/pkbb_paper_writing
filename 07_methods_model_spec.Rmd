@@ -10,7 +10,7 @@ Given that we were using discrete grid approximation in our inference, the model
 
 ### Linking Hypotheses
 
-We compared two additional information theoretic measures with Expected Information Gain (EIG): Kullback–Leibler divergence and Surprisal. Each of these measures has been invoked in the literature as a plausible account for explaining looking behaviors across developmental stages [KL divergence: @poli2020infants; Surpsal: @kidd2012goldilocks]. 
+We compared two additional information theoretic measures with Expected Information Gain (EIG): Kullback–Leibler divergence and Surprisal. Each of these measures has been invoked in the literature as a plausible account for explaining looking behaviors across developmental stages [KL divergence: @poli2020infants; Surprisal: @kidd2012goldilocks]. 
 
 Our key linking hypothesis, EIG, is a forward-looking measure. It is computed as the product of the posterior predictive probability of the next perceptual sample ($p(z_{t+1}|\theta_t)$) and the information gained conditioned on that next hypothetical sample, via a grid approximation of possible subsequent samples ($S$). 
 
