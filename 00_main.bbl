@@ -351,7 +351,7 @@
       \field{labeltitlesource}{title}
       \field{journaltitle}{Infancy}
       \field{number}{5}
-      \field{title}{Test-retest reliability in infant speech perception tasks}
+      \field{title}{Test--retest reliability in infant speech perception tasks}
       \field{volume}{21}
       \field{year}{2016}
       \field{pages}{648\bibrangedash 667}
@@ -596,7 +596,7 @@
       \field{labeltitlesource}{title}
       \field{journaltitle}{Advances in methods and practices in psychological science}
       \field{number}{2}
-      \field{title}{iCatcher+: Robust and Automated Annotation of Infants’ and Young Children’s Gaze Behavior From Videos Collected in Laboratory, Field, and Online Studies}
+      \field{title}{iCatcher+: Robust and Automated Annotation of Infants' and Young Children's Gaze Behavior From Videos Collected in Laboratory, Field, and Online Studies}
       \field{volume}{6}
       \field{year}{2023}
       \field{pages}{25152459221147250}
@@ -1650,6 +1650,7 @@
       \range{pages}{6}
     \endentry
   \enddatalist
+  \missing{FIXME}
 \endrefsection
 \endinput
 
