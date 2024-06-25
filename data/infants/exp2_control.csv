@@ -1,0 +1,214 @@
+subject_num,age,sex,SubjectInfo.sessionNumber,Trials.trialType,Trials.ordinal,Looks.confidence,Trials.duration,Trials.excludeTrial,Trials.excludeReason,LT,experiment,trial_type,pose,block_num,exclude
+PKBB_07,272,F,1,stimuli/images/unity_stims/animate_01_right_pair_new.mp4,0,0.8743206131227229,60,False,,58.521,6,animal pair,right,1,FALSE
+PKBB_07,272,F,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,1,0.431109934335171,56.144,False,,50.19,6,veggie,no_pose,2,FALSE
+PKBB_07,272,F,1,stimuli/images/unity_stims/animate_04_right_single_new.mp4,2,0.5736523016885436,29.999,False,,26.75,6,single animal,right,3,FALSE
+PKBB_07,272,F,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,3,0.6174260234390659,35.44,False,,32.738,6,single animal,left,4,FALSE
+PKBB_07,272,F,1,stimuli/images/unity_stims/animate_03_left_pair_new.mp4,4,0.664616769703925,45.524,False,,38.341,6,animal pair,left,5,FALSE
+PKBB_07,272,F,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,5,0.5970677217211339,20.352,False,,8.715,6,veggie,no_pose,6,FALSE
+PKBB_11,309,F,1,stimuli/images/unity_stims/animate_01_left_pair_new.mp4,0,0.4086721293938278,37.214,False,,29.834,6,animal pair,left,1,FALSE
+PKBB_11,309,F,1,stimuli/images/unity_stims/animate_04_right_single_new.mp4,1,0.5625873801335965,35.984,False,,29.94100000000001,6,single animal,right,2,FALSE
+PKBB_11,309,F,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,2,0.8335018908675531,20.396,False,,15.681,6,veggie,no_pose,3,FALSE
+PKBB_11,309,F,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,3,0.891880493539013,18.205,False,,15.145999999999995,6,animal pair,right,4,FALSE
+PKBB_11,309,F,1,stimuli/images/unity_stims/animate_03_left_single_new.mp4,4,0.6998448994399521,28.523000000000003,False,,13.956,6,single animal,left,5,FALSE
+PKBB_11,309,F,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,5,0.8123745113588947,31.87,False,,14.933000000000003,6,veggie,no_pose,6,FALSE
+PKBB_19,306,F,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,0,0.8038162175303059,40.467,False,,33.473,6,veggie,no_pose,1,FALSE
+PKBB_19,306,F,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,1,0.6718611858110657,60,False,,31.98200000000001,6,single animal,left,2,FALSE
+PKBB_19,306,F,1,stimuli/images/unity_stims/animate_06_right_pair_new.mp4,2,0.7260961460539491,46.235,False,,38.19300000000001,6,animal pair,right,3,FALSE
+PKBB_19,306,F,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,3,0.7054343455732996,21.091,False,,14.598999999999998,6,veggie,no_pose,4,FALSE
+PKBB_19,306,F,1,stimuli/images/unity_stims/animate_04_right_single_new.mp4,4,0.7189683278477115,60,False,,55.535,6,single animal,right,5,FALSE
+PKBB_19,306,F,1,stimuli/images/unity_stims/animate_05_left_pair_new.mp4,5,0.7518430558754046,60,False,,10.922000000000004,6,animal pair,left,6,FALSE
+PKBB_20,227,F,1,stimuli/images/unity_stims/animate_01_left_pair_new.mp4,0,0.13350211761537048,60,False,,59.201,6,animal pair,left,1,FALSE
+PKBB_20,227,F,1,stimuli/images/unity_stims/animate_06_right_single_new.mp4,1,0.4855165481567383,60,False,,58.32100000000001,6,single animal,right,2,FALSE
+PKBB_20,227,F,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,2,0.15537510315577188,27.712,False,,22.586,6,veggie,no_pose,3,FALSE
+PKBB_20,227,F,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,3,0.6447271936469607,30.928,False,,20.222,6,animal pair,right,4,FALSE
+PKBB_20,227,F,1,stimuli/images/unity_stims/animate_03_left_single_new.mp4,4,NA,48.603,False,,30.566,6,single animal,left,5,FALSE
+PKBB_20,227,F,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,5,NA,38.692,False,,22.489000000000004,6,veggie,no_pose,6,FALSE
+PKBB_01,289,F,1,stimuli/images/unity_stims/animate_01_left_single_new.mp4,0,0.7787971333035588,57.418,False,,19.913,6,single animal,left,1,TRUE
+PKBB_01,289,F,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,1,0.6906949303102031,29.29,False,,15.402999999999995,6,veggie,no_pose,2,TRUE
+PKBB_01,289,F,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,2,0.7818254416745011,36.969,False,,29.141,6,veggie,no_pose,3,TRUE
+PKBB_01,289,F,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,3,0.7915798721927282,25.126,False,,23.728,6,animal pair,left,4,TRUE
+PKBB_01,289,F,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,4,NA,18.083,False,,18.083,6,animal pair,right,5,TRUE
+PKBB_01,289,F,1,stimuli/images/unity_stims/animate_06_right_single_new.mp4,5,0.1804824024438858,37.719,False,,4.390999999999998,6,single animal,right,6,TRUE
+PKBB_02,279,F,1,stimuli/images/unity_stims/animate_01_left_single_new.mp4,0,0.8398677289796173,38.992,False,,32.194,6,single animal,left,1,FALSE
+PKBB_02,279,F,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,1,0.9420100474782936,46.072,False,,11.585000000000008,6,veggie,no_pose,2,FALSE
+PKBB_02,279,F,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,2,0.8855904044151904,27.408,False,,11.009000000000002,6,veggie,no_pose,3,FALSE
+PKBB_02,279,F,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,3,0.8710244572562114,31.072,False,,16.088,6,animal pair,left,4,FALSE
+PKBB_02,279,F,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,4,0.8733111071474957,45.486,False,,10.811,6,animal pair,right,5,FALSE
+PKBB_02,279,F,1,stimuli/images/unity_stims/animate_06_right_single_new.mp4,5,0.7628775266856173,26.76,False,,17.03,6,single animal,right,6,FALSE
+PKBB_03,323,M,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,0,0.7437377834716341,52.364,False,,44.19600000000001,6,veggie,no_pose,1,FALSE
+PKBB_03,323,M,1,stimuli/images/unity_stims/animate_02_left_pair_new.mp4,1,0.8910424575828658,28.625,False,,25.152,6,animal pair,left,2,TRUE
+PKBB_03,323,M,1,stimuli/images/unity_stims/animate_03_left_single_new.mp4,2,0.6427625698347094,60,False,,18.093999999999998,6,single animal,left,3,FALSE
+PKBB_03,323,M,1,stimuli/images/unity_stims/animate_04_right_single_new.mp4,3,0.6031160082868774,25.956,False,,11.118,6,single animal,right,4,FALSE
+PKBB_03,323,M,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,4,0.9273168659889968,20.586,False,,7.900999999999998,6,veggie,no_pose,5,FALSE
+PKBB_03,323,M,1,stimuli/images/unity_stims/animate_06_right_pair_new.mp4,5,0.6070522152046746,28.531,False,,6.448999999999997,6,animal pair,right,6,FALSE
+PKBB_04,315,M,1,stimuli/images/unity_stims/animate_01_left_pair_new.mp4,0,0.6433220539795864,60,False,,56.04600000000001,6,animal pair,left,1,FALSE
+PKBB_04,315,M,1,stimuli/images/unity_stims/animate_05_right_single_new.mp4,1,0.2532592936124169,58.778,False,,20.097,6,single animal,right,2,FALSE
+PKBB_04,315,M,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,2,0.4899088424062986,60,False,,56.724,6,veggie,no_pose,3,FALSE
+PKBB_04,315,M,1,stimuli/images/unity_stims/animate_02_right_pair_new.mp4,3,0.7259306483253769,53.865,False,,46.739,6,animal pair,right,4,FALSE
+PKBB_04,315,M,1,stimuli/images/unity_stims/animate_06_left_single_new.mp4,4,0.4996852576732636,60,False,,40.067,6,single animal,left,5,FALSE
+PKBB_04,315,M,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,5,0.3750419883165153,33.133,False,,22.415,6,veggie,no_pose,6,FALSE
+PKBB_05,242,F,1,stimuli/images/unity_stims/animate_06_right_single_new.mp4,0,0.7493583152468555,60,False,,58.883,6,single animal,right,1,FALSE
+PKBB_05,242,F,1,stimuli/images/unity_stims/animate_03_right_pair_new.mp4,1,0.9081883085071248,60,False,,44.18400000000001,6,animal pair,right,2,FALSE
+PKBB_05,242,F,1,stimuli/images/unity_stims/animate_02_left_pair_new.mp4,2,0.8318531973587795,60,False,,55.859,6,animal pair,left,3,FALSE
+PKBB_05,242,F,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,3,0.8521220678143904,58.2,False,,29.347000000000005,6,veggie,no_pose,4,FALSE
+PKBB_05,242,F,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,4,0.8750268195845881,50.809,False,,40.299,6,veggie,no_pose,5,FALSE
+PKBB_05,242,F,1,stimuli/images/unity_stims/animate_04_left_single_new.mp4,5,0.7257347233679704,47.409,False,,38.241,6,single animal,left,6,FALSE
+PKBB_06,100,F,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,0,0.6477528964737209,25.104,False,,17.756999999999994,6,veggie,no_pose,1,TRUE
+PKBB_06,100,F,1,stimuli/images/unity_stims/animate_05_left_pair_new.mp4,1,0.7664334636784735,12.965,False,,3.7070000000000007,6,animal pair,left,2,TRUE
+PKBB_06,100,F,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,2,0.9050673667122336,10.142,False,,5.563999999999999,6,single animal,left,3,TRUE
+PKBB_06,100,F,1,stimuli/images/unity_stims/animate_03_right_single_new.mp4,3,NA,9.13,False,,9.13,6,single animal,right,4,TRUE
+PKBB_06,100,F,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,4,0.6372621323954618,35.09,False,,16.829,6,veggie,no_pose,5,TRUE
+PKBB_06,100,F,1,stimuli/images/unity_stims/animate_04_right_pair_new.mp4,5,0.7829728095182181,26.031,False,,5.881999999999998,6,animal pair,right,6,TRUE
+PKBB_08,255,M,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,0,0.77634875823553,53.879,False,,16.79,6,veggie,no_pose,1,FALSE
+PKBB_08,255,M,1,stimuli/images/unity_stims/animate_05_left_single_new.mp4,1,0.5442183575932943,44.15600000000001,False,,39.874,6,single animal,left,2,FALSE
+PKBB_08,255,M,1,stimuli/images/unity_stims/animate_02_right_pair_new.mp4,2,0.6324618616274424,25.01,False,,22.016,6,animal pair,right,3,FALSE
+PKBB_08,255,M,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,3,0.7136901625228165,45.262,False,,19.622,6,veggie,no_pose,4,FALSE
+PKBB_08,255,M,1,stimuli/images/unity_stims/animate_04_right_single_new.mp4,4,0.8282417006435848,30.932,False,,25.512,6,single animal,right,5,FALSE
+PKBB_08,255,M,1,stimuli/images/unity_stims/animate_01_left_pair_new.mp4,5,0.6898971167439767,58.493,False,,16.226,6,animal pair,left,6,FALSE
+PKBB_10,274,F,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,0,0.771293336349162,39.957,False,,27.032,6,veggie,no_pose,1,FALSE
+PKBB_10,274,F,1,stimuli/images/unity_stims/animate_02_left_pair_new.mp4,1,0.94640744254122,27.709,False,,16.788000000000004,6,animal pair,left,2,FALSE
+PKBB_10,274,F,1,stimuli/images/unity_stims/animate_04_left_single_new.mp4,2,0.7878444842903833,18.953,False,,16.987000000000002,6,single animal,left,3,FALSE
+PKBB_10,274,F,1,stimuli/images/unity_stims/animate_05_right_single_new.mp4,3,0.7262136189535735,34.592,False,,20.155,6,single animal,right,4,FALSE
+PKBB_10,274,F,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,4,0.6927787468869854,19.657,False,,12.44,6,veggie,no_pose,5,FALSE
+PKBB_10,274,F,1,stimuli/images/unity_stims/animate_01_right_pair_new.mp4,5,0.9330489947898056,25.311,False,,17.608999999999995,6,animal pair,right,6,FALSE
+PKBB_12,217,F,1,stimuli/images/unity_stims/animate_01_left_single_new.mp4,0,NA,29.404,False,,29.404,6,single animal,left,1,FALSE
+PKBB_12,217,F,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,1,NA,27.614,False,,27.614,6,veggie,no_pose,2,FALSE
+PKBB_12,217,F,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,2,NA,30.072,False,,30.072,6,veggie,no_pose,3,FALSE
+PKBB_12,217,F,1,stimuli/images/unity_stims/animate_06_left_pair_new.mp4,3,NA,21.555,False,,21.555,6,animal pair,left,4,FALSE
+PKBB_12,217,F,1,stimuli/images/unity_stims/animate_02_right_pair_new.mp4,4,NA,20.853,False,,20.853,6,animal pair,right,5,FALSE
+PKBB_12,217,F,1,stimuli/images/unity_stims/animate_05_right_single_new.mp4,5,NA,15.175999999999998,False,,15.175999999999998,6,single animal,right,6,FALSE
+PKBB_13,260,M,1,stimuli/images/unity_stims/animate_06_right_single_new.mp4,0,0.9557709410947336,20.929,False,,15.351,6,single animal,right,1,FALSE
+PKBB_13,260,M,1,stimuli/images/unity_stims/animate_02_right_pair_new.mp4,1,0.9801346235636552,18.382,False,,3.1270000000000007,6,animal pair,right,2,FALSE
+PKBB_13,260,M,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,2,0.9563636092271104,13.566,False,,3.344000000000001,6,animal pair,left,3,FALSE
+PKBB_13,260,M,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,3,0.8242543673264715,36.51300000000001,False,,11.971999999999998,6,veggie,no_pose,4,FALSE
+PKBB_13,260,M,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,4,0.9471828643634536,25.208,False,,15.977999999999994,6,veggie,no_pose,5,FALSE
+PKBB_13,260,M,1,stimuli/images/unity_stims/animate_05_left_single_new.mp4,5,0.6763240844108329,19.958,False,,14.393999999999998,6,single animal,left,6,FALSE
+PKBB_14,322,F,1,stimuli/images/unity_stims/animate_03_right_pair_new.mp4,0,0.8214693108767366,30.025,False,,13.91,6,animal pair,right,1,FALSE
+PKBB_14,322,F,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,1,0.7569117324176866,34.8,False,,16.144000000000002,6,veggie,no_pose,2,FALSE
+PKBB_14,322,F,1,stimuli/images/unity_stims/animate_04_right_single_new.mp4,2,0.2854318877887177,27.408,False,,15.747000000000002,6,single animal,right,3,FALSE
+PKBB_14,322,F,1,stimuli/images/unity_stims/animate_01_left_single_new.mp4,3,0.28371789286689697,39.008,False,,11.873000000000005,6,single animal,left,4,FALSE
+PKBB_14,322,F,1,stimuli/images/unity_stims/animate_06_left_pair_new.mp4,4,NA,57.267,False,,57.267,6,animal pair,left,5,FALSE
+PKBB_14,322,F,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,5,NA,47.127,False,,47.127,6,veggie,no_pose,6,FALSE
+PKBB_15,260,M,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,0,NA,26.616,False,,26.616,6,veggie,no_pose,1,FALSE
+PKBB_15,260,M,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,1,NA,21.252,False,,21.252,6,single animal,left,2,FALSE
+PKBB_15,260,M,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,2,NA,24.206,False,,24.206,6,animal pair,right,3,FALSE
+PKBB_15,260,M,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,3,NA,40.695,False,,40.695,6,veggie,no_pose,4,FALSE
+PKBB_15,260,M,1,stimuli/images/unity_stims/animate_01_right_single_new.mp4,4,NA,21.521,False,,21.521,6,single animal,right,5,FALSE
+PKBB_15,260,M,1,stimuli/images/unity_stims/animate_03_left_pair_new.mp4,5,NA,26.958,False,,26.958,6,animal pair,left,6,FALSE
+PKBB_16,298,F,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,0,0.6758048432642242,28.932,False,,22.674,6,veggie,no_pose,1,FALSE
+PKBB_16,298,F,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,1,0.8007727048805475,42.584,False,,12.732,6,animal pair,left,2,FALSE
+PKBB_16,298,F,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,2,0.6207215670748503,53.355,False,,28.204000000000004,6,single animal,left,3,FALSE
+PKBB_16,298,F,1,stimuli/images/unity_stims/animate_03_right_single_new.mp4,3,0.789131985458225,33.633,False,,24.454,6,single animal,right,4,FALSE
+PKBB_16,298,F,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,4,0.8964103784731263,30.99,False,,13.664999999999996,6,veggie,no_pose,5,FALSE
+PKBB_16,298,F,1,stimuli/images/unity_stims/animate_01_right_pair_new.mp4,5,0.8081549987898383,30.179,False,,7.367999999999998,6,animal pair,right,6,FALSE
+PKBB_17,280,M,1,stimuli/images/unity_stims/animate_06_left_single_new.mp4,0,0.95454811124341,21.043000000000006,False,,16.151,6,single animal,left,1,FALSE
+PKBB_17,280,M,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,1,0.9660954547703932,20.311,False,,14.678,6,veggie,no_pose,2,FALSE
+PKBB_17,280,M,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,2,0.9727432071619078,24.45,False,,8.648,6,veggie,no_pose,3,FALSE
+PKBB_17,280,M,1,stimuli/images/unity_stims/animate_02_left_pair_new.mp4,3,0.8310589464324659,22.661,False,,14.274,6,animal pair,left,4,FALSE
+PKBB_17,280,M,1,stimuli/images/unity_stims/animate_01_right_pair_new.mp4,4,0.9645891657477458,21.579,False,,12.687,6,animal pair,right,5,FALSE
+PKBB_17,280,M,1,stimuli/images/unity_stims/animate_03_right_single_new.mp4,5,0.9594990760706434,19.598,False,,13.352,6,single animal,right,6,FALSE
+PKBB_18,278,M,1,stimuli/images/unity_stims/animate_06_right_single_new.mp4,0,0.6382027629661909,48.872,False,,40.354,6,single animal,right,1,FALSE
+PKBB_18,278,M,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,1,0.5685337173835497,33.15,False,,26.596,6,animal pair,right,2,FALSE
+PKBB_18,278,M,1,stimuli/images/unity_stims/animate_01_left_pair_new.mp4,2,0.7439785514357958,40.813,False,,36.02,6,animal pair,left,3,FALSE
+PKBB_18,278,M,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,3,0.5433913380941194,33.556,False,,28.669,6,veggie,no_pose,4,FALSE
+PKBB_18,278,M,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,4,0.7475065785485869,31.47,False,,26.522,6,veggie,no_pose,5,FALSE
+PKBB_18,278,M,1,stimuli/images/unity_stims/animate_03_left_single_new.mp4,5,0.7480463791268145,21.8,False,,17.805999999999994,6,single animal,left,6,FALSE
+PKBB_36,325,F,1,stimuli/images/unity_stims/animate_06_right_pair_new.mp4,0,0.7976218050107321,60,False,,60,6,animal pair,right,1,FALSE
+PKBB_36,325,F,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,1,0.5133725861557379,60,False,,58.242,6,veggie,no_pose,2,FALSE
+PKBB_36,325,F,1,stimuli/images/unity_stims/animate_02_right_single_new.mp4,2,NA,60,False,,60,6,single animal,right,3,FALSE
+PKBB_36,325,F,1,stimuli/images/unity_stims/animate_01_left_single_new.mp4,3,NA,36.115,False,,36.115,6,single animal,left,4,FALSE
+PKBB_36,325,F,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,4,NA,53.37600000000001,False,,53.37600000000001,6,animal pair,left,5,FALSE
+PKBB_36,325,F,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,5,NA,60,False,,60,6,veggie,no_pose,6,FALSE
+PKBB_21,246,M,1,stimuli/images/unity_stims/animate_01_right_single_new.mp4,0,0.7180160581601865,42.646,False,,37.31100000000001,6,single animal,right,1,FALSE
+PKBB_21,246,M,1,stimuli/images/unity_stims/animate_04_right_pair_new.mp4,1,0.8627062070566829,60,False,,58.722,6,animal pair,right,2,FALSE
+PKBB_21,246,M,1,stimuli/images/unity_stims/animate_03_left_pair_new.mp4,2,0.8634303021933021,49.721,False,,42.606,6,animal pair,left,3,FALSE
+PKBB_21,246,M,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,3,NA,42.092,False,,42.092,6,veggie,no_pose,4,FALSE
+PKBB_21,246,M,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,4,NA,55.929,False,,55.929,6,veggie,no_pose,5,FALSE
+PKBB_21,246,M,1,stimuli/images/unity_stims/animate_06_left_single_new.mp4,5,NA,60,False,,60,6,single animal,left,6,FALSE
+PKBB_22,292,M,1,stimuli/images/unity_stims/animate_03_right_pair_new.mp4,0,0.3873559074140879,35.71,False,,31.315,6,animal pair,right,1,FALSE
+PKBB_22,292,M,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,1,0.2283832665688169,46.062,False,,10.359999999999992,6,veggie,no_pose,2,FALSE
+PKBB_22,292,M,1,stimuli/images/unity_stims/animate_05_right_single_new.mp4,2,0.2009336949997932,32.608000000000004,False,,20.324999999999992,6,single animal,right,3,FALSE
+PKBB_22,292,M,1,stimuli/images/unity_stims/animate_06_left_single_new.mp4,3,0.05218132512890177,38.87,False,,28.059999999999995,6,single animal,left,4,FALSE
+PKBB_22,292,M,1,stimuli/images/unity_stims/animate_01_left_pair_new.mp4,4,0.4543817903567105,38.319,False,,36.803,6,animal pair,left,5,FALSE
+PKBB_22,292,M,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,5,NA,26.909,False,,26.909,6,veggie,no_pose,6,FALSE
+PKBB_23,329,M,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,0,0.4268525858720144,60,False,,48.607,6,veggie,no_pose,1,FALSE
+PKBB_23,329,M,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,1,0.5254625936349233,37.724,False,,30.922,6,animal pair,left,2,FALSE
+PKBB_23,329,M,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,2,0.5851046323776246,41.859,False,,35.041000000000004,6,single animal,left,3,FALSE
+PKBB_23,329,M,1,stimuli/images/unity_stims/animate_03_right_single_new.mp4,3,0.5127522620889876,21.083,False,,12.883999999999997,6,single animal,right,4,FALSE
+PKBB_23,329,M,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,4,0.7024370008795873,55.938,False,,32.102000000000004,6,veggie,no_pose,5,FALSE
+PKBB_23,329,M,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,5,0.6767383001208561,29.683000000000003,False,,18.564,6,animal pair,right,6,FALSE
+PKBB_24,311,F,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,0,0.8265359257323452,41.089,False,,36.512,6,animal pair,left,1,FALSE
+PKBB_24,311,F,1,stimuli/images/unity_stims/animate_05_right_single_new.mp4,1,0.6634126211474148,52.62600000000001,False,,46.078,6,single animal,right,2,FALSE
+PKBB_24,311,F,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,2,0.7591845442542872,25.211,False,,6.593,6,veggie,no_pose,3,FALSE
+PKBB_24,311,F,1,stimuli/images/unity_stims/animate_03_right_pair_new.mp4,3,0.8357095410919222,19.945,False,,16.362000000000002,6,animal pair,right,4,FALSE
+PKBB_24,311,F,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,4,NA,21.554,False,,6.264999999999998,6,single animal,left,5,FALSE
+PKBB_24,311,F,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,5,0.5739721695460924,26.378,False,,20.729,6,veggie,no_pose,6,FALSE
+PKBB_25,221,M,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,0,0.902909851933134,60,False,,58.161,6,animal pair,left,1,FALSE
+PKBB_25,221,M,1,stimuli/images/unity_stims/animate_03_right_single_new.mp4,1,0.8173569964540347,26.282,False,,19.703000000000007,6,single animal,right,2,FALSE
+PKBB_25,221,M,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,2,0.8415547332217082,18.433,False,,8.488999999999999,6,veggie,no_pose,3,FALSE
+PKBB_25,221,M,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,3,0.7954040432156441,35.261,False,,8.966000000000003,6,animal pair,right,4,FALSE
+PKBB_25,221,M,1,stimuli/images/unity_stims/animate_01_left_single_new.mp4,4,0.6678748856533311,23.075,False,,17.272000000000002,6,single animal,left,5,FALSE
+PKBB_25,221,M,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,5,0.701833816132271,34.855,False,,11.407,6,veggie,no_pose,6,FALSE
+PKBB_26,329,M,1,stimuli/images/unity_stims/animate_03_left_single_new.mp4,0,NA,38.411,False,,38.411,6,single animal,left,1,FALSE
+PKBB_26,329,M,1,stimuli/images/unity_stims/animate_03_left_single_new.mp4,0,NA,38.411,True,trial contains an error in coded look-types,38.411,6,single animal,left,1,TRUE
+PKBB_26,329,M,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,1,NA,36.674,False,,36.674,6,veggie,no_pose,2,FALSE
+PKBB_26,329,M,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,2,NA,21.106,False,,21.106,6,veggie,no_pose,3,FALSE
+PKBB_26,329,M,1,stimuli/images/unity_stims/animate_05_left_pair_new.mp4,3,NA,23.323,False,,23.323,6,animal pair,left,4,FALSE
+PKBB_26,329,M,1,stimuli/images/unity_stims/animate_06_right_pair_new.mp4,4,NA,51.82,False,,NA,6,animal pair,right,5,TRUE
+PKBB_26,329,M,1,stimuli/images/unity_stims/animate_04_right_single_new.mp4,5,NA,25.865,False,,25.865,6,single animal,right,6,FALSE
+PKBB_27,255,M,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,0,0.4940395466549921,60,False,,52.518,6,veggie,no_pose,1,FALSE
+PKBB_27,255,M,1,stimuli/images/unity_stims/animate_04_left_single_new.mp4,1,0.6345931491692259,48.46,False,,36.71200000000001,6,single animal,left,2,FALSE
+PKBB_27,255,M,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,2,0.9185376475631436,32.641,False,,8.548000000000002,6,animal pair,right,3,FALSE
+PKBB_27,255,M,1,stimuli/images/unity_stims/veggie_02_nopose_single_new.mp4,3,0.6485336289669958,38.459,False,,32.202,6,veggie,no_pose,4,FALSE
+PKBB_27,255,M,1,stimuli/images/unity_stims/animate_06_right_single_new.mp4,4,0.6363535674057563,32.531,False,,23.436,6,single animal,right,5,FALSE
+PKBB_27,255,M,1,stimuli/images/unity_stims/animate_03_left_pair_new.mp4,5,0.8306047208685655,25.799,False,,16.852999999999998,6,animal pair,left,6,FALSE
+PKBB_28,244,M,1,stimuli/images/unity_stims/animate_01_right_pair_new.mp4,0,0.9448512680928296,35.133,False,,30.870000000000005,6,animal pair,right,1,FALSE
+PKBB_28,244,M,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,1,0.3847300888086019,60,False,,55.40600000000001,6,veggie,no_pose,2,FALSE
+PKBB_28,244,M,1,stimuli/images/unity_stims/animate_02_right_single_new.mp4,2,0.596514320005844,60,False,,58.003,6,single animal,right,3,FALSE
+PKBB_28,244,M,1,stimuli/images/unity_stims/animate_05_left_single_new.mp4,3,0.3980692993604542,48.784,False,,48.784,6,single animal,left,4,FALSE
+PKBB_28,244,M,1,stimuli/images/unity_stims/animate_06_left_pair_new.mp4,4,NA,43.918,False,,43.918,6,animal pair,left,5,FALSE
+PKBB_28,244,M,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,5,NA,49.927,False,,49.927,6,veggie,no_pose,6,FALSE
+PKBB_29,299,F,1,stimuli/images/unity_stims/animate_06_right_single_new.mp4,0,0.5682703179441853,47.688,False,,6.8700000000000045,6,single animal,right,1,FALSE
+PKBB_29,299,F,1,stimuli/images/unity_stims/animate_04_right_pair_new.mp4,1,0.7749271757254746,19.19400000000001,False,,5.484999999999999,6,animal pair,right,2,FALSE
+PKBB_29,299,F,1,stimuli/images/unity_stims/animate_02_left_pair_new.mp4,2,0.5833658555559084,23.644,False,,3.693999999999999,6,animal pair,left,3,FALSE
+PKBB_29,299,F,1,stimuli/images/unity_stims/veggie_03_nopose_single_new.mp4,3,0.5757413582334703,51.974,False,,13.882000000000003,6,veggie,no_pose,4,FALSE
+PKBB_29,299,F,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,4,0.7719582427800417,29.737,False,,6.616999999999997,6,veggie,no_pose,5,FALSE
+PKBB_29,299,F,1,stimuli/images/unity_stims/animate_01_left_single_new.mp4,5,0.8314212098560834,25.395,False,,7.338000000000001,6,single animal,left,6,FALSE
+PKBB_30,321,F,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,0,0.9308316365730228,19.64,False,,16.71,6,veggie,no_pose,1,FALSE
+PKBB_30,321,F,1,stimuli/images/unity_stims/animate_02_left_pair_new.mp4,1,0.6911315844312534,27.718000000000004,False,,22.926,6,animal pair,left,2,FALSE
+PKBB_30,321,F,1,stimuli/images/unity_stims/animate_04_left_single_new.mp4,2,0.8475866886871787,19.729,False,,15.63,6,single animal,left,3,FALSE
+PKBB_30,321,F,1,stimuli/images/unity_stims/animate_03_right_single_new.mp4,3,0.9487615435703955,25.706,False,,11.140999999999998,6,single animal,right,4,FALSE
+PKBB_30,321,F,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,4,0.9453829096896308,17.756,False,,6.043000000000001,6,veggie,no_pose,5,FALSE
+PKBB_30,321,F,1,stimuli/images/unity_stims/animate_05_right_pair_new.mp4,5,0.984379908234748,29.123,False,,6.349,6,animal pair,right,6,FALSE
+PKBB_31,247,F,1,stimuli/images/unity_stims/animate_03_left_single_new.mp4,0,0.6232528365176657,60,False,,52.849,6,single animal,left,1,FALSE
+PKBB_31,247,F,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,1,0.7324967128889901,35.745,False,,33.547,6,veggie,no_pose,2,FALSE
+PKBB_31,247,F,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,2,NA,55.121,False,,55.121,6,veggie,no_pose,3,FALSE
+PKBB_31,247,F,1,stimuli/images/unity_stims/animate_06_left_pair_new.mp4,3,NA,60,False,,60,6,animal pair,left,4,FALSE
+PKBB_31,247,F,1,stimuli/images/unity_stims/animate_02_right_pair_new.mp4,4,NA,32.58,False,,32.58,6,animal pair,right,5,FALSE
+PKBB_31,247,F,1,stimuli/images/unity_stims/animate_01_right_single_new.mp4,5,NA,21.377,False,,21.377,6,single animal,right,6,TRUE
+PKBB_32,310,M,1,stimuli/images/unity_stims/animate_05_right_single_new.mp4,0,0.5635223138963911,16.523,False,,11.431,6,single animal,right,1,FALSE
+PKBB_32,310,M,1,stimuli/images/unity_stims/animate_03_right_pair_new.mp4,1,0.6140927985431286,21.987,False,,10.891999999999998,6,animal pair,right,2,FALSE
+PKBB_32,310,M,1,stimuli/images/unity_stims/animate_04_left_pair_new.mp4,2,0.6760825588908154,33.59,False,,19.788000000000004,6,animal pair,left,3,FALSE
+PKBB_32,310,M,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,3,0.3947760834950231,25.285,False,,18.69,6,veggie,no_pose,4,FALSE
+PKBB_32,310,M,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,4,0.4951787246023898,25.325,False,,6.396999999999999,6,veggie,no_pose,5,FALSE
+PKBB_32,310,M,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,5,-1,37.56800000000001,True,average on-look confidence of iCatcher for trial is below minimum (min_icatcher_confidence),37.528,6,single animal,left,6,TRUE
+PKBB_33,310,M,1,stimuli/images/unity_stims/animate_01_right_single_new.mp4,0,NA,32.327,False,,32.327,6,single animal,right,1,FALSE
+PKBB_33,310,M,1,stimuli/images/unity_stims/animate_01_right_single_new.mp4,0,NA,32.327,True,trial contains an error in coded look-types,32.327,6,single animal,right,1,TRUE
+PKBB_33,310,M,1,stimuli/images/unity_stims/animate_04_right_pair_new.mp4,1,NA,33.806,False,,NA,6,animal pair,right,2,TRUE
+PKBB_33,310,M,1,stimuli/images/unity_stims/animate_03_left_pair_new.mp4,2,NA,26.411,False,,26.411,6,animal pair,left,3,FALSE
+PKBB_33,310,M,1,stimuli/images/unity_stims/veggie_06_nopose_single_new.mp4,3,NA,38.703,False,,38.703,6,veggie,no_pose,4,FALSE
+PKBB_33,310,M,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,4,NA,30.787,False,,30.787,6,veggie,no_pose,5,FALSE
+PKBB_33,310,M,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,5,NA,39.052,False,,39.052,6,single animal,left,6,FALSE
+PKBB_34,292,M,1,stimuli/images/unity_stims/veggie_05_nopose_single_new.mp4,0,0.8775466044473679,37.192,False,,36.555,6,veggie,no_pose,1,FALSE
+PKBB_34,292,M,1,stimuli/images/unity_stims/animate_06_left_single_new.mp4,1,0.815005925868555,60,False,,58.602,6,single animal,left,2,FALSE
+PKBB_34,292,M,1,stimuli/images/unity_stims/animate_03_right_pair_new.mp4,2,0.8173432955929927,26.13,False,,9.564999999999998,6,animal pair,right,3,FALSE
+PKBB_34,292,M,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,3,0.9438558799531296,60,False,,58.763000000000005,6,veggie,no_pose,4,FALSE
+PKBB_34,292,M,1,stimuli/images/unity_stims/animate_01_right_single_new.mp4,4,0.9319289868427296,23.822,False,,22.783,6,single animal,right,5,FALSE
+PKBB_34,292,M,1,stimuli/images/unity_stims/animate_02_left_pair_new.mp4,5,0.9237258517416588,18.921,False,,16.183999999999994,6,animal pair,left,6,FALSE
+PKBB_35,233,M,1,stimuli/images/unity_stims/animate_06_left_pair_new.mp4,0,NA,60.071,False,NA,60.071,6,animal pair,left,1,FALSE
+PKBB_35,233,M,1,stimuli/images/unity_stims/animate_06_left_pair_new.mp4,0,NA,60.071,True,trial contains an error in coded look-types,60.071,6,animal pair,left,1,TRUE
+PKBB_35,233,M,1,stimuli/images/unity_stims/animate_05_right_single_new.mp4,1,NA,27.702,False,NA,27.702,6,single animal,right,2,FALSE
+PKBB_35,233,M,1,stimuli/images/unity_stims/veggie_04_nopose_single_new.mp4,2,NA,27.781,False,NA,NA,6,veggie,no_pose,3,TRUE
+PKBB_35,233,M,1,stimuli/images/unity_stims/animate_03_right_pair_new.mp4,3,NA,26.534,False,NA,NA,6,animal pair,right,4,TRUE
+PKBB_35,233,M,1,stimuli/images/unity_stims/animate_02_left_single_new.mp4,4,NA,39.744,False,NA,39.744,6,single animal,left,5,FALSE
+PKBB_35,233,M,1,stimuli/images/unity_stims/veggie_01_nopose_single_new.mp4,5,NA,21.154,False,NA,21.154,6,veggie,no_pose,6,FALSE

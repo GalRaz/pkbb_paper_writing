@@ -3,10 +3,10 @@
 # Load data
 
 # Number of subjects
-total_n = exp1_infant_d %>% pull(unique_id) %>% unique() %>% length()
+total_n_exp1 = exp1_infant_d %>% pull(unique_id) %>% unique() %>% length()
 
 # number of subjects after exclusions
-total_n_after_exclusion = exp1_infant_d %>% filter(!exclude) %>% pull(unique_id) %>% unique() %>% length()
+total_n_exp1_after_exclusion = exp1_infant_d %>% filter(!exclude) %>% pull(unique_id) %>% unique() %>% length()
 
 # experiment-specific sample size
 n_subject_expA = exp1_infant_d %>% filter(str_detect(unique_id, "A")) %>% pull(unique_id) %>% unique() %>% length()
@@ -14,11 +14,11 @@ n_subject_expB = exp1_infant_d %>% filter(str_detect(unique_id, "B")) %>% pull(u
 n_subject_expC = exp1_infant_d %>% filter(str_detect(unique_id, "C")) %>% pull(unique_id) %>% unique() %>% length()
 
 # age and sex
-mean_age <- exp1_infant_d %>% group_by(unique_id) %>% summarize(age_in_months = mean(age)/30) %>% pull(age_in_months) %>% mean() %>% round(2)
+mean_age_exp1 <- exp1_infant_d %>% group_by(unique_id) %>% summarize(age_in_months = mean(age)/30) %>% pull(age_in_months) %>% mean() %>% round(2)
 
-age_sex_df = exp1_infant_d %>% distinct(unique_id, age, sex) %>% mutate(age_in_months = age/30) 
-mean_age = age_sex_df %>% pull(age_in_months) %>% mean() %>% round(2)
-sex = age_sex_df %>% count(sex)
+age_sex_df_exp1 = exp1_infant_d %>% distinct(unique_id, age, sex) %>% mutate(age_in_months = age/30) 
+mean_age_exp1 = age_sex_df %>% pull(age_in_months) %>% mean() %>% round(2)
+sex_exp1 = age_sex_df %>% count(sex)
 
 ```
 
@@ -89,7 +89,7 @@ A key difference between the competing models in Figure \@ref(fig:conceptual) is
 
 ### Infant experiment 
 
-We tested infants in a novel experimental paradigm in which exposure duration to the stimuli were manipulated in a within-subject design \@ref(fig:design) (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarizaiton phase and a test trial. During the familiarization, infants were presented with one stimulus, repeated 0 to 9 times. After the familiarization, infants’ looking time was measured on a test trial. The test trial showed either the same stimulus as the preceding trials, or a new stimulus. We ran three versions of this experiment, each with three different familiarization durations. We tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` infants in Exp 1A (0, 4 or 8 repetitions), `r n_subject_expB` infants in Exp 1B (1, 3 or 9 repetitions) and `r n_subject_expC` infants in Exp 1C (2, 4 or 6 repetitions; total n=`r total_n`, $M_{age}$=`r mean_age` months, `r sex$n[sex$sex == 'F']` female).
+We tested infants in a novel experimental paradigm in which exposure duration to the stimuli were manipulated in a within-subject design \@ref(fig:design) (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarizaiton phase and a test trial. During the familiarization, infants were presented with one stimulus, repeated 0 to 9 times. After the familiarization, infants’ looking time was measured on a test trial. The test trial showed either the same stimulus as the preceding trials, or a new stimulus. We ran three versions of this experiment, each with three different familiarization durations. We tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` infants in Exp 1A (0, 4 or 8 repetitions), `r n_subject_expB` infants in Exp 1B (1, 3 or 9 repetitions) and `r n_subject_expC` infants in Exp 1C (2, 4 or 6 repetitions; total n=`r total_n_exp1`, $M_{age}$=`r mean_age_exp1` months, `r sex_exp1$n[sex_exp1$sex == 'F']` female).
 
 
 ### Adult experiment 
@@ -124,7 +124,9 @@ RANCH predicted habituation and dishabituation in both infants and adults. We ev
 #table for CV stats
 CV_table = tibble(`Linking Hypothesis` =  c("EIG", "KL", "Surprisal", "No learning", "No noise"))
 
-CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(resnet50_EIG_CV$rmse), mean(resnet50_KL_CV$rmse), mean(resnet50_surprisal_short_CV$rmse), mean(resnet50_nolearning_CV$rmse), mean(resnet50_nonoise_CV$rmse))) %>% mutate(`Infants: Best RMSE` = c(min(resnet50_EIG_CV$rmse), min(resnet50_KL_CV$rmse), min(resnet50_surprisal_short_CV$rmse), min(resnet50_nolearning_CV$rmse), min(resnet50_nonoise_CV$rmse)), `Adults: Mean RMSE` = , `Adults: Best RMSE` = )
+CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(resnet50_EIG_CV$rmse), mean(resnet50_KL_CV$rmse), mean(resnet50_surprisal_short_CV$rmse), mean(resnet50_nolearning_CV$rmse), mean(resnet50_nonoise_CV$rmse))) %>% mutate(`Infants: Best RMSE` = c(min(resnet50_EIG_CV$rmse), min(resnet50_KL_CV$rmse), min(resnet50_surprisal_short_CV$rmse), min(resnet50_nolearning_CV$rmse), min(resnet50_nonoise_CV$rmse)))
+
+# ADD: `Adults: Mean RMSE` = , `Adults: Best RMSE` = 
 
 table <- xtable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)), caption = "Table 1: Crossvalidation results")
 
