@@ -27,6 +27,7 @@ library(xtable)
 exp1_infant_d <- read_csv(here("data/infants/exp1.csv"))
 exp2_zoom_infant_d <- read_csv(here("data/infants/exp2_zoom.csv"))
 exp2_lookit_infant_d <- read_csv(here("data/infants/exp2_lookit.csv"))
+exp2_control_infant_d <- read_csv(here("data/infants/exp2_control.csv"))
 
 # crossvalidation results
 aligned_EIG_CV <- read_csv(here('data/infants/crossvalidation/aligned_EIG_CV.csv'))

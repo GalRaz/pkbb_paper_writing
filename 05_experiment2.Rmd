@@ -4,6 +4,8 @@ n_zoom = exp2_zoom_infant_d %>% pull(subject_num) %>% unique() %>% length()
 m_zoom_age = exp2_zoom_infant_d %>% group_by(subject_num) %>% summarize(age = mean(age)) %>% pull(age) %>% mean() %>% round(2)
 n_lookit = exp2_lookit_infant_d %>% pull(subject_num) %>% unique() %>% length()
 m_lookit_age = exp2_lookit_infant_d %>% group_by(subject_num) %>% summarize(age = mean(age)) %>% pull(age) %>% mean() %>% round(2)
+n_control = exp2_control_infant_d %>% pull(SubjectInfo.subjID) %>% unique() %>% length()
+m_control_age = exp2_control_infant_d %>% group_by(SubjectInfo.subjID) %>% summarize(age = mean(SubjectInfo.testAge)) %>% pull(age) %>% mean() %>% round(2)
 
 # stats models
 exp2_zoom_infant_d$test_type = relevel(as.factor(exp2_zoom_infant_d$test_type), ref = "background")
@@ -13,6 +15,8 @@ model_zoom <- tidy(model_zoom) %>% mutate_if(is.numeric, round, 2)
 exp2_lookit_infant_d$violation_type = relevel(as.factor(exp2_lookit_infant_d$violation_type), ref = "background")
 model_lookit <- lmer(log(LT) ~ log(block_num) + violation_type + (1|subject_num), data = exp2_lookit_infant_d)
 model_lookit <- tidy(model_lookit) %>% mutate_if(is.numeric, round, 2)
+
+# Exclusions
 
 
 
@@ -25,7 +29,7 @@ Beyond predicting non-linearities in attentional preferences during encoding (Fi
 ## Behavioral Experiment
 
 ### Infant experiment 
-To study whether infants show similarity-based dishabituation between the habituation and novel stimulus, we ran an experiment via Zoom (n=`r n_zoom`, age range=7-10 months, $M_{age}$=`r m_zoom_age`), and an exact replication via Lookit (n =`r n_lookit`, age range=6-12 months, $M_{age}$=`r m_lookit_age`). We presented infants with a series of blocks, each again consisting of a familiarization and a test trial (Figure \@ref(fig:design), Experiment 2, Infants). Instead of modifying prior exposure as in the previous experiment, here infants were always familiarized 8 or 9 times with an animal (corresponding to the amount of exposure that caused robust dishabituation in the previous experiment). After familiarization, infants saw a test trial, which could relate to the familiar animal in one of five ways: they either saw the same animal again (background), the same animal facing in the opposite direction (pose), a different animal facing the same way (identity), two instances of the same animal side-by-side (number), or an inanimate vegetable or fruit (animacy).
+To study whether infants show similarity-based dishabituation between the habituation and novel stimulus, we ran an experiment via Zoom (n=`r n_zoom`, age range=7-10 months, $M_{age}$=`r m_zoom_age/30`months), and an exact replication via Lookit (n =`r n_lookit`, age range=6-12 months, $M_{age}$=`r m_lookit_age/30`months). We presented infants with a series of blocks, each again consisting of a familiarization and a test trial (Figure \@ref(fig:design), Experiment 2, Infants). Instead of modifying prior exposure as in the previous experiment, here infants were always familiarized 8 or 9 times with an animal (corresponding to the amount of exposure that caused robust dishabituation in the previous experiment). After familiarization, infants saw a test trial, which could relate to the familiar animal in one of five ways: they either saw the same animal again (background), the same animal facing in the opposite direction (pose), a different animal facing the same way (identity), two instances of the same animal side-by-side (number), or an inanimate vegetable or fruit (animacy). In a control experiment, we tested baseline interest in these stimuli without prior familiarization, to ensure that condition differences in the main experiments are due to violations, rather than intrinsic to the stimuli (n=`r n_control`, age range=7-10 months, $M_{age}$=`r m_control_age/30`months).
 
 ### Adult experiment 
 This adult experiment was procedurally similar to the previous experiment and has similar adaptation to the infant experiment. Participants (N = 468) saw a sequence of animation, with repeating stimulus and one novel stimulus that appears at the end of the sequence. Since adults have longer attention span, we can test adults in all permutations of the familiar stimulus and novel stimulus. The familiar stimuli were either animals or vegetables, facing eighth left or right, coming in either one or a pair. Like the infant experiment, the novel stimulus can be different from the familiar stimulus in one of the four ways: pose, identity, number, or animacy. 
