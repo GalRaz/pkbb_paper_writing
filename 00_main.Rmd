@@ -23,11 +23,15 @@ library(magrittr)
 library(pbkrtest)
 library(xtable)
 
-# behavioral data
+# behavioral data: infants 
 exp1_infant_d <- read_csv(here("data/infants/exp1.csv"))
 exp2_zoom_infant_d <- read_csv(here("data/infants/exp2_zoom.csv"))
 exp2_lookit_infant_d <- read_csv(here("data/infants/exp2_lookit.csv"))
 exp2_control_infant_d <- read_csv(here("data/infants/exp2_control.csv"))
+
+# behavioral data: adults 
+exp1_adult_d <- read_csv(here("data/adults/adult_exposure_duration.csv"))
+exp2_adult_d <- read_csv(here("data/adults/adult_stimuli_type.csv"))
 
 # crossvalidation results
 aligned_EIG_CV <- read_csv(here('data/infants/crossvalidation/aligned_EIG_CV.csv'))
@@ -37,10 +41,18 @@ resnet50_nolearning_CV <- read_csv(here('data/infants/crossvalidation/resnet50_n
 resnet50_nonoise_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nonoise_CV.csv'))
 resnet50_surprisal_short_CV <- read_csv(here('data/infants/crossvalidation/resnet50_surprisal_short_CV.csv'))
 
+
+
+# exp1 full data comparison 
+adult_fulldata_resnet50_eig <- readRDS(here("data/adults/fulll_data_fit/adult_fulldata_resnet50_eig.Rds"))
+adult_fulldata_resnet50_kl <- readRDS(here("data/adults/fulll_data_fit/adult_fulldata_resnet50_kl.Rds"))
+adult_fulldata_resnet50_surprisal <- readRDS(here("data/adults/fulll_data_fit/adult_fulldata_resnet50_surprisal.Rds"))
+
 ```
 
 ```{r, include = FALSE}
 # Load models
+## infants 
 model_1a <- readRDS(here("cached_models/infants/model_1a.rds"))
 model_2a <- readRDS(here("cached_models/infants/model_2a.rds"))
 model_2b <- readRDS(here("cached_models/infants/model_2b.rds"))
@@ -49,6 +61,10 @@ model_2d <- readRDS(here("cached_models/infants/model_2d.rds"))
 model_3a <- readRDS(here("cached_models/infants/model_3a.rds"))
 model_3b <- readRDS(here("cached_models/infants/model_3b.rds"))
 model_3c <- readRDS(here("cached_models/infants/model_3c.rds"))
+
+## adults 
+exp1_adult_model <- readRDS(here("cached_models/adults/exp1_adult_model.Rds"))
+
 ```
 
 
