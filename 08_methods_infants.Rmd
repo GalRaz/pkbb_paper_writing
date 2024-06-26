@@ -29,8 +29,9 @@ n_complete_exclusions_zoom = complete_exclusions_zoom %>% nrow()
 num_excluded_trials_zoom = exp2_zoom_infant_d %>% filter(!subject_num %in% complete_exclusions_zoom$subject_num) %>% count(exclude) %>% filter(exclude) %>% pull(n)
 
 # Lookit
-
-
+excluded_participants_lookit = c("","","") # from testing log
+n_complete_exclusions_lookit = excluded_participants_lookit %>% length()
+num_excluded_trials_lookit = exp2_lookit_infant_d %>% filter(!subject_num %in% excluded_participants_lookit) %>% count(exclude) %>% filter(exclude) %>% pull(n)
 
 # Control
 complete_exclusions_control = exp2_control_infant_d %>% distinct(subject_num, exclude) %>% group_by(subject_num) %>% filter(n() == 1, exclude) 

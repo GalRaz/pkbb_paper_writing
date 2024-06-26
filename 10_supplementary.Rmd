@@ -68,5 +68,16 @@ grid.arrange(plot_1a + theme(legend.position = "none", axis.title.x = element_bl
 
 ```
 
+## Embedding distances of different violations categories, by embedding model
+
+Below we plot the embedding distances of the different violations. The lines connect a single stimulus, and the y-axis represents the embedding distances to all the stimuli that would constitute a certain violations. For example, for a single animal stimulus, the y-value for 'animacy' corresponds to the distance between the single animal and all the single fruit/vegetable stimuli.  
+
+```{r embedding_distances, echo=FALSE, fig.width=20, fig.height=14, fig.cap="Embedding distances of different violation types for 1) a base ResNet50 model, 2) a perceptually aligned embedding model (Lee, 2022) and 3) a ResNet50 model trained on SAYCAM data (Orhan et al., 2020)"}
+
+img <- png::readPNG("figs/embedding_distances.png")
+grid::grid.raster(img)
+
+```
+
 
 
