@@ -42,7 +42,11 @@ num_excluded_trials_control = exp2_control_infant_d %>% filter(!subject_num %in%
 
 #### Participants 
 
+<<<<<<< Updated upstream
 For Experiment 1, we tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` in Exp A, `r n_subject_expB` in Exp B and `r n_subject_expC` in Exp C (`r total_n` ($M_{age}$ = `r mean_age` months, `r sex$n[sex$sex == 'F']` female). `r n_complete_exclusions_exp1` participants were excluded completely due to fussiness. An additional `r num_excluded_trials_exp1` individual test events were excluded (out of `r excluded_df %>% filter(fam_or_test == 'test') %>% nrow()`.
+=======
+<!-- For the exposure duration experiment, we tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` in Exp A, `r n_subject_expB` in Exp B and `r n_subject_expC` in Exp C (`r total_n` ($M_{age}$ = `r mean_age` months, `r sex$n[sex$sex == 'F']` female). `r n_complete_exclusions_exposure_duration` participants were excluded completely due to fussiness. An additional `r num_excluded_trials` individual test events were excluded (out of `r excluded_df %>% filter(fam_or_test == 'test') %>% nrow()`, `r round(100*num_excluded_trials/(excluded_df %>% filter(fam_or_test == 'test') %>% nrow()),1)`% of trials) did not make it into the final analysis.
+>>>>>>> Stashed changes
 
 For Experiment 2, we tested a combined sample of `r total_n` 7-10 month old infants, with `r n_zoom` in the Zoom experiment (`r n_complete_exclusions_zoom` complete exclusions, `r num_excluded_trials_zoom` trial exclusions), `r n_lookit` in the Zoom experiment (`r n_complete_exclusions_lookit` complete exclusions, `r num_excluded_trials_lookit` trial exclusions) and `r n_control` in the control experiment (`r n_complete_exclusions_control` complete exclusions, `r num_excluded_trials_control` trial exclusions). 
 
