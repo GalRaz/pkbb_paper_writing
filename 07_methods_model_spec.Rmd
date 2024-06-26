@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 ## Model Specifications
 
@@ -14,20 +19,25 @@ We compared two additional information theoretic measures with Expected Informat
 
 Our key linking hypothesis, EIG, is a forward-looking measure. It is computed as the product of the posterior predictive probability of the next perceptual sample ($p(z_{t+1}|\theta_t)$) and the information gained conditioned on that next hypothetical sample, via a grid approximation of possible subsequent samples ($S$). 
 
+<!--
 \begin{eqnarray}
 $EIG(z_{t+1}) = \sum_{z_{t+1} \in S} p(z_{t+1}|\theta_t) * D_{KL}(\theta_{t+1} || p(\theta_t))$
-\end{eqnarray}
+\end{eqnarray} 
 
 Both KL-divergence and Surprisal are backward-looking measures. The KL divergence at any given point is calculated by the posterior distribution after seeing the current perceptual sample and before seeing the current perceptual sample.
 
+<!--
 \begin{eqnarray}
 $D_{KL}(\theta_{t} || p(\theta_{t-1})) = \int {p(\theta_{t}) log \frac{p(\theta_{t})}{p(\theta_{t-1})}} d(\theta)$ 
-\end{eqnarray}
+\end{eqnarray}-->
 
 
-Surprisal is calculated as the negative log likelihood of the current perceptual sample under the prior distribution \begin{eqnarray}
+Surprisal is calculated as the negative log likelihood of the current perceptual sample under the prior distribution 
+<!--
+\begin{eqnarray}
 $Surprisal_{z} = -log(p(z|\theta ))$
 \end{eqnarray}
+-->
 
 We ran individual simulation and parameter search for each of the three linking hypotheses to ensure fair comparison. 
 
