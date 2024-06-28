@@ -108,11 +108,19 @@ saveRDS(exp1_adult_model, here("cached_models/adults/exp1_adult_model.Rds"))
 
 
 ```{r}
-# Comparing the linking hypotheses 
 
+# Comparing the linking hypotheses 
 adult_best_full_resnet50_eig <- adult_fulldata_resnet50_eig %>% arrange(mean_rmse) %>% head(1) %>% mutate_if(is.numeric, round, 2)
 adult_best_full_resnet50_kl <- adult_fulldata_resnet50_kl %>% arrange(mean_rmse) %>% head(1)%>% mutate_if(is.numeric, round, 2)
 adult_best_full_resnet50_surprisal <- adult_fulldata_resnet50_surprisal %>% arrange(mean_rmse) %>% head(1)%>% mutate_if(is.numeric, round, 2)
+adult_best_full_resnet50_nolearning <- adult_fulldata_resnet50_nolearning %>% arrange(mean_rmse) %>% head(1)%>% mutate_if(is.numeric, round, 2)
+adult_best_full_resnet50_nonoise <- adult_fulldata_resnet50_nonoise %>% arrange(mean_rmse) %>% head(1) %>% mutate_if(is.numeric, round, 2)
+
+infant_best_full_resnet50_eig <- infant_fulldata_resnet50_eig %>% arrange(mean_rmse) %>% head(1) %>% mutate_if(is.numeric, round, 2)
+infant_best_full_resnet50_kl <- infant_fulldata_resnet50_kl %>% arrange(mean_rmse) %>% head(1)%>% mutate_if(is.numeric, round, 2)
+infant_best_full_resnet50_surprisal <- infant_fulldata_resnet50_surprisal %>% arrange(mean_rmse) %>% head(1) %>% mutate_if(is.numeric, round, 2)
+infant_best_full_resnet50_nolearning <- infant_fulldata_resnet50_nolearning %>% arrange(mean_rmse) %>% head(1)%>% mutate_if(is.numeric, round, 2)
+infant_best_full_resnet50_nonoise <- infant_fulldata_resnet50_nonoise %>% arrange(mean_rmse) %>% head(1) %>% mutate_if(is.numeric, round, 2)
 
 ```
 
@@ -170,13 +178,11 @@ print.xtable(table, include.rownames = FALSE, comment = FALSE,
 ## Comparison with alternative linking hypotheses 
 
 
-
-
-We also compared the performance of RANCH when using EIG, which is the fully rational linking hypothesis, to other, proxy-based linking hypothesis used in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying 'learning progress', while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants’ looking behaviors (CITE, CITE). We then compared the model’s performance based on the parameter that provides the best fits to the full dataset according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Infants: STATS; Adults EIG: *RMSE* = `r adult_best_full_resnet50_eig$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_eig$mean_rsquared`; Adults KL: *RMSE* = `r adult_best_full_resnet50_kl$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_kl$mean_rsquared`). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: *RMSE* = `r adult_best_full_resnet50_surprisal$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_surprisal$mean_rsquared`). We also found that the noisy perception assumption and the learning assumptions were both critical to RANCH’s performance.
+We also compared the performance of RANCH when using EIG, which is the fully rational linking hypothesis, to other, proxy-based linking hypothesis used in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying 'learning progress', while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants’ looking behaviors (CITE, CITE). We then compared the model’s performance based on the parameter that provides the best fits to the full dataset according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Infants: STATS; Adults EIG: *RMSE* = `r adult_best_full_resnet50_eig$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_eig$mean_rsquared`; Adults KL: *RMSE* = `r adult_best_full_resnet50_kl$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_kl$mean_rsquared`). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: *RMSE* = `r adult_best_full_resnet50_surprisal$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_surprisal$mean_rsquared`). 
 
 ## Comparison with lesioned model 
 
-We also examined the importance of RANCH’s key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (“No noise model”), and the other model assumes the sampling decision was random instead of based on the learning model (“No learning model”). Both lesioned models provided poor fits for the behavioral datasets (Table \@ref(tab:xtable)). 
+We also examined the importance of RANCH’s key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (“No noise model”), and the other model assumes the sampling decision was random instead of based on the learning model (“No learning model”). Both lesioned models provided poor fits for the behavioral datasets (Table \@ref(tab:xtable)). This suggests that the noisy perception assumption and the learning assumptions were both critical to RANCH’s performance.
 
 ## Parameter Interpretation / Developmental Comparison
 
