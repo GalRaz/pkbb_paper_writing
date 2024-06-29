@@ -1,21 +1,36 @@
 
 ## Parameter robustness
 
-```{r, parameter_robustness_infants}
+```{r, include=FALSE, parameter_robustness_infants}
 
+# infants
+infant_eig_hist = infant_resnet50_EIG_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Infants: EIG")
+infant_kl_hist = infant_resnet50_KL_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "KL")
+infant_surprisal_hist = infant_resnet50_surprisal_short_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Surprisal")
+
+# adults
+adult_eig_hist = adult_kfold_resnet50_eig %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Adults: EIG")
+adult_kl_hist = adult_kfold_resnet50_kl %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "KL")
+adult_surprisal_hist = adult_kfold_resnet50_surprisal %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12)  + labs(title = "Surprisal")
+
+
+combined_plot <- ggarrange(
+  ggarrange(infant_eig_hist, infant_kl_hist, infant_surprisal_hist, ncol = 3),
+  ggarrange(adult_eig_hist, adult_kl_hist, adult_surprisal_hist, ncol = 3),
+  nrow = 2
+)
+
+combined_plot
 
 ```
 
-```{r, include=FALSE, parameter_robustness_adults}
-
-```
 
 
 ## Scaling the embedding space
 
 In order to achieve sensible results, it was important to bring the stimulus embeddings in line with the approximation grid used for inference. Below we show what happens embeddings exceeded or came close to the edges of the our approximation grids. In Experiment 1, unscaled embeddings resulted in a reversal of background vs. deviant model samples, such that the model takes more samples from the background than the deviant. In Experiment 2, unscaled embeddings resulted in an unintuitive ordering which is not in line with the embedding distances (Figure \@ref(fig:embedding_distances)). 
 
-```{r wrong_scaling, echo=FALSE, fig.env = "figure", fig.width=20, fig.height=7, set.cap.width=T, num.cols.cap=1, fig.cap = "The effect of scaling on model results. A) Experiment 1 with unscaled embeddings results in a reversal of background vs. deviant. B) Experiment 2 with unscaled embeddings results in an unintuitive ordering."}
+```{r wrong_scaling, include=FALSE, fig.env = "figure", fig.width=20, fig.height=7, set.cap.width=T, num.cols.cap=1, fig.cap = "The effect of scaling on model results. A) Experiment 1 with unscaled embeddings results in a reversal of background vs. deviant. B) Experiment 2 with unscaled embeddings results in an unintuitive ordering."}
 
 # load unscaled stuff
 exp1_unscaled = read_csv(here('data/infants/unscaled_model_data/exp1_resnet50_unscaled.csv'))
@@ -88,12 +103,18 @@ grid.arrange(plot_1a + theme(legend.position = "none", axis.title.x = element_bl
 
 Below we plot the embedding distances of the different violations. The lines connect a single stimulus, and the y-axis represents the embedding distances to all the stimuli that would constitute a certain violations. For example, for a single animal stimulus, the y-value for 'animacy' corresponds to the distance between the single animal and all the single fruit/vegetable stimuli.  
 
-```{r embedding_distances, echo=FALSE, fig.env = "figure", fig.width=20, fig.height=14, fig.cap="Embedding distances of different violation types for 1) a base ResNet50 model, 2) a perceptually aligned embedding model (Lee, 2022) and 3) a ResNet50 model trained on SAYCAM data (Orhan et al., 2020)"}
+```{r embedding_distances, echo=FALSE, fig.env = "figure", fig.width=22, fig.height=14, fig.cap="Embedding distances of different violation types for 1) a base ResNet50 model, 2) a perceptually aligned embedding model (Lee, 2022) and 3) a ResNet50 model trained on SAYCAM data (Orhan et al., 2020)"}
 
 img <- png::readPNG("figs/embedding_distances.png")
 grid::grid.raster(img)
 
 ```
 
+## Control experiment for Experiment 1
+```{r control_exp, echo=FALSE, fig.env = "figure", fig.width=10, fig.height=5, fig.cap="Control experiment for experiment 2, checking for baseline differences in interest."}
 
+ggplot(exp2_control_infant_d %>% filter(!exclude, LT > 2) %>% mutate(trial_type = factor(trial_type, levels = c("single animal", "animal pair", "veggie"))), aes(x=trial_type, y=LT)) + geom_jitter(width = 0.03, alpha = 0.2) + stat_summary(fun.data = "mean_cl_boot", geom = "line", position = position_dodge(width = .1))  + 
+  stat_summary(fun.data = "mean_cl_boot", geom = "pointrange", position = position_dodge(width = .1), size = 1.2) + xlab('Trial type') + ylab('Looking time (s)') + theme_grey(base_size = 20) + 
+  theme(strip.text.x = element_text(size = 20, colour = "black")) + coord_cartesian(ylim = c(0,50)) + theme_bw(20)
 
+```

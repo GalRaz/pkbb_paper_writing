@@ -95,7 +95,7 @@ How do we decide what to look at and when to stop looking? Even very young infan
 
 From birth, humans engage in active learning. Even before they gain independent mobility, infants make choices about what to look at and when to stop looking \autocite{haith1980rules,raz2020learning}. Developmental psychologists have both studied this process of visual decision-making and also relied on it as a key methodological tool, particularly two key phenomena: habituation and dishabituation. Habituation occurs when infants show reduced interest upon repeated exposure to the same stimulus, whereas dishabituation entails renewed interest following the subsequent introduction of a novel stimulus. Dishabituation, also known as novelty preference, is often leveraged to infer infants' perceptual and cognitive abilities \autocite{aslin2007s,baillargeon1985object,fantz1963pattern}: in order for an infant to dishabituate, they must distinguish between the original stimulus and the novel one. Despite the robust documentation of habituation and dishabituation in the literature, the mechanisms underlying these changes in gaze duration remain poorly understood. In this paper, we bridge this gap by introducing a rational model of habituation and dishabituation. We show that this rational model makes quantitative predictions of looking times toward different stimuli.
 
-An important early conceptual model of infant looking time posited that habituation and dishabituation are influenced by the amount of information to be encoded by the infant from the stimulus \autocite{hunter1988multifactor}. Initially, infants look longer at stimuli containing substantial unprocessed information, showing a familiarity preference (Fig. \ref{fig:conceptual}A). As exposure accumulates, less information remains unprocessed, leading to shorter looking time at the original stimulus and by comparison, relatively longer looking time to a new stimulus (i.e.~novelty preference). While this model has had significant influence, the absence of specifications regarding the encoding process or a quantitative definition of information to be encoded have permitted post-hoc interpretations of looking time measurements. For instance, when infants are looking longer at stimulus A than stimulus B, researchers could interpret the looking time difference as either a novelty preference or a familiarity preference. This interpretive ambiguity has spurred repeated concerns regarding whether looking time measurements should form the basis for key assertions in developmental psychology \autocite{blumberg2023protracted,haith1998put,paulus2022should}. In other words, developmental psychology needs formal models that make quantitative predictions, but the prevailing model proposed by \textcite{hunter1988multifactor} can not provide the necessary clarity to support robust inferences.
+An important early conceptual model of infant looking time posited that habituation and dishabituation are influenced by the amount of information to be encoded by the infant from the stimulus \autocite{hunter1988multifactor}. Initially, infants look longer at stimuli containing substantial unprocessed information, showing a familiarity preference (Figure \ref{fig:conceptual}A). As exposure accumulates, less information remains unprocessed, leading to shorter looking time at the original stimulus and by comparison, relatively longer looking time to a new stimulus (i.e.~novelty preference). While this model has had significant influence, the absence of specifications regarding the encoding process or a quantitative definition of information to be encoded have permitted post-hoc interpretations of looking time measurements. For instance, when infants are looking longer at stimulus A than stimulus B, researchers could interpret the looking time difference as either a novelty preference or a familiarity preference. This interpretive ambiguity has spurred repeated concerns regarding whether looking time measurements should form the basis for key assertions in developmental psychology \autocite{blumberg2023protracted,haith1998put,paulus2022should}. In other words, developmental psychology needs formal models that make quantitative predictions, but the prevailing model proposed by \textcite{hunter1988multifactor} can not provide the necessary clarity to support robust inferences.
 
 In contrast, more recent computational models aim to formalize the mechanisms underlying looking time changes. One family of models characterize infants' looking behaviors through information-theoretic metrics derived from ideal observer models: the models acquire probability distribution from event sequence and derive information-theoretic measures from the ideal learner's belief before and after each event \autocite{kidd2012goldilocks,poli2020infants,poli2023eight}. For instance, \textcite{kidd2012goldilocks} developed a model that used surprise to quantify the extent to which the model learned from each observation. This measure correlated well with infants' looking behavior via a U-shaped curve: infants were least likely to look away when the surprisal of the event was neither too high nor too low (\ref{fig:conceptual}B).
 
@@ -133,7 +133,7 @@ RANCH provides a probabilistic framework for making perceptual decisions. In thi
 
 We use the deep convolutional neural network (CNN) ResNet-50 to encode the stimuli used in behavioral experiments. ResNet-50 is an architecture that has been widely used in computer vision \autocite{he2016deep}. A total of 50 layers are implemented in this architecture: it starts with a convolution layer, includes several groups of residual blocks that help preserve information through the network, and ends with a global average pooling layer and a fully connected layer for classification. We used a version of ResNet-50 that was pretrained on ImageNet \autocite{deng2009imagenet}. Training on ImageNet optimizes the Resnet-50's activations for image classification, and we can use these activations as an perceptual ``embedding space''. When we pass new stimuli through a pre-trained network, we extract these activations to obtain principled embeddings of stimuli (Figure \ref{fig:RANCH}A). We used the first three principal components of the embedding space to limit the dimensionality of the downstream learning problem.
 
-ResNet-50 is by no means the only possible CNN for deriving perceptual representations. We also explored alternative models, such as a CNN trained on SayCam data \autocite{orhan2020self} or a CNN whose representations were aligned to human behavior \autocite{lee2022rapid}. However, we did not find substantial differences between the embedding spaces provided by ResNet-50 and other (often more complicated) models (See SI).
+ResNet-50 is by no means the only possible CNN for deriving perceptual representations. We also explored alternative models, such as a CNN trained on SayCam data \autocite{orhan2020self} or a CNN whose representations were aligned to human behavior \autocite{lee2022rapid}. However, we did not find substantial differences between the embedding spaces provided by ResNet-50 and other (often more complicated) models (Figure @ref(fig:embedding\_distances)).
 
 \hypertarget{learning-model}{%
 \subsection{Learning model}\label{learning-model}}
@@ -180,7 +180,7 @@ We tested infants in a novel experimental paradigm in which exposure duration to
 \hypertarget{adult-experiment}{%
 \subsubsection{Adult experiment}\label{adult-experiment}}
 
-We ran a self-paced looking time paradigm experiment on Prolific, collecting data from XXXX adult participants \ref{fig:design} (Experiment 1, Adults). The stimuli used in the adult experiment are drawn from the same stimuli set used in the infant experiment. During the experiment, participants were asked to watch sequences of animations at their own pace, and they could press a key to proceed to the next trial whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence of animations has two stimuli: the familiar stimulus and the novel stimulus. The familiar stimulus repeated over and over again within a sequence, whereas the novel stimulus only appeared once and it appeared at either the second, the fourth, or the sixth position in the sequence.
+We ran a self-paced looking time paradigm experiment on Prolific, collecting data from 470 adult participants \ref{fig:design} (Experiment 1, Adults). The stimuli used in the adult experiment are drawn from the same stimuli set used in the infant experiment. During the experiment, participants were asked to watch sequences of animations at their own pace, and they could press a key to proceed to the next trial whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence of animations has two stimuli: the familiar stimulus and the novel stimulus. The familiar stimulus repeated over and over again within a sequence, whereas the novel stimulus only appeared once and it appeared at either the second, the fourth, or the sixth position in the sequence.
 
 \hypertarget{modeling-procedure}{%
 \subsubsection{Modeling Procedure}\label{modeling-procedure}}
@@ -200,22 +200,22 @@ To simulate the self-paced adult experiment, RANCH makes decisions on how many s
 \hypertarget{evaluating-model-with-behavioral-results}{%
 \subsection{Evaluating model with behavioral results}\label{evaluating-model-with-behavioral-results}}
 
-The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (\(\beta\) = -4.55; \emph{SE} = 0.92; \emph{t} = -4.92; \emph{p} \textless{} 0.001). We also found evidence for infants' dishabituation: looking time for the novel test trials was longer than the familiar trial after long exposures (after 8 repetitions: \(\beta\) = 0.82; \emph{SE} = 0.22; \emph{t} = 3.81; \emph{p} \textless{} 0.001, after 9 repetitions: \(\beta\) = 0.51; \emph{SE} = 0.12; \emph{t} = 4.21; \emph{p} \textless{} 0.001). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (STATS). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf.~\ref{fig:conceptual}A\&B).
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (\(\beta\) = -4.55; \emph{SE} = 0.92; \emph{t} = -4.92; \emph{p} \textless{} 0.001). We also found evidence for infants' dishabituation: looking time for the novel test trials was longer than the familiar trial after long exposures (after 8 repetitions: \(\beta\) = 0.82; \emph{SE} = 0.22; \emph{t} = 3.81; \emph{p} \textless{} 0.001, after 9 repetitions: \(\beta\) = 0.51; \emph{SE} = 0.12; \emph{t} = 4.21; \emph{p} \textless{} 0.001). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (Trial number: \(\beta\) = -0.01; Trial Type: \(\beta\) = 0.22; Both \emph{SE} \textless{} 0.001; Both \emph{p} \textless{} 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf.~\ref{fig:conceptual}A\&B).
 
 RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set's performance by running a K-fold crossvalidation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson's r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??).
 
 \begin{table}[ht]
 \centering
 \begingroup\fontsize{8pt}{9pt}\selectfont
-\begin{tabular}{l}
+\begin{tabular}{lll}
   \hline
-Linking Hypothesis \\ 
+Linking Hypothesis & Infants: Mean RMSE & Infants: Best RMSE \\ 
   \hline
-EIG \\ 
-  KL \\ 
-  Surprisal \\ 
-  No learning \\ 
-  No noise \\ 
+EIG & 3.939 & 3.696 \\ 
+  KL & 3.912 & 3.658 \\ 
+  Surprisal & 4.396 & 3.601 \\ 
+  No learning & 4.463 & 4.135 \\ 
+  No noise & 4.224 & 3.875 \\ 
    \hline
 \end{tabular}
 \endgroup
@@ -225,17 +225,17 @@ EIG \\
 \hypertarget{comparison-with-alternative-linking-hypotheses}{%
 \subsection{Comparison with alternative linking hypotheses}\label{comparison-with-alternative-linking-hypotheses}}
 
-We also compared the performance of RANCH when using EIG, which is the fully rational linking hypothesis, to other, proxy-based linking hypothesis used in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying `learning progress', while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants' looking behaviors (CITE, CITE). We then compared the model's performance based on the parameter that provides the best fits to the full dataset. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Infants: STATS; Adults: STATS). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: STATS). We also found that the noisy perception assumption and the learning assumptions were both critical to RANCH's performance.
+We also compared the performance of RANCH when using EIG, which is the fully rational linking hypothesis, to other, proxy-based linking hypothesis used in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying `learning progress', while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants' looking behaviors \autocite{kidd2012goldilocks,poli2020infants}. We then compared the model's performance based on the parameter that provides the best fits to the full dataset according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Infants: STATS; Adults EIG: \emph{RMSE} = 125.14,\(I^2\) = 0.91; Adults KL: \emph{RMSE} = 129.01,\(I^2\) = 0.9). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: \emph{RMSE} = 205.52,\(I^2\) = 0.84).
 
 \hypertarget{comparison-with-lesioned-model}{%
 \subsection{Comparison with lesioned model}\label{comparison-with-lesioned-model}}
 
-We also examined the importance of RANCH's key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (``No noise model''), and the other model assumes the sampling decision was random instead of based on the learning model (``No learning model''). Both lesioned models provided poor fits for the behavioral datasets (Table \ref{tab:xtable}).
+We also examined the importance of RANCH's key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (``No noise model''), and the other model assumes the sampling decision was random instead of based on the learning model (``No learning model''). Both lesioned models provided poor fits for the behavioral datasets (Table \ref{tab:xtable}). This suggests that the noisy perception assumption and the learning assumptions were both critical to RANCH's performance.
 
 \hypertarget{parameter-interpretation-developmental-comparison}{%
 \subsection{Parameter Interpretation / Developmental Comparison}\label{parameter-interpretation-developmental-comparison}}
 
-One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH's fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see `Joint Scaling' under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that sd\_epsilon played a key role in improving fit. Conceptually, \(\sigma_{\epsilon}\) represents an agent's beliefs about how much noise there is in their own perceptual input. We found that this value tends to be high for infants, and low for adults ({[}SUPPLEMENTARY FIGURES WITH HISTOGRAM OF RMSE COLORED BY PARAMETER VALUES{]}).
+One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH's fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see `Joint Scaling' under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that sd\_epsilon played a key role in improving fit. Conceptually, \(\sigma_{\epsilon}\) represents an agent's beliefs about how much noise there is in their own perceptual input. We found that this value tends to be high for infants, and low for adults (Figure @ref(fig:parameter\_interpretation)).
 
 \hypertarget{discussion}{%
 \subsection{Discussion}\label{discussion}}
@@ -247,7 +247,7 @@ We next turn to test RANCH's ability to make predictions in a novel dataset.
 \hypertarget{ranch-predicts-stimulus-similarity-based-dishabituation-in-infants-and-adults}{%
 \section{RANCH predicts stimulus similarity-based dishabituation in infants and adults}\label{ranch-predicts-stimulus-similarity-based-dishabituation-in-infants-and-adults}}
 
-Beyond predicting non-linearities in attentional preferences during encoding (Fig. 1B), \textcite{hunter1988multifactor} also predicted that after complete encoding of a stimulus,dishabituation magnitude should be linked to the similarity between two stimuli: the more dissimilar the novel stimulus is to the habituation stimulus, the more participants should dishabituate. We designed an experiment testing the relationship between stimuli similarity and dishabituation magnitude by systematically varying the similarity between the familiar stimuli and the novel stimuli. Instantiating RANCH provides an explicit notion of similarity through the use of ResNet50-derived image embeddings. We can therefore test whether RANCH also predicts such similarity-based differences in dishabituation magnitude. We showed that the best-fitting parameters trained from the previous behaviors predict infants and adults behaviors in the new experiment. In other words, RANCH is capable of making out-of-sample predictions about novel behaviors that it was not trained on.
+Beyond predicting non-linearities in attentional preferences during encoding (Fig. 1B), \textcite{hunter1988multifactor} also predicted that after complete encoding of a stimulus, dishabituation magnitude should be linked to the similarity between two stimuli: the more dissimilar the novel stimulus is to the habituation stimulus, the more participants should dishabituate. We designed an experiment testing the relationship between stimuli similarity and dishabituation magnitude by systematically varying the similarity between the familiar stimuli and the novel stimuli. Instantiating RANCH provides an explicit notion of similarity through the use of ResNet50-derived image embeddings. We can therefore test whether RANCH also predicts such similarity-based differences in dishabituation magnitude. We showed that the best-fitting parameters trained from the previous behaviors predict infants and adults behaviors in the new experiment. In other words, RANCH is capable of making out-of-sample predictions about novel behaviors that it was not trained on.
 
 \hypertarget{behavioral-experiment}{%
 \subsection{Behavioral Experiment}\label{behavioral-experiment}}
@@ -255,18 +255,15 @@ Beyond predicting non-linearities in attentional preferences during encoding (Fi
 \hypertarget{infant-experiment-1}{%
 \subsubsection{Infant experiment}\label{infant-experiment-1}}
 
-To study whether infants show similarity-based dishabituation between the habituation and novel stimulus, we ran an experiment via Zoom (n=50, age range=7-10 months, \(M_{age}\)=268.1), and an exact replication via Lookit (n =64, age range=6-12 months, \(M_{age}\)=289.47). We presented infants with a series of blocks, each again consisting of a familiarization and a test trial (Figure \ref{fig:design}, Experiment 2, Infants). Instead of modifying prior exposure as in the previous experiment, here infants were always familiarized 8 or 9 times with an animal (corresponding to the amount of exposure that caused robust dishabituation in the previous experiment). After familiarization, infants saw a test trial, which could relate to the familiar animal in one of five ways: they either saw the same animal again (background), the same animal facing in the opposite direction (pose), a different animal facing the same way (identity), two instances of the same animal side-by-side (number), or an inanimate vegetable or fruit (animacy).
+To study whether infants show similarity-based dishabituation between the habituation and novel stimulus, we ran an experiment via Zoom (n=57, age range=7-10 months, \(M_{age}\)=8.9893333months), and an exact replication via Lookit (n =66, age range=6-12 months, \(M_{age}\)=9.6853333months). We presented infants with a series of blocks, each again consisting of a familiarization and a test trial (Figure \ref{fig:design}, Experiment 2, Infants). Instead of modifying prior exposure as in the previous experiment, here infants were always familiarized 8 or 9 times with an animal (corresponding to the amount of exposure that caused robust dishabituation in the previous experiment). After familiarization, infants saw a test trial, which could relate to the familiar animal in one of five ways: they either saw the same animal again (background), the same animal facing in the opposite direction (pose), a different animal facing the same way (identity), two instances of the same animal side-by-side (number), or an inanimate vegetable or fruit (animacy). In a control experiment, we tested baseline interest in these stimuli without prior familiarization, to ensure that condition differences in the main experiments are due to violations, rather than intrinsic to the stimuli (n=35, age range=7-10 months, \(M_{age}\)=9.2096667months).
 
 \hypertarget{adult-experiment-1}{%
 \subsubsection{Adult experiment}\label{adult-experiment-1}}
 
 This adult experiment was procedurally similar to the previous experiment and has similar adaptation to the infant experiment. Participants (N = 468) saw a sequence of animation, with repeating stimulus and one novel stimulus that appears at the end of the sequence. Since adults have longer attention span, we can test adults in all permutations of the familiar stimulus and novel stimulus. The familiar stimuli were either animals or vegetables, facing eighth left or right, coming in either one or a pair. Like the infant experiment, the novel stimulus can be different from the familiar stimulus in one of the four ways: pose, identity, number, or animacy.
 
-\hypertarget{model-evaluation}{%
-\subsection{Model Evaluation}\label{model-evaluation}}
-
 We successfully captured similarity-based dishabituation in both infants and adults:
-Similar to the previous experiment, infants showed dishabituation to all novel test trials (identity: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.08; \emph{p} = 0.04, number: \(\beta\) = 0.32; \emph{SE} = 0.17; \emph{t} = 1.92; \emph{p} = 0.06, animacy: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.02; \emph{p} = 0.05), except the pose violation, which elicited no significant dishabituation. There was also evidence that the magnitude of dishabituation was related to the similarity of the novel trial: Infants looking time followed the pre-registered expected ordering: animacy \textgreater{} number \textgreater{} identity \textgreater{} pose \textgreater{} background (Figure REF). A control experiment suggested infants showed no baseline differences in looking time between categories (See SI).
+Similar to the previous experiment, infants showed dishabituation to all novel test trials (identity: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.08; \emph{p} = 0.04, number: \(\beta\) = 0.32; \emph{SE} = 0.17; \emph{t} = 1.92; \emph{p} = 0.06, animacy: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.02; \emph{p} = 0.05), except the pose violation, which elicited no significant dishabituation. There was also evidence that the magnitude of dishabituation was related to the similarity of the novel trial: Infants looking time followed the pre-registered expected ordering: animacy \textgreater{} number \textgreater{} identity \textgreater{} pose \textgreater{} background (Figure REF). A control experiment suggested infants showed no baseline differences in looking time between categories (Figure @ref(fig:control\_exp)).
 
 Our exact replication via Lookit showed similar, though not identical results: We again found that animacy and number resulted in the strongest dishabituation in infants, and pose violations did not elicit dishabituation. However, unlike the Zoom study, the identity violation did not elicit significant dishabituation in our Lookit study \footnote{Note that we pre-registered the identity violation as a data quality check, since we had replicated that effect in both infant experiments. However, surprisingly, the identity condition was the only condition that differed from the Zoom experiment, so here we deviate from pre-registration and report these Lookit findings regardless given the high value of having a second sample of infant data.}. We suggest potential reasons in the general discussion.
 
@@ -274,7 +271,7 @@ In adults, like in previous experiments, we found evidence for habituation (STAT
 
 We next tested whether RANCH made similar predictions. We used the same modeling procedure described in the previous experiment, simulating the infant and adult experiment respectively. We converted the raw images into the embeddings and assembled the stimuli into the sequences that participants saw in each block.
 
-Using the previously obtained parameters, we found that RANCH generalized to the new dataset (Adults: STATS; Infants: STATS). Moreover, RANCH also showed a qualitative ordering of the dishabituation magnitude: animacy \textgreater{} identity \textgreater{} number \textgreater{} pose. This ordering was in line with the CNN-derived embedding distances between the different stimulus categories (SI Figure of embedding distances).
+Using the previously obtained parameters, we found that RANCH generalized to the new dataset (Adults: STATS; Infants: STATS). Moreover, RANCH also showed a qualitative ordering of the dishabituation magnitude: animacy \textgreater{} identity \textgreater{} number \textgreater{} pose. This ordering was in line with the CNN-derived embedding distances between the different stimulus categories (Figure @ref(fig:embedding\_distances)).
 
 Taken together, though there were some discrepancies between the qualitative ordering between infants, adults and RANCH (discussed below), our analyses show that RANCH is not only capable of capturing habituation and dishabituation, but also can generalize to a new task and make predictions about dishabituation magnitude in relation to stimulus similarity.
 
@@ -307,7 +304,7 @@ Another strength is RANCH's ability to model looking on a more fine-grained time
 \hypertarget{no-evidence-for-familiarity-preferences}{%
 \subsection{No evidence for familiarity preferences}\label{no-evidence-for-familiarity-preferences}}
 
-A key feature of our experimental data, as well as our model, is that at no point, even for the shortest familiarization durations, we find longer looking to familiar than to novel stimuli. This finding contrasts with predictions made by a prominent model of infant attention (\ref{fig:conceptual}A)), which posit that at intermediate levels of encoding, familiar stimuli should become more interesting than novel stimuli. The intuition is that some initial familiarity with a stimulus may allow a viewer to ``break into'' the information there is to gain from the stimulus - a completely novel stimulus may be too complex or foreign for extended attention to be worth it. In the learning setting of simple perceptual learning, the rational analysis and participants do not seem to favor this strategy. This suggests that limited exposure does not generically lead to familiarity preferences in any experimental paradigm.
+A key feature of our experimental data, as well as our model, is that at no point, even for the shortest familiarization durations, we find longer looking to familiar than to novel stimuli. This finding contrasts with predictions made by a prominent model of infant attention (Figure \ref{fig:conceptual}A)), which posit that at intermediate levels of encoding, familiar stimuli should become more interesting than novel stimuli. The intuition is that some initial familiarity with a stimulus may allow a viewer to ``break into'' the information there is to gain from the stimulus - a completely novel stimulus may be too complex or foreign for extended attention to be worth it. In the learning setting of simple perceptual learning, the rational analysis and participants do not seem to favor this strategy. This suggests that limited exposure does not generically lead to familiarity preferences in any experimental paradigm.
 
 Of course, the absence of familiarity preferences in our results does not rule out their existence in general. First, familiarity preferences may be more subtle than novelty preferences, so that the statistical power that is needed to find familiarity preferences is higher than that achieved in the current study. A current large-scale study by the ManyBabies consortium which aims to test the predictions made by \textcite{hunter1988multifactor} may give insight into this possibility \autocite{kosie2023manybabies}. In addition, the learning problem that participants are solving likely plays a critical role in whether they will exhibit familiarity preferences. This context-dependence is reflected in meta-analyses investigating familiarity preferences in different paradigms. For example, when tested on word segmentation in their native language, infants show persistent preferences for familiar stimuli throughout the first year \autocite{bergmann2016development}. In contrast, when tested on statistical learning of novel words, infants show consistent preferences for novel stimuli, from 4-month- to 11 months of age \autocite{black2017quantifying}.
 
@@ -334,12 +331,12 @@ Infants are active learners. Since birth, they actively explore their environmen
 
 We derived principled low dimensional representations of our stimuli from ResNet50 \autocite{he2016deep}. We ran a Principal Component Analysis and used the first three principal components. This decision was made due to the computational demands of our model. Each added dimension would increase the total run time exponentially. The first three components capture 57.9\% of the variance.
 
-Given that we were using discrete grid approximation in our inference, the model was sensitive to the absolute values of the embeddings. When these embeddings values were close to or exceeded the range of the approximation grids, this would cause bias in our simulation result. We therefore scaled our embeddings down to fall squarely into our grid. This downscaling had to be more extreme for the stimulus type experiment, where embedding distances were larger, in particular for animacy violations. We ran simulations to confirm that embeddings that were too large would result in biased model behaviors (See SI).
+Given that we were using discrete grid approximation in our inference, the model was sensitive to the absolute values of the embeddings. When these embeddings values were close to or exceeded the range of the approximation grids, this would cause bias in our simulation result. We therefore scaled our embeddings down to fall squarely into our grid. This downscaling had to be more extreme for the stimulus type experiment, where embedding distances were larger, in particular for animacy violations. We ran simulations to confirm that embeddings that were too large would result in biased model behaviors (Figure @ref(fig:wrong\_scaling)).
 
 \hypertarget{linking-hypotheses}{%
 \subsubsection{Linking Hypotheses}\label{linking-hypotheses}}
 
-We compared two additional information theoretic measures with Expected Information Gain (EIG): Kullback--Leibler divergence and Surprisal. Each of these measures has been invoked in the literature as a plausible account for explaining looking behaviors across developmental stages \autocites[KL divergence:][]{poli2020infants}[Surpsal:][]{kidd2012goldilocks}.
+We compared two additional information theoretic measures with Expected Information Gain (EIG): Kullback--Leibler divergence and Surprisal. Each of these measures has been invoked in the literature as a plausible account for explaining looking behaviors across developmental stages \autocites[KL divergence:][]{poli2020infants}[Surprisal:][]{kidd2012goldilocks}.
 
 Our key linking hypothesis, EIG, is a forward-looking measure. It is computed as the product of the posterior predictive probability of the next perceptual sample (\(p(z_{t+1}|\theta_t)\)) and the information gained conditioned on that next hypothetical sample, via a grid approximation of possible subsequent samples (\(S\)).
 
@@ -353,6 +350,102 @@ We ran individual simulation and parameter search for each of the three linking 
 To find the best fitting parameters for each age group we employ a strategy we call ``joint scaling''. As in Fig. \textcite{FIXME}, to evaluate model fit, we first map model samples onto looking times by finding the best linear scaling of model samples in a regression of the form \texttt{LT\ \textasciitilde{}\ model\_samples}. The parameter set that minimizes the RMSE between the scaled model samples and looking times is what we consider the best parameter set. In the case of ``joint scaling'', we regress both the adult and the infant simulations against their looking times simultaneously, to find how varying the infant and adult parameters affect the fit of the scaled model samples to the adult and infant data. This joint scaling procedure puts pressure on the parameters, rather than the scaling, to account for the fact that adults' looking times are a lot shorter than infants' looking times.
 
 The interpretable parameters of RANCH are the priors on \(\mu\) and \(\sigma\) and the priors on the noise. The priors on \(\mu\) and \(\sigma\) were parameterized by a normal inverse-gamma prior with \(\mu_{prior}\), \(\nu_{prior}\), \(\alpha_{prior}\) and \(\beta_{prior}\), the conjugate prior to a normal distribution with unknown mean and variance. While the mean was fixed to be 0 (\(\mu_{prior}\)), variation in the other parameters express distinct hypotheses about the precision of the location of the concept (\(\nu_{prior}\)), as well as the variance of the concept (\(\alpha_{prior}\) and \(\beta_{prior}\)). The learner's prior on noise are parameterized by gaussian distribution with a mean (\(\mu_{noise}\)) and standard deviation (\(\sigma_{noise}\)). In our parameter search, we only searched over the \(\sigma_{noise}\).
+
+\hypertarget{supplementary-information}{%
+\section{Supplementary Information}\label{supplementary-information}}
+
+\hypertarget{parameter-robustness}{%
+\subsection{Parameter robustness}\label{parameter-robustness}}
+
+\hypertarget{scaling-the-embedding-space}{%
+\subsection{Scaling the embedding space}\label{scaling-the-embedding-space}}
+
+In order to achieve sensible results, it was important to bring the stimulus embeddings in line with the approximation grid used for inference. Below we show what happens embeddings exceeded or came close to the edges of the our approximation grids. In Experiment 1, unscaled embeddings resulted in a reversal of background vs.~deviant model samples, such that the model takes more samples from the background than the deviant. In Experiment 2, unscaled embeddings resulted in an unintuitive ordering which is not in line with the embedding distances (Figure @ref(fig:embedding\_distances)).
+
+\begin{verbatim}
+## Rows: 6320 Columns: 22
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (2): violation_type, linking_hypothesis
+## dbl (20): param_id, fam_duration, sample_n_mean, sample_n_std, mu_prior, hyp...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## Rows: 10 Columns: 8
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (1): trial_type
+## dbl (7): param_id, trial_number, count, sd_sample, mean_sample, ub_sample, l...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## 
+## Attaching package: 'gridExtra'
+## 
+## 
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 321 rows containing non-finite outside the scale range
+## (`stat_summary()`).
+\end{verbatim}
+
+\begin{verbatim}
+## No summary function supplied, defaulting to `mean_se()`
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{00_main_files/figure-latex/wrong_scaling-1.pdf}
+\caption{(\#fig:wrong\_scaling)The effect of scaling on model results. A) Experiment 1 with unscaled embeddings results in a reversal of background vs.~deviant. B) Experiment 2 with unscaled embeddings results in an unintuitive ordering.}
+\end{figure}
+
+\hypertarget{developmental-comparison-of-parameter-fits}{%
+\subsection{Developmental comparison of parameter fits}\label{developmental-comparison-of-parameter-fits}}
+
+A naive approach to comparison parameter fits between infants and adults would be the following: After joint scaling, pick the set of parameters for adults and infants that together minimize RMSE. If we do this, we obtain the following parameter sets:
+
+infants: \(\nu\)= 1, \(\alpha\)= 1, \(\beta\)= 0.1, \(\sigma_\epsilon\)= 1, \(\sigma_\epsilon\)= 1, \(env_{EIG}\)= \ensuremath{10^{-5}}
+
+adults:
+
+If we compare these two sets of parameters to each other, and interpret these differences, we may come to the following conclusion: RANCH fits best when infants' \(\sigma_\epsilon\) is higher than that of adults, and \(\beta_prior\) is higher than that of adults, suggesting that infants both expect their perception to have more noise, and that infants have more prior uncertainty about the size of the standard deviation.
+
+However, a direct comparison between these parameter sets does not give insight into the relative stability of RANCH's fit to the data if we change any of these parameters: It may be that if a parameter was slightly different, it would not make a big difference for model fit.
+
+In order to investigate this, we want to also check the sensitivity of the model fit to changes in the parameters. To do so, we plot RMSE histograms colored by the value of a certain parameter, from a certain age group. Here we see that the overall modes of the RMSE histograms are dominated by \texttt{world\ EIG}, likely because this parameter is the main threshold that can account for the difference in scale between infant and adult looking times. However, of the other parameters, we see that RMSE only shows sensitivity to \(\sigma_\epsilon\). Other parameters that are different between the best fits do not show this sensitivity. We therefore conclude that the main interpretable parameter difference is in \(\sigma_\epsilon\), the learner's noise prior, being higher in infants than in adults.
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{00_main_files/figure-latex/parameter_interpretation-1.pdf}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+\hypertarget{embedding-distances-of-different-violations-categories-by-embedding-model}{%
+\subsection{Embedding distances of different violations categories, by embedding model}\label{embedding-distances-of-different-violations-categories-by-embedding-model}}
+
+Below we plot the embedding distances of the different violations. The lines connect a single stimulus, and the y-axis represents the embedding distances to all the stimuli that would constitute a certain violations. For example, for a single animal stimulus, the y-value for `animacy' corresponds to the distance between the single animal and all the single fruit/vegetable stimuli.
+
+\begin{figure}
+\centering
+\includegraphics{00_main_files/figure-latex/embedding_distances-1.pdf}
+\caption{(\#fig:embedding\_distances)Embedding distances of different violation types for 1) a base ResNet50 model, 2) a perceptually aligned embedding model (Lee, 2022) and 3) a ResNet50 model trained on SAYCAM data (Orhan et al., 2020)}
+\end{figure}
+
+\hypertarget{control-experiment-for-experiment-1}{%
+\subsection{Control experiment for Experiment 1}\label{control-experiment-for-experiment-1}}
 
 \hypertarget{references}{%
 \section{References}\label{references}}
