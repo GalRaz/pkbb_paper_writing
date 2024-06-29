@@ -22,6 +22,7 @@ library(broom.mixed)
 library(magrittr)
 library(pbkrtest)
 library(xtable)
+library(ggpubr)
 
 # behavioral data: infants 
 exp1_infant_d <- read_csv(here("data/infants/exp1.csv"))
@@ -33,27 +34,34 @@ exp2_control_infant_d <- read_csv(here("data/infants/exp2_control.csv"))
 exp1_adult_d <- read_csv(here("data/adults/adult_exposure_duration.csv"))
 exp2_adult_d <- read_csv(here("data/adults/adult_stimuli_type.csv"))
 
-# crossvalidation results
-aligned_EIG_CV <- read_csv(here('data/infants/crossvalidation/aligned_EIG_CV.csv'))
-resnet50_EIG_CV <- read_csv(here('data/infants/crossvalidation/resnet50_EIG_CV.csv'))
-resnet50_KL_CV <- read_csv(here('data/infants/crossvalidation/resnet50_KL_CV.csv'))
-resnet50_nolearning_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nolearning_CV.csv'))
-resnet50_nonoise_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nonoise_CV.csv'))
-resnet50_surprisal_short_CV <- read_csv(here('data/infants/crossvalidation/resnet50_surprisal_short_CV.csv'))
+# exp1 crossvalidation 
+infant_resnet50_EIG_CV <- read_csv(here('data/infants/crossvalidation/resnet50_EIG_CV.csv'))
+infant_resnet50_KL_CV <- read_csv(here('data/infants/crossvalidation/resnet50_KL_CV.csv'))
+infant_resnet50_nolearning_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nolearning_CV.csv'))
+infant_resnet50_nonoise_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nonoise_CV.csv'))
+infant_resnet50_surprisal_short_CV <- read_csv(here('data/infants/crossvalidation/resnet50_surprisal_short_CV.csv'))
+
+adult_kfold_resnet50_eig <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_eig.Rds"))
+adult_kfold_resnet50_kl <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_kl.Rds"))
+adult_kfold_resnet50_surprisal <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_surprisal.Rds"))
+adult_kfold_resnet50_nolearning <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_nolearning.Rds"))
+adult_kfold_resnet50_nonoise <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_nonoise.Rds"))
+
 
 # exp1 full data comparison 
-adult_fulldata_resnet50_eig <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_eig.Rds"))
-adult_fulldata_resnet50_kl <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_kl.Rds"))
-adult_fulldata_resnet50_surprisal <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_surprisal.Rds"))
-adult_fulldata_resnet50_nolearning <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_nolearning.Rds"))
-adult_fulldata_resnet50_nonoise <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_nonoise.Rds"))
-
 
 infant_fulldata_resnet50_eig <- read_csv(here("data/infants/full_data_fit/infants_fulldata_resnet50_EIG.csv"))
 infant_fulldata_resnet50_kl <- read_csv(here("data/infants/full_data_fit/infants_fulldata_resnet50_KL.csv"))
 infant_fulldata_resnet50_surprisal <- read_csv(here("data/infants/full_data_fit/infants_fulldata_resnet50_surprisal.csv"))
 infant_fulldata_resnet50_nolearning <- read_csv(here("data/infants/full_data_fit/infants_fulldata_resnet50_nolearning.csv"))
 infant_fulldata_resnet50_nonoise <- read_csv(here("data/infants/full_data_fit/infants_fulldata_resnet50_nonoise.csv"))
+
+
+adult_fulldata_resnet50_eig <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_eig.Rds"))
+adult_fulldata_resnet50_kl <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_kl.Rds"))
+adult_fulldata_resnet50_surprisal <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_surprisal.Rds"))
+adult_fulldata_resnet50_nolearning <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_nolearning.Rds"))
+adult_fulldata_resnet50_nonoise <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_nonoise.Rds"))
 
 
 
