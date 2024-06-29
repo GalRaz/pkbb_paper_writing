@@ -1,20 +1,39 @@
 
+## Parameter robustness
 
 ```{r, parameter_robustness_infants}
 
 
 ```
 
-```{r, parameter_robustness_adults}
-
+```{r, include=FALSE, parameter_robustness_adults}
 
 ```
 
 
+## Scaling the embedding space
+
+In order to achieve sensible results, it was important to bring the stimulus embeddings in line with the approximation grid used for inference. Below we show what happens embeddings exceeded or came close to the edges of the our approximation grids. In Experiment 1, unscaled embeddings resulted in a reversal of background vs. deviant model samples, such that the model takes more samples from the background than the deviant. In Experiment 2, unscaled embeddings resulted in an unintuitive ordering which is not in line with the embedding distances (Figure \@ref(fig:embedding_distances)). 
+
+```{r wrong_scaling, echo=FALSE, fig.env = "figure", fig.width=20, fig.height=7, set.cap.width=T, num.cols.cap=1, fig.cap = "The effect of scaling on model results. A) Experiment 1 with unscaled embeddings results in a reversal of background vs. deviant. B) Experiment 2 with unscaled embeddings results in an unintuitive ordering."}
+
+# load unscaled stuff
+exp1_unscaled = read_csv(here('data/infants/unscaled_model_data/exp1_resnet50_unscaled.csv'))
+exp2_unscaled = read_csv(here('data/infants/unscaled_model_data/exp2_resnet50_unscaled.csv'))
+
+exp1_plot <- exp1_unscaled %>% ggplot(aes(x = fam_duration, y = sample_n_mean, color = violation_type)) +
+ stat_summary(fun.data = "mean_cl_boot") + theme_classic(20) + xlab('Exposure duration') + ylab("Model samples") + theme(legend.position = "none") + labs(title = "Exp1 unscaled", tag = "A")
+
+exp2_plot <- exp2_unscaled %>% ggplot(aes(x = trial_type, y = mean_sample, color = trial_type)) + stat_summary() + theme_classic(20) + theme(legend.position = "none") + ggtitle('Exp2 unscaled') + xlab("Violation type") + ylab("Model samples") + labs(title = "Exp2 unscaled", tag = "B")
+
+library("gridExtra")
+
+grid.arrange(exp1_plot, exp2_plot,ncol = 2, nrow = 1) 
+
+```
+
 ## Developmental comparison of parameter fits
-
-
-```{r}
+```{r, include=FALSE}
 joint_scaling_fits = read_csv('data/joint_scaling_fits.csv')
 
 param_info <- read_csv(here("data/param_info.csv"))
@@ -23,12 +42,10 @@ best_params = joint_scaling_fits %>% arrange(rmse) %>% first()
 
 #  best fits
 infant_best_id = best_params$p_i
-infant_best_params = param_info %>% filter(param_id == infant_best_fit)
+infant_best_params = param_info %>% filter(param_id == infant_best_id)
 
 adult_best_fit = best_params$p_a
 adult_best_params = param_info %>% filter(param_id == adult_best_fit)
-
-
 ```
 A naive approach to comparison parameter fits between infants and adults would be the following: After joint scaling, pick the set of parameters for adults and infants that together minimize RMSE. If we do this, we obtain the following parameter sets: 
 
@@ -43,7 +60,7 @@ However, a direct comparison between these parameter sets does not give insight 
 In order to investigate this, we want to also check the sensitivity of the model fit to changes in the parameters. To do so, we plot RMSE histograms colored by the value of a certain parameter, from a certain age group. Here we see that the overall modes of the RMSE histograms are dominated by `world EIG`, likely because this parameter is the main threshold that can account for the difference in scale between infant and adult looking times. However, of the other parameters, we see that RMSE only shows sensitivity to $\sigma_\epsilon$. Other parameters that are different between the best fits do not show this sensitivity. We therefore conclude that the main interpretable parameter difference is in $\sigma_\epsilon$, the learner's noise prior, being higher in infants than in adults.
 
 
-```{r, parameter_interpretation}
+```{r parameter_interpretation, echo=FALSE}
 
 fit_df = joint_scaling_fits %>% rename(param_id = p_i) %>% left_join(param_info %>% select(param_id, V_prior, alpha_prior, beta_prior, sd_epsilon, world_EIGs), by = "param_id" ) %>%  mutate(across(-c(rsquared,rmse), as.factor))
 
@@ -59,8 +76,7 @@ plot_2a = ggplot(fit_df, aes(x = rmse, fill = beta_prior)) + geom_histogram() + 
 
 plot_2b = ggplot(fit_df, aes(x = rmse, fill = sd_epsilon)) + geom_histogram() + ggtitle(expression(Colored~by~Adult~sigma[epsilon]~Prior))
 
-plot_2c = ggplot(fit_df, aes(x = rmse, fill = V_prior)) + geom_histogram() + 
-  ggtitle(expression(Colored~by~Adult~nu~Prior))
+plot_2c = ggplot(fit_df, aes(x = rmse, fill = V_prior)) + geom_histogram() + ggtitle(expression(Colored~by~Adult~nu~Prior))
 
 library("gridExtra")
 
@@ -72,7 +88,7 @@ grid.arrange(plot_1a + theme(legend.position = "none", axis.title.x = element_bl
 
 Below we plot the embedding distances of the different violations. The lines connect a single stimulus, and the y-axis represents the embedding distances to all the stimuli that would constitute a certain violations. For example, for a single animal stimulus, the y-value for 'animacy' corresponds to the distance between the single animal and all the single fruit/vegetable stimuli.  
 
-```{r embedding_distances, echo=FALSE, fig.width=20, fig.height=14, fig.cap="Embedding distances of different violation types for 1) a base ResNet50 model, 2) a perceptually aligned embedding model (Lee, 2022) and 3) a ResNet50 model trained on SAYCAM data (Orhan et al., 2020)"}
+```{r embedding_distances, echo=FALSE, fig.env = "figure", fig.width=20, fig.height=14, fig.cap="Embedding distances of different violation types for 1) a base ResNet50 model, 2) a perceptually aligned embedding model (Lee, 2022) and 3) a ResNet50 model trained on SAYCAM data (Orhan et al., 2020)"}
 
 img <- png::readPNG("figs/embedding_distances.png")
 grid::grid.raster(img)
