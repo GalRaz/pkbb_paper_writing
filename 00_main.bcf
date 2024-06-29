@@ -2440,6 +2440,10 @@
     <bcf:citekey order="48" intorder="1">poli2020infants</bcf:citekey>
     <bcf:citekey order="49" intorder="1">kidd2012goldilocks</bcf:citekey>
     <bcf:citekey order="50" intorder="1">FIXME</bcf:citekey>
+    <bcf:citekey order="51" intorder="1">scott2017lookit</bcf:citekey>
+    <bcf:citekey order="52" intorder="1">erel2022icatcher</bcf:citekey>
+    <bcf:citekey order="53" intorder="1">bates2015package</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">bates2015package</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

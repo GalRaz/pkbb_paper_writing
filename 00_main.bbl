@@ -122,6 +122,79 @@
       \field{pages}{191\bibrangedash 208}
       \range{pages}{18}
     \endentry
+    \entry{bates2015package}{article}{}{}
+      \name{author}{10}{}{%
+        {{hash=291c4bc67cf41a2019405a2328a9b75e}{%
+           family={Bates},
+           familyi={B\bibinitperiod},
+           given={Douglas},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0041cc0eb4aa28929ffbd059d5e4add5}{%
+           family={Maechler},
+           familyi={M\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d6b13be971f13ee03cc83cded41b6d7e}{%
+           family={Bolker},
+           familyi={B\bibinitperiod},
+           given={Ben},
+           giveni={B\bibinitperiod}}}%
+        {{hash=666afa7867ec142c4a63a819a19244f9}{%
+           family={Walker},
+           familyi={W\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=164c32437993973064c4595099848b4c}{%
+           family={Christensen},
+           familyi={C\bibinitperiod},
+           given={Rune\bibnamedelimb Haubo\bibnamedelima Bojesen},
+           giveni={R\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=70807a369a682c91b9423d64812cf01f}{%
+           family={Singmann},
+           familyi={S\bibinitperiod},
+           given={Henrik},
+           giveni={H\bibinitperiod}}}%
+        {{hash=71d8f67795a219bd82bcdf9afdecec87}{%
+           family={Dai},
+           familyi={D\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=b649c42a78fddcb1e868b517781c0f2f}{%
+           family={Grothendieck},
+           familyi={G\bibinitperiod},
+           given={Gabor},
+           giveni={G\bibinitperiod}}}%
+        {{hash=0dc0cda7319d9ab94798b118be43c532}{%
+           family={Green},
+           familyi={G\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=45e4c991beadf8dd51b7af6229f25d12}{%
+           family={Bolker},
+           familyi={B\bibinitperiod},
+           given={M\bibnamedelima Ben},
+           giveni={M\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{d09b320744f09c093eb8b0d7f6bbdda0}
+      \strng{fullhash}{048ba7729b3cc13b6d33591d08a4a065}
+      \strng{fullhashraw}{048ba7729b3cc13b6d33591d08a4a065}
+      \strng{bibnamehash}{d09b320744f09c093eb8b0d7f6bbdda0}
+      \strng{authorbibnamehash}{d09b320744f09c093eb8b0d7f6bbdda0}
+      \strng{authornamehash}{d09b320744f09c093eb8b0d7f6bbdda0}
+      \strng{authorfullhash}{048ba7729b3cc13b6d33591d08a4a065}
+      \strng{authorfullhashraw}{048ba7729b3cc13b6d33591d08a4a065}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{convergence}
+      \field{number}{1}
+      \field{title}{Package `lme4'}
+      \field{volume}{12}
+      \field{year}{2015}
+      \field{pages}{2}
+      \range{pages}{1}
+    \endentry
     \entry{bergmann2016development}{article}{}{}
       \name{author}{2}{}{%
         {{hash=68a71f59b5583b089a716366ff8b95eb}{%
@@ -1651,6 +1724,8 @@
     \endentry
   \enddatalist
   \missing{FIXME}
+  \missing{erel2022icatcher}
+  \missing{scott2017lookit}
 \endrefsection
 \endinput
 

@@ -63,8 +63,6 @@ adult_fulldata_resnet50_surprisal <- readRDS(here("data/adults/full_data_fit/adu
 adult_fulldata_resnet50_nolearning <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_nolearning.Rds"))
 adult_fulldata_resnet50_nonoise <- readRDS(here("data/adults/full_data_fit/adult_fulldata_resnet50_nonoise.Rds"))
 
-
-
 ```
 
 ```{r, include = FALSE}
@@ -122,6 +120,13 @@ exp1_adult_model <- readRDS(here("cached_models/adults/exp1_adult_model.Rds"))
 
 ```
 
+```{r child = "08_methods_infants.Rmd"}
+
+```
+
+```{r child = "09_methods_adults.Rmd"}
+
+```
 
 # Supplementary Information 
 ```{r child = "10_supplementary.Rmd"}
