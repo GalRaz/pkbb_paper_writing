@@ -4,14 +4,14 @@
 ```{r, include=FALSE, parameter_robustness_infants}
 
 # infants
-infant_eig_hist = infant_resnet50_EIG_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Infants: EIG")
-infant_kl_hist = infant_resnet50_KL_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "KL")
-infant_surprisal_hist = infant_resnet50_surprisal_short_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Surprisal")
+infant_eig_hist = infant_resnet50_EIG_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Infants: EIG") 
+infant_kl_hist = infant_resnet50_KL_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "KL") + theme(plot.title = element_text(hjust = 0.5))
+infant_surprisal_hist = infant_resnet50_surprisal_short_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Surprisal") + theme(plot.title = element_text(hjust = 0.5))
 
 # adults
 adult_eig_hist = adult_kfold_resnet50_eig %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Adults: EIG")
-adult_kl_hist = adult_kfold_resnet50_kl %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "KL")
-adult_surprisal_hist = adult_kfold_resnet50_surprisal %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12)  + labs(title = "Surprisal")
+adult_kl_hist = adult_kfold_resnet50_kl %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "KL") + theme(plot.title = element_text(hjust = 0.5))
+adult_surprisal_hist = adult_kfold_resnet50_surprisal %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12)  + labs(title = "Surprisal") + theme(plot.title = element_text(hjust = 0.5))
 
 
 combined_plot <- ggarrange(
