@@ -10,7 +10,7 @@ output:
 
 We derived principled low dimensional representations of our stimuli from ResNet50 [@he2016deep]. We ran a Principal Component Analysis and used the first three principal components. This decision was made due to the computational demands of our model. Each added dimension would increase the total run time exponentially. The first three components capture 57.9% of the variance. 
 
-Given that we were using discrete grid approximation in our inference, the model was sensitive to the absolute values of the embeddings. When these embeddings values were close to or exceeded the range of the approximation grids, this would cause bias in our simulation result. We therefore scaled our embeddings down to fall squarely into our grid. This downscaling had to be more extreme for the stimulus type experiment, where embedding distances were larger, in particular for animacy violations. We ran simulations to confirm that embeddings that were too large would result in biased model behaviors (See SI).
+Given that we were using discrete grid approximation in our inference, the model was sensitive to the absolute values of the embeddings. When these embeddings values were close to or exceeded the range of the approximation grids, this would cause bias in our simulation result. We therefore scaled our embeddings down to fall squarely into our grid. This downscaling had to be more extreme for the stimulus type experiment, where embedding distances were larger, in particular for animacy violations. We ran simulations to confirm that embeddings that were too large would result in biased model behaviors (Figure \@ref(fig:wrong_scaling)).
 
 
 ### Linking Hypotheses
