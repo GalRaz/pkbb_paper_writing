@@ -11,10 +11,12 @@ Below we describe in detail the experimental procedure. We use Experiment 1 to d
 complete_exclusions_exp1 <- exp1_infant_d %>% distinct(unique_id, exclude) %>% 
   group_by(unique_id) %>% filter(n() == 1, exclude) 
 
-n_complete_exclusions_exp1 = total_n - total_n_after_exclusion
-n_complete_exclusions_expA = complete_exclusions %>% filter(str_detect(unique_id, "A")) %>% nrow()
-n_complete_exclusions_expB = complete_exclusions %>% filter(str_detect(unique_id, "B")) %>% nrow()
-n_complete_exclusions_expC = complete_exclusions %>% filter(str_detect(unique_id, "C")) %>% nrow()
+n_complete_exclusions_expA = complete_exclusions_exp1 %>% filter(str_detect(unique_id, "A")) %>% nrow()
+n_complete_exclusions_expB = complete_exclusions_exp1 %>% filter(str_detect(unique_id, "B")) %>% nrow()
+n_complete_exclusions_expC = complete_exclusions_exp1 %>% filter(str_detect(unique_id, "C")) %>% nrow()
+
+n_complete_exclusions_exp1 = n_complete_exclusions_expA + n_complete_exclusions_expB + n_complete_exclusions_expC
+
 
 # exclusions
 excluded_df = exp1_infant_d %>% filter(!unique_id %in% complete_exclusions_exp1$unique_id)
@@ -42,9 +44,9 @@ num_excluded_trials_control = exp2_control_infant_d %>% filter(!subject_num %in%
 
 #### Participants 
 
-For Experiment 1, we tested a combined sample of `r total_n` 7-10 month old infants, with `r n_subject_expA` in Exp A, `r n_subject_expB` in Exp B and `r n_subject_expC` in Exp C (`r total_n` ($M_{age}$ = `r mean_age` months, `r sex$n[sex$sex == 'F']` female). `r n_complete_exclusions_exp1` participants were excluded completely due to fussiness. An additional `r num_excluded_trials_exp1` individual test events were excluded (out of `r excluded_df %>% filter(fam_or_test == 'test') %>% nrow()`.
+For Experiment 1, we tested a combined sample of `r total_n_exp1` 7-10 month old infants, with `r n_subject_expA` in Exp A, `r n_subject_expB` in Exp B and `r n_subject_expC` in Exp C (`r total_n_exp1` ($M_{age}$ = `r mean_age_exp1` months, `r sex_exp1$n[sex_exp1$sex == 'F']` female). `r n_complete_exclusions_exp1` participants were excluded completely due to fussiness. An additional `r num_excluded_trials_exp1` individual test events were excluded (out of `r excluded_df %>% filter(fam_or_test == 'test') %>% nrow()`.
 
-For Experiment 2, we tested a combined sample of `r total_n` 7-10 month old infants, with `r n_zoom` in the Zoom experiment (`r n_complete_exclusions_zoom` complete exclusions, `r num_excluded_trials_zoom` trial exclusions), `r n_lookit` in the Zoom experiment (`r n_complete_exclusions_lookit` complete exclusions, `r num_excluded_trials_lookit` trial exclusions) and `r n_control` in the control experiment (`r n_complete_exclusions_control` complete exclusions, `r num_excluded_trials_control` trial exclusions). 
+For Experiment 2, we tested a combined sample of `r n_lookit + n_zoom` 7-10 month old infants, with `r n_zoom` in the Zoom experiment (`r n_complete_exclusions_zoom` complete exclusions, `r num_excluded_trials_zoom` trial exclusions), `r n_lookit` in the Zoom experiment (`r n_complete_exclusions_lookit` complete exclusions, `r num_excluded_trials_lookit` trial exclusions) and `r n_control` in the control experiment (`r n_complete_exclusions_control` complete exclusions, `r num_excluded_trials_control` trial exclusions). 
 
 Complete or trial exclusions occurred because 1) infants fussed out of the experiment at an earlier stage of the experiment, 2) infants looked at the stimuli for less than a total 2 seconds, 3) there were momentary external distractions in the home of the infant or 4) the gaze classifier performed so poorly that manual corrections were not viable. 
 
