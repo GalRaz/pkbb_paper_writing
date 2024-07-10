@@ -8,11 +8,13 @@ output:
     citation_package: biblatex
     keep_tex: true
     toc: false
+    extra_dependencies: ["float"]
     
     
 ---
 
 ```{r, include = FALSE}
+
 #Load packages & datasets
 library(tidyverse)
 library(here)
@@ -23,6 +25,11 @@ library(magrittr)
 library(pbkrtest)
 library(xtable)
 library(ggpubr)
+library(ggthemes)
+library(colf)
+library(Metrics)
+library(cowplot)
+
 
 # behavioral data: infants 
 exp1_infant_d <- read_csv(here("data/infants/exp1.csv"))
@@ -133,7 +140,6 @@ exp1_adult_model <- readRDS(here("cached_models/adults/exp1_adult_model.Rds"))
 
 ```
 
-# References 
 
 \setlength{\parindent}{-0.1in} 
 \setlength{\leftskip}{0.125in}
