@@ -153,10 +153,9 @@ grid::grid.raster(img)
 
 ## Evaluating model with behavioral results 
 
-
 The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). We also found evidence for infants’ dishabituation: looking time for the novel test trials was longer than the familiar trial after long exposures (after 8 repetitions: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, after 9 repetitions: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. \@ref(fig:conceptual)A&B).
 
-RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set’s performance by running a K-fold crossvalidation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson’s r between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. For infants, we used K = 2 due to the data sparsity. For adults, we used K = 10. The K-fold validation suggests that our model performance is largely robust across parameters (Table ??). 
+RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set’s performance by running a K-fold crossvalidation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson’s R between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. 
 
 
 ```{r xtable, results='asis', echo=FALSE}
@@ -191,3 +190,116 @@ One advantage of RANCH is the interpretability of its parameters. Beyond finding
 Through within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs. novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. \@ref(fig:conceptual)A & \@ref(fig:conceptual)B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. \@ref(fig:conceptual)C). 
 
 We next turn to test RANCH’s ability to make predictions in a novel dataset. 
+
+
+```{r}
+#Results figure
+data = read_csv(here('data/results_plots/exp1_data_plot.csv'))
+sim_infants = read_csv(here('data/results_plots/exp1_infant_sim_plot.csv'))
+sim_adults = read_csv(here('data/results_plots/exp1_adult_sim_plot.csv'))
+
+facet_labels <- tibble(
+  type = c("EIG","KL","Surprisal", "No Learning", "No Noise"),
+  label = c("EIG","KL","Surprisal", "No Learning", "No Noise"), 
+  x = c(6, 6, 6, 6, 6), 
+  y = c(1, 1, 1, 1, 1),
+) %>% mutate(across(type, ~factor(., levels=c("EIG","KL","Surprisal", "No Learning", "No Noise")))) 
+
+
+adult_bp <- data %>% 
+  filter(group == "Adults") %>% 
+  ggplot(aes(x=x, y=y, group=tt, color = tt)) + 
+  stat_summary(fun.data = "mean_cl_boot",
+               geom = "pointrange",
+               position = position_dodge(width = .3)) +
+  stat_summary(geom = "line",
+               position = position_dodge(width = .3)) +
+  # geom_smooth(method = "loess") + 
+  #facet_wrap(~group, scale = "free_y") + 
+  theme_few() + 
+  scale_y_log10() + 
+  #coord_cartesian(ylim = c(0, 4)) + 
+  ylab("Looking time (s)") +
+  xlab("Trial Number") + 
+  ggthemes::scale_color_solarized(name = "Trial type") +
+  theme(legend.position = "none")
+
+adult_simulation_plot <- ggplot() +
+  theme_few() +
+  stat_summary(
+    data = sim_adults, 
+    aes(x = trial_number, y = scaled_samples/1000, color = trial_type),
+    fun.data = mean_cl_boot, na.rm = TRUE)+
+   stat_summary(
+    data = sim_adults, 
+    aes(x = trial_number, y = scaled_samples/1000, color = trial_type),
+    fun.data = mean_cl_boot, na.rm = TRUE, 
+    geom = "line") + 
+  geom_text(data = facet_labels, aes(x = 6, label = label), y = Inf, vjust = 2)+ 
+   scale_y_log10() +
+  #coord_cartesian(ylim= c(0, 4)) +
+  facet_wrap(~type)+
+  theme(
+    legend.position = c(0.85, 0.25), # c(0,0) bottom left, c(1,1) top-right.
+    legend.background = element_rect(fill = "white", colour = NA) 
+  ) + 
+  ylab("") + 
+  xlab("") + 
+  guides(color=guide_legend(title="Trial Type")) + 
+  ggthemes::scale_color_solarized(name = "Trial type") + 
+  theme(
+  strip.background = element_blank(),
+  strip.text.x = element_blank())
+
+
+infant_bp <- data %>% 
+  filter(group == "Infants (7 - 9 months)") %>% 
+  ggplot(aes(x=x, y=y, group=tt, color = tt)) + 
+  stat_summary(fun.data = "mean_cl_boot",
+               geom = "pointrange",
+               position = position_dodge(width = .3)) +
+  stat_summary(geom = "line",
+               position = position_dodge(width = .3)) +
+  # geom_smooth(method = "loess") + 
+  #facet_wrap(~group, scale = "free_y") + 
+  #coord_cartesian(ylim = c(0, 25)) + 
+  theme_few() + 
+  scale_y_log10() + 
+  ylab("Looking time (s)") +
+  xlab("Trial Number") + 
+  ggthemes::scale_color_solarized(name = "Trial type") +
+  theme(legend.position = "none")
+
+infant_simulation_plot <- ggplot() +
+  theme_few() +
+  stat_summary(
+    data = sim_infants, 
+    aes(x = fam_duration, y = scaled_samples, color = test_type),
+    fun.data = mean_cl_boot, na.rm = TRUE)+
+   stat_summary(
+    data = sim_infants, 
+    aes(x = fam_duration, y = scaled_samples, color = test_type),
+    fun.data = mean_cl_boot, na.rm = TRUE, 
+    geom = "line") + 
+  geom_text(data = facet_labels, aes(x = 5, label = label), y = Inf, vjust = 2)+ 
+  #coord_cartesian(ylim= c(0, 25)) +
+  scale_y_log10()+ 
+  scale_x_continuous(breaks = seq(0, 9, 1)) + 
+  facet_wrap(~type)+
+  theme(
+    legend.position = c(0.85, 0.25), # c(0,0) bottom left, c(1,1) top-right.
+    legend.background = element_rect(fill = "white", colour = NA) 
+  ) + 
+  ylab("") + 
+  xlab("") + 
+  guides(color=guide_legend(title="Trial Type")) + 
+  ggthemes::scale_color_solarized(name = "Trial type") + 
+  theme(
+  strip.background = element_blank(),
+  strip.text.x = element_blank())
+
+plot_grid(adult_bp, adult_simulation_plot, rel_widths = c(2, 3))
+plot_grid(infant_bp, infant_simulation_plot, rel_widths = c(2, 3))
+
+
+```
