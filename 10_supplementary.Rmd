@@ -145,6 +145,8 @@ grid::grid.raster(img)
 
 
 ## Control experiment for Experiment 2
+
+Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.
 ```{r control_exp, echo=FALSE, warning=FALSE,message=FALSE, fig.env = "figure", fig.width=10, fig.height=5, fig.cap="Control experiment for experiment 2, checking for baseline differences in interest."}
 
 control_plot <- ggplot(exp2_control_infant_d %>% filter(!exclude, LT > 2) %>% mutate(trial_type = factor(trial_type, levels = c("single animal", "animal pair", "veggie"))), aes(x=trial_type, y=LT)) + geom_jitter(width = 0.03, alpha = 0.2) + stat_summary(fun.data = "mean_cl_boot", geom = "line", position = position_dodge(width = .1))  + 

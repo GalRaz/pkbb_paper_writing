@@ -52,6 +52,34 @@ exp2_adult_d
 
 ```
 
+```{r, eval=FALSE}
+
+sim_infants = read_csv(here('data/results_plots/exp2_infant_plot.csv'))
+sim_adults = read_csv(here('data/results_plots/exp2_adult_plot.csv'))
+
+adult_res_fig = sim_adults %>%  ggplot(aes(x = trial_number, y = LT/1000, ymin = lb_lt/1000, ymax = ub_lt/1000, color = trial_type)) + 
+  geom_pointrange(position = position_dodge(width = .2)) +
+  geom_line(position = position_dodge(width = .2))+
+  facet_wrap(~value_type) + 
+  theme_few() + 
+  ylab("Looking time (sec) / Samples") + 
+  xlab("Trial number")
+
+infant_res_fig = sim_infants %>% 
+  ggplot(aes(x = trial_type, y = LT, ymin = lb_lt, ymax = ub_lt, color = trial_type)) + 
+  geom_pointrange(position = position_dodge(width = .2)) +
+  geom_line(position = position_dodge(width = .2))+
+  facet_wrap(~value_type) + 
+  theme_few() + 
+  ylab("Looking time (sec) / Samples") + 
+  xlab("Trial number") + 
+  theme(legend.position = "none")
+
+
+ggsave(here('figs/infant_exp2_res.png'),infant_res_fig, width = 10, height = 5)
+ggsave(here('figs/adult_exp2_res.png'),adult_res_fig, width = 10, height = 5)
+```
+
 Beyond predicting non-linearities in attentional preferences during encoding (Fig. 1B), @hunter1988multifactor also predicted that after complete encoding of a stimulus, dishabituation magnitude should be linked to the similarity between two stimuli: the more dissimilar the novel stimulus is to the habituation stimulus, the more participants should dishabituate. We designed an experiment testing the relationship between stimuli similarity and dishabituation magnitude by systematically varying the similarity between the familiar stimuli and the novel stimuli. Instantiating RANCH provides an explicit notion of similarity through the use of ResNet50-derived image embeddings. We can therefore test whether RANCH also predicts such similarity-based differences in dishabituation magnitude. We showed that the best-fitting parameters trained from the previous behaviors predict infants and adults behaviors in the new experiment. In other words, RANCH is capable of making out-of-sample predictions about novel behaviors that it was not trained on.
 
 ## Behavioral Experiment
@@ -75,3 +103,13 @@ We next tested whether RANCH made similar predictions. We used the same modeling
 Using the previously best-fitting parameters in Experiment 1, we found that RANCH generalized to Experiment 2 successfully (Adults: STATS; Infants: STATS). Moreover, RANCH also showed a qualitative ordering of the dishabituation magnitude: animacy > identity > number > pose. This ordering was in line with the CNN-derived embedding distances between the different stimulus categories (Figure \@ref(fig:embedding_distances)).  
 
 Taken together, though there were some discrepancies between the qualitative ordering between infants, adults and RANCH (discussed below), our analyses show that RANCH is not only capable of capturing habituation and dishabituation, but also can generalize to a new task and make predictions about dishabituation magnitude in relation to stimulus similarity. 
+
+```{r infant_exp2_res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 2, infant results"}
+img <- png::readPNG("figs/infant_exp2_res.png")
+grid::grid.raster(img)
+```
+
+```{r adult_exp2_res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 2, adult results"}
+img <- png::readPNG("figs/adult_exp2_res.png")
+grid::grid.raster(img)
+```
