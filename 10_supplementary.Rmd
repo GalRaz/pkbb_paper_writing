@@ -1,4 +1,16 @@
 
+## Deriving predictions for Goldilocks model
+
+Below is an illustration of how predictions for a habituation/dishabituation experiment were derived for the Goldilocks model. In all cases, as infants get familiarized, the surprisal of the familiar stimulus goes down, and the surprisal of the novel stimulus has to go up, so that probabilities assigned to events add up to 1. Depending on the initial surprisal of the familiarization stimulus, there are three different trajectories of preferences to novel vs. familiar stimuli as a function of prior exposure: 1) If initial surprisal is below the optimal level to maximize attention, the model predicts an increase, and then a decrease in novelty preferences. 2) If initial surprisal is at the optimal level, then no preference is predicted, assuming a symmetric U-shape. 3) If initial surprisal is higher than optimal surprisal, the model predicts an increasing, and then decreasing familiarity preference. 
+
+```{r goldilocks_explanation, echo=FALSE, warning=FALSE, message=FALSE, fig.width=10, fig.height=5, set.cap.width=T, num.cols.cap=1, fig.cap="Illustration of how predictions from the Goldilocks model in Fig. 1 were derived."}
+
+img <- png::readPNG("figs/goldilocks_explanation.png")
+grid::grid.raster(img)
+
+```
+
+
 ## Parameter robustness
 
 Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness.Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness.
