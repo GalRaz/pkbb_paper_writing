@@ -239,25 +239,26 @@ infant_best_full_resnet50_nonoise <- infant_fulldata_resnet50_nonoise %>% arrang
 
 ```
 
-A key difference between the competing models in Figure \@ref(fig:conceptual) is their prediction with regard to the effect of familiarity on looking time. To address this, we collected looking time data from both infants and adults in an experiment where we varied exposure duration to a familiar stimulus, and measured subsequent looking time to a novel vs. familiar stimulus. We then let RANCH "see" the same stimuli and procedure used in our behavioral experiments and evaluated our model’s behavior against the behavioral datasets.
+
+The models in Figure \@ref(fig:conceptual) make contrasting predictions with regard to the effect of increasing prior exposure on looking times. To directly test these  predictions, we collected looking time data from both infants and adults in an experiment where we varied cumulative exposure to a familiar stimulus, and measured subsequent looking time to a novel or familiar stimulus. We then let RANCH ``see'' the same stimuli and procedure used in our behavioral experiments and compared our model's behavior to that of humans.
 
 ## Behavioral experiments
 
 ### Infant experiment 
 
-We tested infants in a novel experimental paradigm in which exposure duration to the stimuli were manipulated in a within-subject design \@ref(fig:design) (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarizaiton phase and a test trial. During the familiarization, infants were presented with one stimulus, repeated 0 to 9 times. After the familiarization, infants’ looking time was measured on a test trial. The test trial showed either the same stimulus as the preceding trials, or a new stimulus. We ran three versions of this experiment, each with three different familiarization durations. We tested a combined sample of `r total_n_exp1` 7-10 month old infants, with `r n_subject_expA` infants in Exp 1A (0, 4 or 8 repetitions), `r n_subject_expB` infants in Exp 1B (1, 3 or 9 repetitions) and `r n_subject_expC` infants in Exp 1C (2, 4 or 6 repetitions; total n=`r total_n_exp1`, $M_{age}$=`r mean_age_exp1` months, `r sex_exp1$n[sex_exp1$sex == 'F']` female).
+We tested infants in a novel experimental paradigm in which exposure duration to the familiar stimulus was manipulated in a within-subject design \@ref(fig:design) (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarization phase and a test trial. During the familiarization phase, one animal (designated the familiar stimulus) was presented 0 to 9 times. Next, infants' looking time was measured on a test trial. The test trial showed either the familiar stimulus, or a new animal (designated the deviant stimulus). We ran three versions of this experiment, each with three different familiarization durations. We tested a combined sample of `r total_n_exp1` 7-10 month old infants, with `r n_subject_expA` infants in Exp 1A (0, 4 or 8 repetitions), `r n_subject_expB` infants in Exp 1B (1, 3 or 9 repetitions) and `r n_subject_expC` infants in Exp 1C (2, 4 or 6 repetitions; total n=`r total_n_exp1`, $M_{age}$=`r mean_age_exp1` months, `r sex_exp1$n[sex_exp1$sex == 'F']` female).
 
 
 ### Adult experiment 
 
-We ran a self-paced looking time paradigm experiment on Prolific, collecting data from `r n_subject_adult_exp1` adult participants \@ref(fig:design) (Experiment 1, Adults). The stimuli used in the adult experiment are drawn from the same stimuli set used in the infant experiment. During the experiment, participants were asked to watch sequences of animations at their own pace, and they could press a key to proceed to the next trial whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence of animations has two stimuli: the familiar stimulus and the novel stimulus. The familiar stimulus repeated over and over again within a sequence, whereas the novel stimulus only appeared once and it appeared at either the second, the fourth, or the sixth position in the sequence. 
+We ran a self-paced looking time experiment on Prolific, collecting data from `r n_subject_adult_exp1` adult participants \@ref(fig:design) (Experiment 1, Adults). The stimuli used in the adult experiment are drawn from the same set used in the infant experiment. During the experiment, participants were asked to watch sequences of animations at their own pace, and they could press a key to proceed to the next trial whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence of animations has two stimuli: the familiar stimulus and the novel stimulus. The familiar stimulus repeated over and over again within a sequence, whereas the novel stimulus only appeared once and it appeared at either the second, the fourth, or the sixth position in the sequence. 
 
 
 ### Modeling Procedure
 
 The overall modeling strategy is for RANCH to ‘see’ the experiment the same way as the participants do. RANCH learned from the embeddings derived from the stimuli used in the experiments, and the modeling procedure mirrored the experimental set-up used in the infants experiment and adult experiment respectively (\@ref(fig:design)). 
 
-To simulate the infant experiment, the model was first presented with a series of repeating stimuli. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase is similar to the exposure phase infants went through, since during the exposure phase infants had no control over the progression of the stimuli sequence. After the familiarization sequence, the model was presented with the test trial, which either has a novel stimulus or a familiar stimulus (i.e. the repeated stimulus). The number of samples the model took on this test trial was the “looking time” that the model produced.  
+To simulate the infant experiment, the model was first presented with a series of repeating stimuli. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase is similar to the exposure phase infants went through, since during the exposure phase infants had no control over the progression of the stimuli sequence. After the familiarization sequence, the model was presented with the test trial, which either has a novel stimulus or a familiar stimulus. The number of samples the model took on this test trial was the “looking time” that the model produced.  
 
 To simulate the self-paced adult experiment, RANCH makes decisions on how many samples to take on every trial, until the end of the sequence. As in the adult experiment, the sequence has a familiar stimulus that repeats throughout the sequence, and a novel stimulus that appears once. The model therefore predicts looking times to each stimulus in the sequence. 
 
@@ -295,7 +296,7 @@ We also compared the performance of RANCH when using EIG, which is the fully rat
 
 ## Comparison with lesioned model 
 
-We also examined the importance of RANCH’s key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (“No noise model”), and the other model assumes the sampling decision was random instead of based on the learning model (“No learning model”). Both lesioned models provided poor fits for the behavioral datasets (Table \@ref(tab:xtable)). This suggests that the noisy perception assumption and the learning assumptions were both critical to RANCH’s performance.
+We also examined the importance of RANCH’s key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (“No noise model”), and the other model assumes the sampling decision was random instead of based on the learning model (“No learning model”). Both lesioned models provided poor fits for the behavioral datasets (Table \@ref(tab:xtable)). This suggests that both the noisy perception assumption and the learning assumption were critical to RANCH’s performance.
 
 ## Parameter Interpretation / Developmental Comparison
 
@@ -303,7 +304,7 @@ One advantage of RANCH is the interpretability of its parameters. Beyond finding
 
 ## Discussion 
 
-Through within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs. novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. \@ref(fig:conceptual)A & \@ref(fig:conceptual)B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. \@ref(fig:conceptual)C). 
+Using within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs. novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. \@ref(fig:conceptual)A & \@ref(fig:conceptual)B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. \@ref(fig:conceptual)C). 
 
 We next turn to test RANCH’s ability to make predictions in a novel dataset. 
 
