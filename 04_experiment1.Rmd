@@ -240,7 +240,7 @@ infant_best_full_resnet50_nonoise <- infant_fulldata_resnet50_nonoise %>% arrang
 ```
 
 
-The models in Figure \@ref(fig:conceptual) make contrasting predictions with regard to the effect of increasing prior exposure on looking times. To directly test these  predictions, we collected looking time data from both infants and adults in an experiment where we varied cumulative exposure to a familiar stimulus, and measured subsequent looking time to a novel or familiar stimulus. We then let RANCH ``see'' the same stimuli and procedure used in our behavioral experiments and compared our model's behavior to that of humans.
+The models in Figure \@ref(fig:conceptual) make contrasting predictions with regard to the effect of increasing prior exposure on looking times. To directly test these  predictions, we collected looking time data from both infants and adults in an experiment where we varied cumulative exposure to a familiar stimulus, and measured subsequent looking time to a novel or familiar stimulus. We then let RANCH ``see'' the same stimulus sequences used in our behavioral experiments and compared our model's behavior to that of humans.
 
 ## Behavioral experiments
 
@@ -251,16 +251,12 @@ We tested infants in a novel experimental paradigm in which exposure duration to
 
 ### Adult experiment 
 
-We ran a self-paced looking time experiment on Prolific, collecting data from `r n_subject_adult_exp1` adult participants \@ref(fig:design) (Experiment 1, Adults). The stimuli used in the adult experiment are drawn from the same set used in the infant experiment. During the experiment, participants were asked to watch sequences of animations at their own pace, and they could press a key to proceed to the next trial whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence of animations has two stimuli: the familiar stimulus and the novel stimulus. The familiar stimulus repeated over and over again within a sequence, whereas the novel stimulus only appeared once and it appeared at either the second, the fourth, or the sixth position in the sequence. 
+We ran a self-paced looking time experiment on Prolific, collecting data from `r n_subject_adult_exp1` adult participants \@ref(fig:design) (Experiment 1, Adults). Stimuli used in the adult experiment were drawn from the same set used in the infant experiment. During the experiment, participants were asked to watch sequences of stimuli at their own pace, and they could press a key to proceed to the next stimulus whenever they wanted to. The time between the onset of the stimulus and the key press was used as a proxy for looking time. Each sequence began with a familiar stimulus repeating 1 to 10 times, followed by either the same familiar or a novel stimulus. 
 
 
 ### Modeling Procedure
 
-The overall modeling strategy is for RANCH to ‘see’ the experiment the same way as the participants do. To do so, RANCH received the CNN-derived stimulus embeddings as input, presented in sequences mirroring the structure of in our infant and adult experiments (\@ref(fig:design)). 
-
-To simulate the infant experiment, the model was first presented with a series of repeating stimuli. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase is similar to the exposure phase infants went through, since during the exposure phase infants had no control over the progression of the stimuli sequence. After the familiarization sequence, the model was presented with the test trial, which was either familiar or novel. The number of samples the model took on this test trial was the “looking time” that the model produced.  
-
-To simulate the self-paced adult experiment, RANCH makes decisions on how many samples to take on every trial, until the end of the sequence. As in the adult experiment, the sequence has a familiar stimulus that repeats throughout the sequence, and a novel stimulus that appears once. The model therefore predicts looking times to each stimulus in the sequence. 
+RANCH received the CNN-derived stimulus embeddings as input, presented in sequences mirroring the structure of in our infant and adult experiments (\@ref(fig:design)). To simulate a block of the infant experiment, the model was first presented with the "familiar" stimulus. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase was designed to be to the familiarization phase infants went through, since during the familiarization phase infants had no control over the progression of the stimulus sequence. After the familiarization phase, the model was presented with the test trial, which was either familiar or novel. We used the number of samples the model took on this test trial as a proxy for infant looking time. To simulate the self-paced adult experiment, we computed the number of samples taken by RANCH on every trial in each stimulus sequence.
 
 
 ```{r design, echo=FALSE, fig.width=20, fig.height=14, fig.cap="Experimental design"}
@@ -268,11 +264,11 @@ img <- png::readPNG("figs/design_fig.png")
 grid::grid.raster(img)
 ```
 
-## Evaluating model with behavioral results 
+## Behavioral and model results
 
-The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). We also found evidence for infants’ dishabituation: looking time for the novel test trials was longer than the familiar trial after long exposures (after 8 repetitions: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, after 9 repetitions: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). Likewise, we also found that adult experimental paradigm successfully captures habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. \@ref(fig:conceptual)A&B).
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Infants clearly dishabituated on trials longer exposures (8 exposures: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, 9 exposures: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. \@ref(fig:conceptual)A&B).
 
-RANCH predicted habituation and dishabituation in both infants and adults. We evaluated each parameter set’s performance by running a K-fold crossvalidation test. At each fold, we fit a linear model predicting the looking time data in the fold. We then used the coefficients and the intercepts from the fitted model to scale the model results to the rest of the behavioral data. We compute RMSE and the Pearson’s R between the scaled model results and the test set. This process is repeated for each fold and for each parameter setting. 
+RANCH predicted habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) and Pearson correlation ($r$) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used K-fold cross-validation, computing the average RMSE and $r$ across held-out samples. This procedure was conducted separately for both infant and adult data. Table \ref{tab:results1} shows these metrics. 
 
 
 ```{r xtable, results='asis', echo=FALSE}
@@ -282,7 +278,7 @@ CV_table = tibble(`Linking Hypothesis` =  c("EIG", "KL", "Surprisal", "No learni
 
 CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(infant_resnet50_EIG_CV$rmse), mean(infant_resnet50_KL_CV$rmse), mean(infant_resnet50_surprisal_short_CV$rmse), mean(infant_resnet50_nolearning_CV$rmse), mean(infant_resnet50_nonoise_CV$rmse))) %>% mutate(`Infants: Best RMSE` = c(min(infant_resnet50_EIG_CV$rmse), min(infant_resnet50_KL_CV$rmse), min(infant_resnet50_surprisal_short_CV$rmse), min(infant_resnet50_nolearning_CV$rmse), min(infant_resnet50_nonoise_CV$rmse)))
 
-table <- xtable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)), caption = "Table 1: Crossvalidation results")
+table <- xtable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)), caption = "Table 1: Cross-validated fit metrics for RANCH and infant looking times. Mean RMSE is averaged across all parameter values, while best RMSE reflects the single best-performing parameter values.")
 
 print.xtable(table, include.rownames = FALSE, comment = FALSE,
               size="\\fontsize{8pt}{9pt}\\selectfont")
@@ -291,12 +287,12 @@ print.xtable(table, include.rownames = FALSE, comment = FALSE,
 
 ## Comparison with alternative linking hypotheses 
 
-
-We also compared the performance of RANCH when using EIG, which is the fully rational linking hypothesis, to other, proxy-based linking hypothesis used in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying 'learning progress', while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants’ looking behaviors [@kidd2012goldilocks; @poli2020infants]. We then compared the model’s performance based on the parameter that provides the best fits to the full dataset according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Infants: STATS; Adults EIG: *RMSE* = `r adult_best_full_resnet50_eig$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_eig$mean_rsquared`; Adults KL: *RMSE* = `r adult_best_full_resnet50_kl$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_kl$mean_rsquared`). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: *RMSE* = `r adult_best_full_resnet50_surprisal$mean_rmse`,$I^2$ = `r adult_best_full_resnet50_surprisal$mean_rsquared`). 
+EIG is the optimal method for making sampling decisions [@lindley1956measure]. We compared this method to decision-making metrics proposed in prior literature including Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying "learning progress", while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants’ looking behaviors [@kidd2012goldilocks; @poli2020infants]. We then repeated the cross-validation process using these linking hypotheses and compared the model’s performance based on the parameter that provides the best average fits to the test sets according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Table \@ref(tab:xtable), Infants: STATS; Adults EIG: *RMSE* = `r adult_best_full_resnet50_eig$mean_rmse`,$R^2$ = `r adult_best_full_resnet50_eig$mean_rsquared`; Adults KL: *RMSE* = `r adult_best_full_resnet50_kl$mean_rmse`,$R^2$ = `r adult_best_full_resnet50_kl$mean_rsquared`). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: *RMSE* = `r adult_best_full_resnet50_surprisal$mean_rmse`,$R^2$ = `r adult_best_full_resnet50_surprisal$mean_rsquared`). 
 
 ## Comparison with lesioned model 
 
-We also examined the importance of RANCH’s key assumption. To do so, we created two lesioned models: one model assumes each perceptual sample is noiseless (“No noise model”), and the other model assumes the sampling decision was random instead of based on the learning model (“No learning model”). Both lesioned models provided poor fits for the behavioral datasets (Table \@ref(tab:xtable)). This suggests that both the noisy perception assumption and the learning assumption were critical to RANCH’s performance.
+We tested the importance of two of RANCH's key assumptions by creating lesioned models. One assumes each perceptual sample is noiseless (``No noise model''), and the other assumes the sampling decision was random instead of based on the learning model (``No learning model''). Both lesioned models provided poor fits to the behavioral datasets (Table \@ref(tab:xtable)). Both the noisy perception assumption and the learning assumption appear to be critical to RANCH's performance.
+
 
 ## Parameter Interpretation / Developmental Comparison
 
@@ -306,7 +302,7 @@ One advantage of RANCH is the interpretability of its parameters. Beyond finding
 
 Using within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs. novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. \@ref(fig:conceptual)A & \@ref(fig:conceptual)B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. \@ref(fig:conceptual)C). 
 
-We next turn to test RANCH’s ability to make predictions in a novel dataset. 
+We next test whether RANCH’s can make predictions in a novel dataset. 
 
 
 ```{r infant_exp1_res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1, infant results"}
