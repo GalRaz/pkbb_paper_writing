@@ -48,11 +48,11 @@ infant_resnet50_nolearning_CV <- read_csv(here('data/infants/crossvalidation/res
 infant_resnet50_nonoise_CV <- read_csv(here('data/infants/crossvalidation/resnet50_nonoise_CV.csv'))
 infant_resnet50_surprisal_short_CV <- read_csv(here('data/infants/crossvalidation/resnet50_surprisal_short_CV.csv'))
 
-adult_kfold_resnet50_eig <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_eig.Rds"))
-adult_kfold_resnet50_kl <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_kl.Rds"))
-adult_kfold_resnet50_surprisal <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_surprisal.Rds"))
-adult_kfold_resnet50_nolearning <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_nolearning.Rds"))
-adult_kfold_resnet50_nonoise <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_nonoise.Rds"))
+adult_kfold_resnet50_eig <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_eig.Rds")) %>% mutate(mean_rmse = mean_rmse/1000)
+adult_kfold_resnet50_kl <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_kl.Rds")) %>% mutate(mean_rmse = mean_rmse/1000)
+adult_kfold_resnet50_surprisal <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_surprisal.Rds")) %>% mutate(mean_rmse = mean_rmse/1000)
+adult_kfold_resnet50_nolearning <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_nolearning.Rds")) %>% mutate(mean_rmse = mean_rmse/1000)
+adult_kfold_resnet50_nonoise <- readRDS(here("data/adults/kfold_fit/adult_kfold_resnet50_nonoise.Rds")) %>% mutate(mean_rmse = mean_rmse/1000)
 
 
 # exp1 full data comparison 
