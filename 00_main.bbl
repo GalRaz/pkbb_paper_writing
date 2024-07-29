@@ -1038,6 +1038,42 @@
       \field{title}{A multifactor model of infant preferences for novel and familiar stimuli.}
       \field{year}{1988}
     \endentry
+    \entry{kemp2008discovery}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=d3d5c11491b1f45f9d77946df28b87a9}{%
+           family={Kemp},
+           familyi={K\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod}}}%
+        {{hash=5c7ff02e1f8b4c4aa7bfddece14f23d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima B},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {National Acad Sciences}%
+      }
+      \strng{namehash}{760bfcf96b7487952b4eedbd50dc38f3}
+      \strng{fullhash}{760bfcf96b7487952b4eedbd50dc38f3}
+      \strng{fullhashraw}{760bfcf96b7487952b4eedbd50dc38f3}
+      \strng{bibnamehash}{760bfcf96b7487952b4eedbd50dc38f3}
+      \strng{authorbibnamehash}{760bfcf96b7487952b4eedbd50dc38f3}
+      \strng{authornamehash}{760bfcf96b7487952b4eedbd50dc38f3}
+      \strng{authorfullhash}{760bfcf96b7487952b4eedbd50dc38f3}
+      \strng{authorfullhashraw}{760bfcf96b7487952b4eedbd50dc38f3}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the National Academy of Sciences}
+      \field{number}{31}
+      \field{title}{The discovery of structural form}
+      \field{volume}{105}
+      \field{year}{2008}
+      \field{pages}{10687\bibrangedash 10692}
+      \range{pages}{6}
+    \endentry
     \entry{kersten2004object}{article}{}{}
       \name{author}{3}{}{%
         {{hash=11483b6572e8e202836243ba2583a645}{%
@@ -1189,6 +1225,35 @@
       \field{title}{ManyBabies 5: A large-scale investigation of the proposed shift from familiarity preference to novelty preference in infant looking time}
       \field{year}{2023}
     \endentry
+    \entry{lee2023empirical}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=6a0801ded8e8a26420c007109d31f32b}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Michael\bibnamedelima J},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=f5adec38464788debb31fcaf69a9337b}{%
+           family={DiCarlo},
+           familyi={D\bibinitperiod},
+           given={James\bibnamedelima J},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{80b1420ea7c5e93cb48eb6de067b5500}
+      \strng{fullhash}{80b1420ea7c5e93cb48eb6de067b5500}
+      \strng{fullhashraw}{80b1420ea7c5e93cb48eb6de067b5500}
+      \strng{bibnamehash}{80b1420ea7c5e93cb48eb6de067b5500}
+      \strng{authorbibnamehash}{80b1420ea7c5e93cb48eb6de067b5500}
+      \strng{authornamehash}{80b1420ea7c5e93cb48eb6de067b5500}
+      \strng{authorfullhash}{80b1420ea7c5e93cb48eb6de067b5500}
+      \strng{authorfullhashraw}{80b1420ea7c5e93cb48eb6de067b5500}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{bioRxiv}
+      \field{title}{An empirical assay of view-invariant object learning in humans and comparison with baseline image-computable models}
+      \field{year}{2023}
+    \endentry
     \entry{lee2022rapid}{thesis}{}{}
       \name{author}{1}{}{%
         {{hash=8bd64bf06da5d4f296f16171aed74dbe}{%
@@ -1251,6 +1316,37 @@
       \field{pages}{e1}
       \range{pages}{-1}
     \endentry
+    \entry{lindley1956measure}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=35a26fce45dd051715dac57b0bc59308}{%
+           family={Lindley},
+           familyi={L\bibinitperiod},
+           given={Dennis\bibnamedelima V},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Institute of Mathematical Statistics}%
+      }
+      \strng{namehash}{35a26fce45dd051715dac57b0bc59308}
+      \strng{fullhash}{35a26fce45dd051715dac57b0bc59308}
+      \strng{fullhashraw}{35a26fce45dd051715dac57b0bc59308}
+      \strng{bibnamehash}{35a26fce45dd051715dac57b0bc59308}
+      \strng{authorbibnamehash}{35a26fce45dd051715dac57b0bc59308}
+      \strng{authornamehash}{35a26fce45dd051715dac57b0bc59308}
+      \strng{authorfullhash}{35a26fce45dd051715dac57b0bc59308}
+      \strng{authorfullhashraw}{35a26fce45dd051715dac57b0bc59308}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Annals of Mathematical Statistics}
+      \field{number}{4}
+      \field{title}{On a measure of the information provided by an experiment}
+      \field{volume}{27}
+      \field{year}{1956}
+      \field{pages}{986\bibrangedash 1005}
+      \range{pages}{20}
+    \endentry
     \entry{oaksford1994rational}{article}{}{}
       \name{author}{2}{}{%
         {{hash=aafa17fb35a5123e14e0c21659088821}{%
@@ -1287,42 +1383,41 @@
       \field{pages}{608}
       \range{pages}{1}
     \endentry
-    \entry{orhan2020self}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=9f1fd0b4e1fa956583c0c15b187385c8}{%
+    \entry{orhan2024learning}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=ee238a78ec0cdd9ca34dc6742b8a74fd}{%
            family={Orhan},
            familyi={O\bibinitperiod},
-           given={Emin},
-           giveni={E\bibinitperiod}}}%
-        {{hash=d74d11959ada034c4131a4944659b8c7}{%
-           family={Gupta},
-           familyi={G\bibinitperiod},
-           given={Vaibhav},
-           giveni={V\bibinitperiod}}}%
+           given={A\bibnamedelima Emin},
+           giveni={A\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
         {{hash=8449df2d22be789ac9cc32444c31921e}{%
            family={Lake},
            familyi={L\bibinitperiod},
            given={Brenden\bibnamedelima M},
            giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
       }
-      \strng{namehash}{a3a23d94e66ba2678e115c667a1c29dc}
-      \strng{fullhash}{a3a23d94e66ba2678e115c667a1c29dc}
-      \strng{fullhashraw}{a3a23d94e66ba2678e115c667a1c29dc}
-      \strng{bibnamehash}{a3a23d94e66ba2678e115c667a1c29dc}
-      \strng{authorbibnamehash}{a3a23d94e66ba2678e115c667a1c29dc}
-      \strng{authornamehash}{a3a23d94e66ba2678e115c667a1c29dc}
-      \strng{authorfullhash}{a3a23d94e66ba2678e115c667a1c29dc}
-      \strng{authorfullhashraw}{a3a23d94e66ba2678e115c667a1c29dc}
+      \list{publisher}{1}{%
+        {Nature Publishing Group UK London}%
+      }
+      \strng{namehash}{e95b70a4bbd96b2938e1fc532f51620c}
+      \strng{fullhash}{e95b70a4bbd96b2938e1fc532f51620c}
+      \strng{fullhashraw}{e95b70a4bbd96b2938e1fc532f51620c}
+      \strng{bibnamehash}{e95b70a4bbd96b2938e1fc532f51620c}
+      \strng{authorbibnamehash}{e95b70a4bbd96b2938e1fc532f51620c}
+      \strng{authornamehash}{e95b70a4bbd96b2938e1fc532f51620c}
+      \strng{authorfullhash}{e95b70a4bbd96b2938e1fc532f51620c}
+      \strng{authorfullhashraw}{e95b70a4bbd96b2938e1fc532f51620c}
       \field{sortinit}{O}
       \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Advances in Neural Information Processing Systems}
-      \field{title}{Self-supervised learning through the eyes of a child}
-      \field{volume}{33}
-      \field{year}{2020}
-      \field{pages}{9960\bibrangedash 9971}
-      \range{pages}{12}
+      \field{journaltitle}{Nature Machine Intelligence}
+      \field{number}{3}
+      \field{title}{Learning high-level visual representations from a child’s perspective without strong inductive biases}
+      \field{volume}{6}
+      \field{year}{2024}
+      \field{pages}{271\bibrangedash 283}
+      \range{pages}{13}
     \endentry
     \entry{paulus2022should}{article}{}{}
       \name{author}{1}{}{%
@@ -1608,6 +1703,88 @@
       \field{pages}{413\bibrangedash 423}
       \range{pages}{11}
     \endentry
+    \entry{scott2017lookit}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=a4055b860bd29fc73153ec608753a619}{%
+           family={Scott},
+           familyi={S\bibinitperiod},
+           given={Kimberly},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6bc603331efc2a046e153b6392ac3348}{%
+           family={Schulz},
+           familyi={S\bibinitperiod},
+           given={Laura},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press One Rogers Street, Cambridge, MA 02142-1209, USA journals-info~…}%
+      }
+      \strng{namehash}{58464f17d9eedbf1f9593454785966e2}
+      \strng{fullhash}{58464f17d9eedbf1f9593454785966e2}
+      \strng{fullhashraw}{58464f17d9eedbf1f9593454785966e2}
+      \strng{bibnamehash}{58464f17d9eedbf1f9593454785966e2}
+      \strng{authorbibnamehash}{58464f17d9eedbf1f9593454785966e2}
+      \strng{authornamehash}{58464f17d9eedbf1f9593454785966e2}
+      \strng{authorfullhash}{58464f17d9eedbf1f9593454785966e2}
+      \strng{authorfullhashraw}{58464f17d9eedbf1f9593454785966e2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Open Mind}
+      \field{number}{1}
+      \field{title}{Lookit (part 1): A new online platform for developmental research}
+      \field{volume}{1}
+      \field{year}{2017}
+      \field{pages}{4\bibrangedash 14}
+      \range{pages}{11}
+    \endentry
+    \entry{tenenbaum2011grow}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=5c7ff02e1f8b4c4aa7bfddece14f23d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima B},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=d3d5c11491b1f45f9d77946df28b87a9}{%
+           family={Kemp},
+           familyi={K\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod}}}%
+        {{hash=15f19cfb916ba0b8afb494f250ea80a2}{%
+           family={Griffiths},
+           familyi={G\bibinitperiod},
+           given={Thomas\bibnamedelima L},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=17c6b9edbad988db7d426fba005cecff}{%
+           family={Goodman},
+           familyi={G\bibinitperiod},
+           given={Noah\bibnamedelima D},
+           giveni={N\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Association for the Advancement of Science}%
+      }
+      \strng{namehash}{e9397ca2bff9dfaec31593d9fbe9439c}
+      \strng{fullhash}{0c08f34d3d408f33c0cb52a309397d19}
+      \strng{fullhashraw}{0c08f34d3d408f33c0cb52a309397d19}
+      \strng{bibnamehash}{e9397ca2bff9dfaec31593d9fbe9439c}
+      \strng{authorbibnamehash}{e9397ca2bff9dfaec31593d9fbe9439c}
+      \strng{authornamehash}{e9397ca2bff9dfaec31593d9fbe9439c}
+      \strng{authorfullhash}{0c08f34d3d408f33c0cb52a309397d19}
+      \strng{authorfullhashraw}{0c08f34d3d408f33c0cb52a309397d19}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{science}
+      \field{number}{6022}
+      \field{title}{How to grow a mind: Statistics, structure, and abstraction}
+      \field{volume}{331}
+      \field{year}{2011}
+      \field{pages}{1279\bibrangedash 1285}
+      \range{pages}{7}
+    \endentry
     \entry{tenenbaum1999bayesian}{thesis}{}{}
       \name{author}{1}{}{%
         {{hash=65eb8d91c7f9d62f28d64f4be3c0ecf8}{%
@@ -1725,7 +1902,6 @@
   \enddatalist
   \missing{FIXME}
   \missing{erel2022icatcher}
-  \missing{scott2017lookit}
 \endrefsection
 \endinput
 

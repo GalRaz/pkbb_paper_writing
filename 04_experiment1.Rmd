@@ -82,7 +82,7 @@ saveRDS(model_3c, here("cached_models/infants/model_3c.rds"))
 #Results figure
 data = read_csv(here('data/results_plots/exp1_data_plot.csv'))
 sim_infants = read_csv(here('data/results_plots/exp1_infant_sim_plot.csv'))
-sim_adults = read_csv(here('data/results_plots/exp1_adult_sim_plot.csv'))
+sim_adults = read_csv(here('data/results_plots/exp1_adult_sim_plot.csv')) 
 
 facet_labels <- tibble(
   type = c("EIG","KL","Surprisal", "No Learning", "No Noise"),
@@ -99,12 +99,9 @@ adult_bp <- data %>%
                geom = "pointrange",
                position = position_dodge(width = .3)) +
   stat_summary(geom = "line",
-               position = position_dodge(width = .3)) +
-  # geom_smooth(method = "loess") + 
-  #facet_wrap(~group, scale = "free_y") + 
+               position = position_dodge(width = .3))
   theme_few() + 
   scale_y_log10() + 
-  #coord_cartesian(ylim = c(0, 4)) + 
   ylab("Looking time (s)") +
   xlab("Trial Number") + 
   ggthemes::scale_color_solarized(name = "Trial type") +
@@ -123,10 +120,9 @@ adult_simulation_plot <- ggplot() +
     geom = "line") + 
   geom_text(data = facet_labels, aes(x = 6, label = label), y = Inf, vjust = 2)+ 
    scale_y_log10() +
-  #coord_cartesian(ylim= c(0, 4)) +
-  facet_wrap(~type)+
+  facet_wrap(~factor(type, levels=c("EIG","KL","Surprisal", "No Learning", "No Noise"))) +
   theme(
-    legend.position = c(0.85, 0.25), # c(0,0) bottom left, c(1,1) top-right.
+    legend.position = c(0.85, 0.25), 
     legend.background = element_rect(fill = "white", colour = NA) 
   ) + 
   ylab("") + 
@@ -146,9 +142,6 @@ infant_bp <- data %>%
                position = position_dodge(width = .3)) +
   stat_summary(geom = "line",
                position = position_dodge(width = .3)) +
-  # geom_smooth(method = "loess") + 
-  #facet_wrap(~group, scale = "free_y") + 
-  #coord_cartesian(ylim = c(0, 25)) + 
   theme_few() + 
   scale_y_log10() + 
   ylab("Looking time (s)") +
@@ -168,12 +161,11 @@ infant_simulation_plot <- ggplot() +
     fun.data = mean_cl_boot, na.rm = TRUE, 
     geom = "line") + 
   geom_text(data = facet_labels, aes(x = 5, label = label), y = Inf, vjust = 2)+ 
-  #coord_cartesian(ylim= c(0, 25)) +
   scale_y_log10()+ 
   scale_x_continuous(breaks = seq(0, 9, 1)) + 
-  facet_wrap(~type)+
+  facet_wrap((~factor(type, levels=c("EIG","KL","Surprisal", "No Learning", "No Noise")))+
   theme(
-    legend.position = c(0.85, 0.25), # c(0,0) bottom left, c(1,1) top-right.
+    legend.position = c(0.85, 0.25), 
     legend.background = element_rect(fill = "white", colour = NA) 
   ) + 
   ylab("") + 
@@ -194,14 +186,14 @@ ggsave(here('figs/adult_exp1_res.png'),adult_res_fig, width = 10, height = 5)
 
 ```{r, include=FALSE}
 # clean up stats models
-model_1a_df <- tidy(model_1a) %>% mutate_if(is.numeric, round, 2)
-model_2a_df <- tidy(model_2a) %>% mutate_if(is.numeric, round, 2)
-model_2b_df <- tidy(model_2b) %>%  mutate_if(is.numeric, round, 2)
-model_2c_df <- tidy(model_2c) %>%  mutate_if(is.numeric, round, 2)
-model_2d_df <- tidy(model_2d) %>%  mutate_if(is.numeric, round, 2)
-model_3a_df <-tidy(model_3a) %>%  mutate_if(is.numeric, round, 2)
-model_3b_df <-tidy(model_3b) %>%  mutate_if(is.numeric, round, 2)
-model_3c_df <-tidy(model_3c) %>%  mutate_if(is.numeric, round, 2)
+model_1a_df <- tidy(model_1a) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+model_2a_df <- tidy(model_2a) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+model_2b_df <- tidy(model_2b) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+model_2c_df <- tidy(model_2c) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+model_2d_df <- tidy(model_2d) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+model_3a_df <-tidy(model_3a) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+model_3b_df <-tidy(model_3b) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+model_3c_df <-tidy(model_3c) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
 
 exp1_adult_model_df <- exp1_adult_model %>%  tidy() %>%  mutate_if(is.numeric, round, 2)
 
@@ -211,7 +203,7 @@ exp1_adult_model_df <- exp1_adult_model %>%  tidy() %>%  mutate_if(is.numeric, r
 ```{r eval=FALSE, include=FALSE}
 # Set up adult model 
 
-exp1_adult_model_d <-  exp1_adult_d%>% mutate(is_first_trial = trial_number == 1, 
+exp1_adult_model_d <-  exp1_adult_d %>% mutate(is_first_trial = trial_number == 1, 
                         block_number = block_id + 1)
 
 # m0 <- lmer(log(total_rt) ~ trial_number + is_first_trial + trial_number * trial_type + log(block_number) + (trial_number * trial_type | prolific_id) + (is_first_trial + trial_number | prolific_id), data = exp1_adult_model_d)
@@ -268,7 +260,7 @@ grid::grid.raster(img)
 
 The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Infants clearly dishabituated on trials longer exposures (8 exposures: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, 9 exposures: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. \@ref(fig:conceptual)A&B).
 
-RANCH predicted habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) and Pearson correlation ($r$) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used K-fold cross-validation, computing the average RMSE and $r$ across held-out samples. This procedure was conducted separately for both infant and adult data. Table \ref{tab:results1} shows these metrics. 
+RANCH predicted habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used K-fold cross-validation, computing the average RMSE across held-out samples. This procedure was conducted separately for both infant and adult data. Table \ref{tab:results1} shows these metrics. 
 
 
 ```{r xtable, results='asis', echo=FALSE}
@@ -276,9 +268,27 @@ RANCH predicted habituation and dishabituation in both infants and adults. To co
 #table for CV stats
 CV_table = tibble(`Linking Hypothesis` =  c("EIG", "KL", "Surprisal", "No learning", "No noise"))
 
-CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(infant_resnet50_EIG_CV$rmse), mean(infant_resnet50_KL_CV$rmse), mean(infant_resnet50_surprisal_short_CV$rmse), mean(infant_resnet50_nolearning_CV$rmse), mean(infant_resnet50_nonoise_CV$rmse))) %>% mutate(`Infants: Best RMSE` = c(min(infant_resnet50_EIG_CV$rmse), min(infant_resnet50_KL_CV$rmse), min(infant_resnet50_surprisal_short_CV$rmse), min(infant_resnet50_nolearning_CV$rmse), min(infant_resnet50_nonoise_CV$rmse)))
+CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(infant_resnet50_EIG_CV$rmse),                                                                                            mean(infant_resnet50_KL_CV$rmse),
+                                                        mean(infant_resnet50_surprisal_short_CV$rmse), 
+                                                        mean(infant_resnet50_nolearning_CV$rmse),
+                                                        mean(infant_resnet50_nonoise_CV$rmse)), 
+                               `Infants: Best RMSE` = c(min(infant_resnet50_EIG_CV$rmse), 
+                                                        min(infant_resnet50_KL_CV$rmse),
+                                                        min(infant_resnet50_surprisal_short_CV$rmse),
+                                                        min(infant_resnet50_nolearning_CV$rmse),
+                                                        min(infant_resnet50_nonoise_CV$rmse)),
+                                `Adults: Mean RMSE` = c(mean(adult_kfold_resnet50_eig$mean_rmse),
+                                                        mean(adult_kfold_resnet50_kl$mean_rmse),
+                                                        mean(adult_kfold_resnet50_surprisal$mean_rmse),
+                                                        mean(adult_kfold_resnet50_nolearning$mean_rmse),
+                                                        mean(adult_kfold_resnet50_nonoise$mean_rmse)),
+                                `Adults: Best RMSE` = c(min(adult_kfold_resnet50_eig$mean_rmse),
+                                                        min(adult_kfold_resnet50_kl$mean_rmse),
+                                                        min(adult_kfold_resnet50_surprisal$mean_rmse),
+                                                        min(adult_kfold_resnet50_nolearning$mean_rmse),
+                                                        min(adult_kfold_resnet50_nonoise$mean_rmse)))
 
-table <- xtable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)), caption = "Table 1: Cross-validated fit metrics for RANCH and infant looking times. Mean RMSE is averaged across all parameter values, while best RMSE reflects the single best-performing parameter values.")
+table <- xtable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)), caption = "Cross-validated RMSE across linking hypotheses and lesioned models. Mean RMSE is averaged across all parameter values, while best RMSE reflects the single best-performing parameter values.")
 
 print.xtable(table, include.rownames = FALSE, comment = FALSE,
               size="\\fontsize{8pt}{9pt}\\selectfont")
@@ -287,7 +297,7 @@ print.xtable(table, include.rownames = FALSE, comment = FALSE,
 
 ## Comparison with alternative linking hypotheses 
 
-EIG is the optimal method for making sampling decisions [@lindley1956measure]. We compared this method to decision-making metrics proposed in prior literature including Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying "learning progress", while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants’ looking behaviors [@kidd2012goldilocks; @poli2020infants]. We then repeated the cross-validation process using these linking hypotheses and compared the model’s performance based on the parameter that provides the best average fits to the test sets according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other (Table \@ref(tab:xtable), Infants: STATS; Adults EIG: *RMSE* = `r adult_best_full_resnet50_eig$mean_rmse`,$R^2$ = `r adult_best_full_resnet50_eig$mean_rsquared`; Adults KL: *RMSE* = `r adult_best_full_resnet50_kl$mean_rmse`,$R^2$ = `r adult_best_full_resnet50_kl$mean_rsquared`). But surprisal-based RANCH performed worse in both populations (Infants: STATS; Adults: *RMSE* = `r adult_best_full_resnet50_surprisal$mean_rmse`,$R^2$ = `r adult_best_full_resnet50_surprisal$mean_rsquared`). 
+EIG is the optimal method for making sampling decisions [@lindley1956measure]. We compared this method to decision-making metrics proposed in prior literature including Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying "learning progress", while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants’ looking behaviors [@kidd2012goldilocks; @poli2020infants]. We then repeated the cross-validation process using these linking hypotheses and compared the model’s performance based on the parameter that provides the best average fits to the test sets according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other but surprisal-based RANCH performed worse in both populations (Table \@ref(tab:xtable)). 
 
 ## Comparison with lesioned model 
 

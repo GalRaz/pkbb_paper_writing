@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.9)  10 JUL 2024 16:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.9)  30 JUL 2024 00:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -691,13 +691,6 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                scott2017lookit
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
 )
 Package biblatex Info: Reference section=0 on input line 86.
 Package biblatex Info: Reference segment=0 on input line 86.
@@ -732,41 +725,41 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 88.
 (/Users/galraz/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+<00_main_files/figure-latex/conceptual-1.pdf, id=9, 1445.4pt x 505.89pt>
+File: 00_main_files/figure-latex/conceptual-1.pdf Graphic file (type pdf)
+<use 00_main_files/figure-latex/conceptual-1.pdf>
+Package pdftex.def Info: 00_main_files/figure-latex/conceptual-1.pdf  used on input line 101.
+(pdftex.def)             Requested size: 469.74944pt x 164.4123pt.
+
 
 [1
 
 {/Users/galraz/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/galraz/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
-<00_main_files/figure-latex/conceptual-1.pdf, id=48, 1445.4pt x 505.89pt>
-File: 00_main_files/figure-latex/conceptual-1.pdf Graphic file (type pdf)
-<use 00_main_files/figure-latex/conceptual-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/conceptual-1.pdf  used on input line 113.
-(pdftex.def)             Requested size: 469.74944pt x 164.4123pt.
 
+[2 <./00_main_files/figure-latex/conceptual-1.pdf>]
 
-[2]
-
-[3 <./00_main_files/figure-latex/conceptual-1.pdf>]
+[3]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 142.
+(Font)              <10> on input line 135.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 142.
+(Font)              <7> on input line 135.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 142.
+(Font)              <5> on input line 135.
 
 
 [4{/Users/galraz/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/galraz/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/galraz/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-<00_main_files/figure-latex/RANCH-1.pdf, id=122, 1445.4pt x 505.89pt>
+<00_main_files/figure-latex/RANCH-1.pdf, id=131, 1445.4pt x 505.89pt>
 File: 00_main_files/figure-latex/RANCH-1.pdf Graphic file (type pdf)
 <use 00_main_files/figure-latex/RANCH-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/RANCH-1.pdf  used on input line 153.
+Package pdftex.def Info: 00_main_files/figure-latex/RANCH-1.pdf  used on input line 151.
 (pdftex.def)             Requested size: 469.74944pt x 164.4123pt.
 
 
 [5 <./00_main_files/figure-latex/RANCH-1.pdf>]
-<00_main_files/figure-latex/design-1.pdf, id=139, 1445.4pt x 1011.78pt>
+<00_main_files/figure-latex/design-1.pdf, id=151, 1445.4pt x 1011.78pt>
 File: 00_main_files/figure-latex/design-1.pdf Graphic file (type pdf)
 <use 00_main_files/figure-latex/design-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/design-1.pdf  used on input line 197.
+Package pdftex.def Info: 00_main_files/figure-latex/design-1.pdf  used on input line 191.
 (pdftex.def)             Requested size: 469.74944pt x 328.8246pt.
 
 
@@ -774,125 +767,150 @@ Package pdftex.def Info: 00_main_files/figure-latex/design-1.pdf  used on input 
 
 [7 <./00_main_files/figure-latex/design-1.pdf>]
 
-LaTeX Warning: Reference `tab:xtable' on page 8 undefined on input line 234.
+LaTeX Warning: Reference `tab:results1' on page 8 undefined on input line 200.
+
+
+LaTeX Warning: Reference `tab:xtable' on page 8 undefined on input line 223.
+
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 228.
+(/Users/galraz/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 228.
+(/Users/galraz/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+LaTeX Warning: Reference `tab:xtable' on page 8 undefined on input line 228.
 
 
 
-[8]
-<00_main_files/figure-latex/unnamed-chunk-31-1.pdf, id=187, 1445.4pt x 722.7pt>
-File: 00_main_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type pdf)
-<use 00_main_files/figure-latex/unnamed-chunk-31-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/unnamed-chunk-31-1.pdf  used on input line 250.
+[8{/Users/galraz/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+<00_main_files/figure-latex/infant_exp1_res-1.pdf, id=202, 1445.4pt x 722.7pt>
+File: 00_main_files/figure-latex/infant_exp1_res-1.pdf Graphic file (type pdf)
+<use 00_main_files/figure-latex/infant_exp1_res-1.pdf>
+Package pdftex.def Info: 00_main_files/figure-latex/infant_exp1_res-1.pdf  used on input line 244.
 (pdftex.def)             Requested size: 469.74944pt x 234.87471pt.
-<00_main_files/figure-latex/unnamed-chunk-32-1.pdf, id=188, 1445.4pt x 722.7pt>
-File: 00_main_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type pdf)
-<use 00_main_files/figure-latex/unnamed-chunk-32-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/unnamed-chunk-32-1.pdf  used on input line 256.
+<00_main_files/figure-latex/adult_exp1_res-1.pdf, id=203, 1445.4pt x 722.7pt>
+File: 00_main_files/figure-latex/adult_exp1_res-1.pdf Graphic file (type pdf)
+<use 00_main_files/figure-latex/adult_exp1_res-1.pdf>
+Package pdftex.def Info: 00_main_files/figure-latex/adult_exp1_res-1.pdf  used on input line 250.
 (pdftex.def)             Requested size: 469.74944pt x 234.87471pt.
 
 
-[9 <./00_main_files/figure-latex/unnamed-chunk-31-1.pdf>]
+[9 <./00_main_files/figure-latex/infant_exp1_res-1.pdf>]
 
-[10 <./00_main_files/figure-latex/unnamed-chunk-32-1.pdf>]
+[10 <./00_main_files/figure-latex/adult_exp1_res-1.pdf>]
+<00_main_files/figure-latex/infant_exp2_res-1.pdf, id=238, 1445.4pt x 722.7pt>
+File: 00_main_files/figure-latex/infant_exp2_res-1.pdf Graphic file (type pdf)
+<use 00_main_files/figure-latex/infant_exp2_res-1.pdf>
+Package pdftex.def Info: 00_main_files/figure-latex/infant_exp2_res-1.pdf  used on input line 283.
+(pdftex.def)             Requested size: 469.74944pt x 234.87471pt.
+<00_main_files/figure-latex/adult_exp2_res-1.pdf, id=239, 1445.4pt x 722.7pt>
+File: 00_main_files/figure-latex/adult_exp2_res-1.pdf Graphic file (type pdf)
+<use 00_main_files/figure-latex/adult_exp2_res-1.pdf>
+Package pdftex.def Info: 00_main_files/figure-latex/adult_exp2_res-1.pdf  used on input line 289.
+(pdftex.def)             Requested size: 469.74944pt x 234.87471pt.
 
-[11]
 
-[12]
+[11 <./00_main_files/figure-latex/infant_exp2_res-1.pdf>]
+
+[12 <./00_main_files/figure-latex/adult_exp2_res-1.pdf>]
 
 [13]
 
 [14]
 
-LaTeX Warning: Citation 'FIXME' on page 15 undefined on input line 366.
+LaTeX Warning: Citation 'FIXME' on page 15 undefined on input line 377.
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 366.
-(/Users/galraz/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+
 
 [15]
 
-LaTeX Warning: Citation 'scott2017lookit' on page 16 undefined on input line 397.
+[16]
+
+LaTeX Warning: Citation 'erel2022icatcher' on page 17 undefined on input line 423.
 
 
-LaTeX Warning: Citation 'erel2022icatcher' on page 16 undefined on input line 412.
-
-
-Underfull \hbox (badness 1057) in paragraph at lines 419--420
+Underfull \hbox (badness 1057) in paragraph at lines 430--431
 []\T1/lmr/m/n/10 For Ex-per-i-ment 1, we ran a \T1/lmtt/m/n/10 lme4 \T1/lmr/m/n/10 model with the fol-low-ing spec-i-fi-ca-tion: \T1/lmtt/m/n/10 log(looking time) ~
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--420
+Underfull \hbox (badness 10000) in paragraph at lines 430--431
 \T1/lmtt/m/n/10 poly(exposure duration, 2) * test type [identity or background] + log(block number) +
  []
 
 
 
-[16]
-
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 452--453
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
 \T1/lmtt/m/n/10 trial_type + log(block_number) + (trial_number * trial_type | subject) + (is_first_trial
  []
 
 
-Underfull \hbox (badness 1571) in paragraph at lines 454--455
+Underfull \hbox (badness 1571) in paragraph at lines 465--466
 \T1/lmr/m/n/10 par-tic-u-lar model spec-i-fi-ca-tion is as fol-lows: \T1/lmtt/m/n/10 log(total_rt) $\OMS/lmsy/m/n/10 ^^X$ \T1/lmtt/m/n/10 trial_number +  is_first_trial
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--455
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 \T1/lmtt/m/n/10 +  (trial_number + is_first_trial) * stimulus_number + (trial_number + is_first_trial)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--455
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 \T1/lmtt/m/n/10 * stimulus_pose +(trial_number + is_first_trial) * stimulus_animacy + (trial_number +
  []
 
-<00_main_files/figure-latex/parameter_robustness-1.pdf, id=343, 1445.4pt x 505.89pt>
+<00_main_files/figure-latex/goldilocks_explanation-1.pdf, id=378, 722.7pt x 361.35pt>
+File: 00_main_files/figure-latex/goldilocks_explanation-1.pdf Graphic file (type pdf)
+<use 00_main_files/figure-latex/goldilocks_explanation-1.pdf>
+Package pdftex.def Info: 00_main_files/figure-latex/goldilocks_explanation-1.pdf  used on input line 477.
+(pdftex.def)             Requested size: 469.76045pt x 234.88023pt.
+<00_main_files/figure-latex/parameter_robustness-1.pdf, id=379, 1445.4pt x 505.89pt>
 File: 00_main_files/figure-latex/parameter_robustness-1.pdf Graphic file (type pdf)
 <use 00_main_files/figure-latex/parameter_robustness-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/parameter_robustness-1.pdf  used on input line 466.
+Package pdftex.def Info: 00_main_files/figure-latex/parameter_robustness-1.pdf  used on input line 488.
 (pdftex.def)             Requested size: 469.74944pt x 164.4123pt.
-<00_main_files/figure-latex/wrong_scaling-1.pdf, id=344, 1445.4pt x 505.89pt>
+
+
+[19]
+
+[20 <./00_main_files/figure-latex/goldilocks_explanation-1.pdf> <./00_main_files/figure-latex/parameter_robustness-1.pdf>]
+<00_main_files/figure-latex/wrong_scaling-1.pdf, id=409, 1445.4pt x 505.89pt>
 File: 00_main_files/figure-latex/wrong_scaling-1.pdf Graphic file (type pdf)
 <use 00_main_files/figure-latex/wrong_scaling-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/wrong_scaling-1.pdf  used on input line 477.
+Package pdftex.def Info: 00_main_files/figure-latex/wrong_scaling-1.pdf  used on input line 499.
 (pdftex.def)             Requested size: 469.74944pt x 164.4123pt.
-
-
-[18]
-
-[19 <./00_main_files/figure-latex/parameter_robustness-1.pdf> <./00_main_files/figure-latex/wrong_scaling-1.pdf>]
-<00_main_files/figure-latex/parameter_interpretation-1.pdf, id=375, 722.7pt x 361.35pt>
+<00_main_files/figure-latex/parameter_interpretation-1.pdf, id=410, 722.7pt x 361.35pt>
 File: 00_main_files/figure-latex/parameter_interpretation-1.pdf Graphic file (type pdf)
 <use 00_main_files/figure-latex/parameter_interpretation-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/parameter_interpretation-1.pdf  used on input line 498.
+Package pdftex.def Info: 00_main_files/figure-latex/parameter_interpretation-1.pdf  used on input line 520.
 (pdftex.def)             Requested size: 469.76045pt x 234.88023pt.
-
-
-[20 <./00_main_files/figure-latex/parameter_interpretation-1.pdf>]
-<00_main_files/figure-latex/embedding_distances-1.pdf, id=391, 722.7pt x 361.35pt>
+<00_main_files/figure-latex/embedding_distances-1.pdf, id=411, 722.7pt x 361.35pt>
 File: 00_main_files/figure-latex/embedding_distances-1.pdf Graphic file (type pdf)
 <use 00_main_files/figure-latex/embedding_distances-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/embedding_distances-1.pdf  used on input line 509.
+Package pdftex.def Info: 00_main_files/figure-latex/embedding_distances-1.pdf  used on input line 531.
 (pdftex.def)             Requested size: 469.76045pt x 234.88023pt.
-<00_main_files/figure-latex/control_exp-1.pdf, id=392, 722.7pt x 361.35pt>
+<00_main_files/figure-latex/control_exp-1.pdf, id=412, 722.7pt x 361.35pt>
 File: 00_main_files/figure-latex/control_exp-1.pdf Graphic file (type pdf)
 <use 00_main_files/figure-latex/control_exp-1.pdf>
-Package pdftex.def Info: 00_main_files/figure-latex/control_exp-1.pdf  used on input line 517.
+Package pdftex.def Info: 00_main_files/figure-latex/control_exp-1.pdf  used on input line 539.
 (pdftex.def)             Requested size: 469.76045pt x 234.88023pt.
 
 
-[21 <./00_main_files/figure-latex/embedding_distances-1.pdf>]
+[21 <./00_main_files/figure-latex/wrong_scaling-1.pdf>]
 
-[22 <./00_main_files/figure-latex/control_exp-1.pdf>]
+[22 <./00_main_files/figure-latex/parameter_interpretation-1.pdf> <./00_main_files/figure-latex/embedding_distances-1.pdf>]
 
-[23]
+[23 <./00_main_files/figure-latex/control_exp-1.pdf>]
 
-[24] (./00_main.aux)
+[24]
+
+[25] (./00_main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
@@ -905,18 +923,18 @@ Package logreq Info: Writing requests to '00_main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19163 strings out of 475544
- 338411 string characters out of 5776766
- 1942905 words of memory out of 5000000
- 41378 multiletter control sequences out of 15000+600000
- 617671 words of font info for 80 fonts, out of 8000000 for 9000
+ 19252 strings out of 475544
+ 341354 string characters out of 5776766
+ 1943905 words of memory out of 5000000
+ 41450 multiletter control sequences out of 15000+600000
+ 617976 words of font info for 81 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 77i,8n,81p,1578b,1792s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on 00_main.pdf (24 pages, 3036419 bytes).
+ 77i,8n,81p,1556b,1821s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></Users/galraz/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on 00_main.pdf (25 pages, 3541916 bytes).
 PDF statistics:
- 665 PDF objects out of 1000 (max. 8388607)
- 577 compressed objects within 6 object streams
- 182 named destinations out of 1000 (max. 500000)
- 395 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 725 PDF objects out of 1000 (max. 8388607)
+ 621 compressed objects within 7 object streams
+ 194 named destinations out of 1000 (max. 500000)
+ 418 words of extra memory for PDF output out of 10000 (max. 10000000)
 
