@@ -30,14 +30,15 @@ zoom_d <- read_csv(here("data/infants/exp2_zoom.csv")) %>% select(subject_num, L
 lookit_d <- read_csv(here("data/infants/exp2_lookit.csv")) %>% select(subject_num, LT, violation_type, block_num, exclude) %>% rename(test_type = violation_type) %>% mutate(dataset = "lookit") %>% filter(!exclude, !is.na(LT))
 
 # rowbind the dataset 
-infant_exp2_data = rbind(zoom_d, lookit_d)
+infant_exp2_data = rbind(zoom_d, lookit_d) 
+
 
 # stats model
 infant_exp2_data$test_type =  relevel(as.factor(infant_exp2_data$test_type), ref = "background")
 
 infant_exp2_data = infant_exp2_data %>% mutate(is_violation = ifelse(test_type == 'background', 'background', 'novel'))
 
-combined_model <- lmer(log(LT) ~ log(block_num) + test_type + (1|subject_num) , data = infant_exp2_data %>% filter(LT > 2))
+combined_model <- lmer(log(LT) ~ log(block_num) + test_type + dataset + (1|subject_num) , data = infant_exp2_data %>% filter(LT > 2))
 
 model_combined <- tidy(combined_model) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
 
@@ -52,7 +53,13 @@ model_comparison = anova(combined_model2, combined_model) %>% tidy() %>% mutate(
 # RANCH analysis with combined dataset
 
 # get condition averages
-infant_exp2_data = infant_exp2_data %>% group_by(test_type) %>% summarize(infant_lt = mean(LT)) 
+infant_exp2_data = infant_exp2_data %>% group_by(test_type) %>% 
+  summarize(infant_lt = mean(LT), count = n(),
+              sd_lt = sd(LT),
+              ub_lt = infant_lt + 0.5*1.96 * (sd_lt /(count ** .5)),
+              lb_lt = infant_lt - 0.5*1.96 * (sd_lt /(count ** .5))) 
+
+rbind(zoom_d, lookit_d)  %>% ggplot(aes(x = test_type, y = LT)) + stat_summary()
 
 data_to_fit <- infant_exp2_model %>% 
   left_join(infant_exp2_data, by = c("test_type"))
@@ -94,6 +101,7 @@ adult_generalization_rmse <- rmse(scaled_data$adult_lt, scaled_data$adult_lt)
 ```{r, include=FALSE, eval=FALSE}
 
 sim_infants = read_csv(here('data/results_plots/exp2_infant_plot.csv'))
+
 sim_adults = read_csv(here('data/results_plots/exp2_adult_plot.csv'))
 
 adult_res_fig = sim_adults %>%  ggplot(aes(x = trial_number, y = LT/1000, ymin = lb_lt/1000, ymax = ub_lt/1000, color = trial_type)) + 
@@ -104,7 +112,7 @@ adult_res_fig = sim_adults %>%  ggplot(aes(x = trial_number, y = LT/1000, ymin =
   ylab("Looking time (sec) / Samples") + 
   xlab("Trial number")
 
-infant_res_fig = sim_infants %>% 
+infant_res_fig = sim_infants %>% mutate(trial_type = factor(trial_type, levels = c("familiar", "pose","identity", "number", "animacy"))) %>%
   ggplot(aes(x = trial_type, y = LT, ymin = lb_lt, ymax = ub_lt, color = trial_type)) + 
   geom_pointrange(position = position_dodge(width = .2)) +
   geom_line(position = position_dodge(width = .2))+
