@@ -1,4 +1,5 @@
 ```{r, include=FALSE}
+
 # sample sizes & ages
 n_zoom = exp2_zoom_infant_d %>% pull(subject_num) %>% unique() %>% length()
 m_zoom_age = exp2_zoom_infant_d %>% group_by(subject_num) %>% summarize(age = mean(age)) %>% pull(age) %>% mean() %>% round(2)
@@ -19,7 +20,7 @@ model_lookit <- tidy(model_lookit) %>% mutate(across(where(is.numeric) & !c("p.v
 ```
 
 ```{r, include=FALSE}
-# Linear stats models for combined datasets
+# Infant stats models for combined datasets
 
 # infants model & data
 infant_exp2_model <- read_csv(here("data/infants/generalization/infant_generalization.csv")) %>% group_by(trial_type) %>% summarize(model_lt = mean(mean_sample)) %>% rename(test_type = trial_type)
@@ -45,6 +46,18 @@ model_combined <- tidy(combined_model) %>% mutate(across(where(is.numeric) & !c(
 combined_model2 <- lmer(log(LT) ~ log(block_num) + is_violation + (1|subject_num) , data = infant_exp2_data %>% filter(LT > 2))
 
 model_comparison = anova(combined_model2, combined_model) %>% tidy() %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+
+
+```
+
+```{r} 
+# Adult stats
+lmer_background_baseline <- readRDS(here("cached_models/adults/lmer_background_baseline.Rds")) %>% mutate(across(is.numeric, round, 2))
+lmer_animacy_baseline <- readRDS(here("cached_models/adults/lmer_animacy_baseline.Rds")) %>% mutate(across(is.numeric, round, 2))
+lmer_pose_baseline <- readRDS(here("cached_models/adults/lmer_pose_baseline.Rds")) %>% mutate(across(is.numeric, round, 2))
+lmer_number_baseline <- readRDS(here("cached_models/adults/lmer_number_baseline.Rds")) %>% mutate(across(is.numeric, round, 2))
+lmer_identity_baseline <- readRDS(here("cached_models/adults/lmer_identity_baseline.Rds")) %>% mutate(across(is.numeric, round, 2))
+behavior_qua_order <- readRDS(here("cached_models/adults/clean_behavioral_qual_order.Rds")) %>% mutate(across(is.numeric, round, 2))
 
 
 ```
@@ -78,49 +91,59 @@ infant_generalization_rmse <- rmse(scaled_data$infant_lt, scaled_data$scaled_sam
 adult_exp2_model <- read_csv(here("data/adults/generalization/adult_generalization.csv")) %>% rename(violation_type = trial_type) %>% filter(violation_type != 'fam')
 
 # summarize adult data
-adult_exp2_data = exp2_adult_d %>% # summarize so that exactly the data points in the plot appear, i.e. violation_type = identity, trial_number = 2 for a block of length 2 should go under identity, but if block length = 6, trial 2 should go under fam (model already follows this structure). check if the plotting_experiment_2  code has something useful for that
-  
-  group_by(trial_number, violation_type) %>% summarize(adult_lt = mean(total_rt))
+adult_exp2_data = exp2_adult_d %>% mutate(trial_type = case_when(
+      trial_type == "deviant" ~ violation_type,
+      TRUE ~ "fam" )) %>% 
+  mutate(trial_type = if_else(trial_type == "background", "fam", trial_type)) %>% 
+    group_by( trial_type, trial_number) %>% 
+    summarise(mean_lt = mean(total_rt), 
+              count = n(),
+              sd_lt = sd(total_rt),
+              ub_lt = mean_lt + 0.5 * 1.96 * (sd_lt /(count ** .5)),
+              lb_lt = mean_lt - 0.5 * 1.96 * (sd_lt /(count ** .5))) 
 
 # compute fits
 data_to_fit <- adult_exp2_model %>% 
-  left_join(adult_exp2_data, by = c("violation_type"))
+  left_join(adult_exp2_data, by = c("trial_type", "trial_number"))
 
-fitted_stats = colf_nlxb(adult_lt ~ model_lt, data = data_to_fit, lower = c(-Inf, 0.0000001))
-sample_slope = fitted_stats$coefficients["param_model_lt"]
+fitted_stats = colf_nlxb(mean_lt ~ mean_sample, data = data_to_fit, lower = c(-Inf, 0.0000001))
+sample_slope = fitted_stats$coefficients["param_mean_sample"]
 sample_intercept = fitted_stats$coefficients["param_X.Intercept."]
   
 scaled_data <- data_to_fit %>% 
-    mutate(scaled_samples = model_lt * sample_slope + sample_intercept)
+    mutate(scaled_samples = mean_sample * sample_slope + sample_intercept)
 
-adult_generalization_rsquared <- cor(scaled_data$adult_lt, scaled_data$adult_lt)^2
-adult_generalization_rmse <- rmse(scaled_data$adult_lt, scaled_data$adult_lt)
+adult_generalization_rsquared <- cor(scaled_data$scaled_samples, scaled_data$mean_lt)^2
+adult_generalization_rmse <- rmse(scaled_data$scaled_samples, scaled_data$mean_lt)
 
 ```
 
 ```{r, include=FALSE, eval=FALSE}
 
-sim_infants = read_csv(here('data/results_plots/exp2_infant_plot.csv'))
+sim_infants = read_csv(here('data/results_plots/exp2_infant_plot.csv')) %>% mutate(trial_type = factor(trial_type, levels = c("familiar", "pose","identity", "number", "animacy")))
 
-sim_adults = read_csv(here('data/results_plots/exp2_adult_plot.csv'))
+sim_adults = read_csv(here('data/results_plots/exp2_adult_plot.csv')) %>% mutate(trial_type = ifelse(trial_type == 'fam', 'familiar', trial_type), trial_type = factor(trial_type, levels = c("familiar", "pose","identity", "number", "animacy")))
 
 adult_res_fig = sim_adults %>%  ggplot(aes(x = trial_number, y = LT/1000, ymin = lb_lt/1000, ymax = ub_lt/1000, color = trial_type)) + 
   geom_pointrange(position = position_dodge(width = .2)) +
   geom_line(position = position_dodge(width = .2))+
   facet_wrap(~value_type) + 
-  theme_few() + 
-  ylab("Looking time (sec) / Samples") + 
-  xlab("Trial number")
+  theme_few(20) + 
+  ylab("Looking time (sec)") + 
+  xlab("Trial number") + guides(color=guide_legend(title="Violation type")) + 
+     scale_color_manual(values = c("familiar" = "#268bd2", "identity" = "#cb4b16", "pose" = "#859900", "number" = "#2aa198", "animacy" = "#d33682"))
 
-infant_res_fig = sim_infants %>% mutate(trial_type = factor(trial_type, levels = c("familiar", "pose","identity", "number", "animacy"))) %>%
+
+infant_res_fig = sim_infants %>%
   ggplot(aes(x = trial_type, y = LT, ymin = lb_lt, ymax = ub_lt, color = trial_type)) + 
   geom_pointrange(position = position_dodge(width = .2)) +
   geom_line(position = position_dodge(width = .2))+
   facet_wrap(~value_type) + 
-  theme_few() + 
+  theme_few(20) + 
   ylab("Looking time (sec)") + 
-  xlab("Trial number") + 
-  theme(legend.position = "none")
+  xlab("Violation type") +
+  theme(legend.position = "none") + 
+    scale_color_manual(values = c("familiar" = "#268bd2", "identity" = "#cb4b16", "pose" = "#859900", "number" = "#2aa198", "animacy" = "#d33682"))
 
 
 ggsave(here('figs/infant_exp2_res.png'),infant_res_fig, width = 10, height = 5)
@@ -155,14 +178,14 @@ img <- png::readPNG("figs/adult_exp2_res.png")
 grid::grid.raster(img)
 ```
 
-Next, we combined the two datasets (total n=`r n_zoom+n_lookit`) to gain additional power. In an exploratory analysis, we ran the same linear model as on the individual datasets, since we found no additional variance explained by a random effect of dataset. We found again found significant dishabituation to animacy and number violations (number: $\beta$ = `r filter(model_combined, term == "test_typeanimacy")$estimate`; *SE* = `r filter(model_combined, term == "test_typeanimacy")$std.error`; *t* = `r filter(model_combined, term == "test_typeanimacy")$statistic`; *p* = `r  filter(model_combined, term == "test_typeanimacy")$p.value`, number: $\beta$ = `r filter(model_combined, term == "test_typenumber")$estimate`; *SE* = `r filter(model_combined, term == "test_typenumber")$std.error`; *t* = `r filter(model_combined, term == "test_typenumber")$statistic`; *p* = `r  filter(model_combined, term == "test_typenumber")$p.value`), marginally significant dishabituation to identity violations ($\beta$ = `r filter(model_combined, term == "test_typeidentity")$estimate`; *SE* = `r filter(model_combined, term == "test_typeidentity")$std.error`; *t* = `r filter(model_combined, term == "test_typeidentity")$statistic`; *p* = `r  filter(model_combined, term == "test_typeidentity")$p.value`) and no dishabituation to the pose violation ($\beta$ = `r filter(model_combined, term == "test_typepose")$estimate`; *SE* = `r filter(model_combined, term == "test_typepose")$std.error`; *t* = `r filter(model_combined, term == "test_typepose")$statistic`; *p* = `r  filter(model_combined, term == "test_typepose")$p.value`). Together, we found evidence that the magnitude of dishabituation was related to the similarity of the novel trial, as infants' looking time followed our expected ordering: animacy \textgreater{} number \textgreater{} identity \textgreater{} pose \textgreater{} background (Figure \@ref(fig:infant_exp2_res)).
+We then combined the two datasets (total n=`r n_zoom+n_lookit`) to gain additional power. In an exploratory analysis, we ran the same linear model as on the individual datasets, since we found no additional variance explained by a random effect of dataset. We found again found significant dishabituation to animacy and number violations (number: $\beta$ = `r filter(model_combined, term == "test_typeanimacy")$estimate`; *SE* = `r filter(model_combined, term == "test_typeanimacy")$std.error`; *t* = `r filter(model_combined, term == "test_typeanimacy")$statistic`; *p* = `r  filter(model_combined, term == "test_typeanimacy")$p.value`, number: $\beta$ = `r filter(model_combined, term == "test_typenumber")$estimate`; *SE* = `r filter(model_combined, term == "test_typenumber")$std.error`; *t* = `r filter(model_combined, term == "test_typenumber")$statistic`; *p* = `r  filter(model_combined, term == "test_typenumber")$p.value`), marginally significant dishabituation to identity violations ($\beta$ = `r filter(model_combined, term == "test_typeidentity")$estimate`; *SE* = `r filter(model_combined, term == "test_typeidentity")$std.error`; *t* = `r filter(model_combined, term == "test_typeidentity")$statistic`; *p* = `r  filter(model_combined, term == "test_typeidentity")$p.value`) and no dishabituation to the pose violation ($\beta$ = `r filter(model_combined, term == "test_typepose")$estimate`; *SE* = `r filter(model_combined, term == "test_typepose")$std.error`; *t* = `r filter(model_combined, term == "test_typepose")$statistic`; *p* = `r  filter(model_combined, term == "test_typepose")$p.value`). Together, we found evidence that the magnitude of dishabituation was related to the similarity of the novel trial, as infants' looking time followed our expected ordering: animacy \textgreater{} number \textgreater{} identity \textgreater{} pose \textgreater{} background (Figure \@ref(fig:infant_exp2_res)).
 
 Next, we tested whether infants' dishabituation was better described by a "same or different" account, in which dishabituation responds similarly to any novel stimulus, or a "graded" account, in which the type of violation influences the magnitude of dishabituation. To do so, we conducted a model comparison in which violation type was either parsed into two levels (familiar or novel) or five levels (familiar, animacy, number, identity or pose). The model comparison significantly favored the more granular model ($\chi$(`r filter(model_comparison, term == "combined_model")$df`) = `r filter(model_comparison, term == "combined_model")$statistic`;  *p* = `r filter(model_comparison, term == "combined_model")$p.value`), suggesting that infants were sensitive to the type of violation rather than just to whether the test stimulus was familiar or novel.
 
-In adults, as in previous experiments, we found evidence for habituation (Figure \@ref(fig:adult_exp2_res); STATS). More importantly, we also found evidence for graded dishabituation: the dishabituation magnitude to animacy violations was larger than to number violations (STATS) and to pose violations (STATS). The same pattern was found for identity violations (STATS). However, animacy violations were not different from identity type novelty, nor were number violations different from the pose violations (STATS). Qualitatively, we found that the ordering for dishabituation magnitude was animacy (STATS) > identity (STATS) > pose (STATS) > and number (STATS). 
+In adults, as in previous experiments, we found evidence for habituation (Figure \@ref(fig:adult_exp2_res); $\beta$ = `r filter(lmer_background_baseline, term == "trial_number")$estimate`, *SE* = `r filter(lmer_background_baseline, term == "trial_number")$std.error`, *p* < .001). More importantly, we also found evidence for graded dishabituation: the dishabituation magnitude to animacy violations was larger than to number violations ($\beta$ = `r filter(lmer_number_baseline, term == "violation_type_with_backgroundanimacy")$estimate`, *SE* = `r filter(lmer_number_baseline, term == "violation_type_with_backgroundanimacy")$std.error`, *p* < .001) and to pose violations ($\beta$ = `r filter(lmer_pose_baseline, term == "violation_type_with_backgroundanimacy")$estimate`, *SE* = `r filter(lmer_pose_baseline, term == "violation_type_with_backgroundanimacy")$std.error`, *p* < .001). The same pattern was found for identity violations ($\beta$ = `r filter(lmer_number_baseline, term == "violation_type_with_backgroundidentity")$estimate`, *SE* = `r filter(lmer_number_baseline, term == "violation_type_with_backgroundidentity")$std.error`, *p* < .001). However, animacy violations were not different from identity violations, nor were number violations different from the pose violations (all p > 0.1). Qualitatively, we found that the ordering for dishabituation magnitude was animacy > identity > pose > and number (Figure \@ref(fig:adult_exp2_res)). 
 
 We next tested whether RANCH made similar predictions. We used the modeling procedures for the infant and adult experiments described above. 
 
-Using the previously best-fitting parameters in Experiment 1, we found that RANCH generalized to Experiment 2 successfully (Infants: STATS; Adults: STATS). Moreover, RANCH also showed a qualitative ordering of the dishabituation magnitude: animacy > identity > number > pose. This ordering was in line with the CNN-derived embedding distances between the different stimulus categories (Figure \@ref(fig:embedding_distances)), and similar to those seen in infants and adults.   
+Using the previously best-fitting parameters in Experiment 1, we found that RANCH generalized to Experiment 2 successfully (Infants: $RMSE$ = `r infant_generalization_rmse`; $R^2$: `r infant_generalization_rsquared`; Adults: `r adult_generalization_rmse`; $R^2$: `r adult_generalization_rsquared`). Moreover, RANCH also showed a qualitative ordering of the dishabituation magnitude: animacy > identity > number > pose. This ordering was in line with the CNN-derived embedding distances between the different stimulus categories (Figure \@ref(fig:embedding_distances)), and similar to those seen in infants and adults.   
 
-Taken together, these data suggest that RANCH is not only capable of capturing habituation and dishabituation, but also can generalize to a new task and make predictions about dishabituation magnitude in relation to stimulus similarity. Some stimulus similarity differed between infants, adults, and RANCH -- we discuss these in more depth below.
+Taken together, these data suggest that RANCH is not only capable of capturing habituation and dishabituation, but also can generalize to a new task and make predictions about dishabituation magnitude in relation to stimulus similarity. Some stimulus similarity differed between infants, adults, and RANCH - we discuss these in more depth below.
