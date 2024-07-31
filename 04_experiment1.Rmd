@@ -80,9 +80,9 @@ saveRDS(model_3c, here("cached_models/infants/model_3c.rds"))
 # results figure
 
 #Results figure
-data = read_csv(here('data/results_plots/exp1_data_plot.csv'))
-sim_infants = read_csv(here('data/results_plots/exp1_infant_sim_plot.csv'))
-sim_adults = read_csv(here('data/results_plots/exp1_adult_sim_plot.csv')) 
+data = read_csv(here('data/results_plots/exp1_data_plot.csv')) %>% mutate(tt = tolower(tt))
+sim_infants = read_csv(here('data/results_plots/exp1_infant_sim_plot.csv')) %>% mutate(test_type = tolower(test_type))
+sim_adults = read_csv(here('data/results_plots/exp1_adult_sim_plot.csv')) %>% mutate(trial_type = tolower(trial_type))
 
 facet_labels <- tibble(
   type = c("EIG","KL","Surprisal", "No Learning", "No Noise"),
@@ -99,10 +99,9 @@ adult_bp <- data %>%
                geom = "pointrange",
                position = position_dodge(width = .3)) +
   stat_summary(geom = "line",
-               position = position_dodge(width = .3))
-  theme_few() + 
-  scale_y_log10() + 
-  ylab("Looking time (s)") +
+               position = position_dodge(width = .3)) + 
+  theme_few(20) + 
+  ylab("Looking time (sec)") +
   xlab("Trial Number") + 
   ggthemes::scale_color_solarized(name = "Trial type") +
   theme(legend.position = "none")
@@ -119,22 +118,25 @@ adult_simulation_plot <- ggplot() +
     fun.data = mean_cl_boot, na.rm = TRUE, 
     geom = "line") + 
   geom_text(data = facet_labels, aes(x = 6, label = label), y = Inf, vjust = 2)+ 
-   scale_y_log10() +
   facet_wrap(~factor(type, levels=c("EIG","KL","Surprisal", "No Learning", "No Noise"))) +
   theme(
+    legend.text = element_text(size = 12),
+    legend.title = element_text(size = 15),
     legend.position = c(0.85, 0.25), 
     legend.background = element_rect(fill = "white", colour = NA) 
   ) + 
   ylab("") + 
   xlab("") + 
-  guides(color=guide_legend(title="Trial Type")) + 
-  ggthemes::scale_color_solarized(name = "Trial type") + 
+  guides(color=guide_legend(title="Trial type")) +
   theme(
   strip.background = element_blank(),
-  strip.text.x = element_blank())
+  strip.text.x = element_blank()) + 
+  scale_color_manual(values = c("familiar" = "#268bd2", "novel" = "#cb4b16"))
 
 
-infant_bp <- data %>% 
+y_intercept_baseline = data %>% filter(x == 0) %>% pull(y) %>% mean()
+  
+infant_bp <- data %>% mutate(tt = ifelse(x == 0, 'baseline', tt)) %>%
   filter(group == "Infants (7 - 9 months)") %>% 
   ggplot(aes(x=x, y=y, group=tt, color = tt)) + 
   stat_summary(fun.data = "mean_cl_boot",
@@ -142,12 +144,14 @@ infant_bp <- data %>%
                position = position_dodge(width = .3)) +
   stat_summary(geom = "line",
                position = position_dodge(width = .3)) +
-  theme_few() + 
-  scale_y_log10() + 
-  ylab("Looking time (s)") +
-  xlab("Trial Number") + 
+  theme_few(20) + 
+  ylab("Looking time (sec)") +
+  xlab("Prior exposures") + 
   ggthemes::scale_color_solarized(name = "Trial type") +
-  theme(legend.position = "none")
+  theme(legend.position = "none") + 
+  scale_color_manual(values = c("familiar" = "#268bd2", "novel" = "#cb4b16", "baseline" = "grey")) + 
+  scale_x_continuous(breaks =c(0,1,2,3,4,6,8,9)) + 
+  geom_hline(yintercept = y_intercept_baseline, linetype = "dashed", color = 'grey')
 
 infant_simulation_plot <- ggplot() +
   theme_few() +
@@ -161,23 +165,25 @@ infant_simulation_plot <- ggplot() +
     fun.data = mean_cl_boot, na.rm = TRUE, 
     geom = "line") + 
   geom_text(data = facet_labels, aes(x = 5, label = label), y = Inf, vjust = 2)+ 
-  scale_y_log10()+ 
-  scale_x_continuous(breaks = seq(0, 9, 1)) + 
-  facet_wrap((~factor(type, levels=c("EIG","KL","Surprisal", "No Learning", "No Noise")))+
+  scale_x_continuous(breaks =c(0,1,2,3,4,6,8,9)) + 
+  facet_wrap(~factor(type, levels=c("EIG","KL","Surprisal", "No Learning", "No Noise")))+
   theme(
+    legend.text = element_text(size = 12),
+    legend.title = element_text(size = 15),
     legend.position = c(0.85, 0.25), 
     legend.background = element_rect(fill = "white", colour = NA) 
   ) + 
   ylab("") + 
   xlab("") + 
-  guides(color=guide_legend(title="Trial Type")) + 
-  ggthemes::scale_color_solarized(name = "Trial type") + 
+  guides(color=guide_legend(title="Trial type")) +
   theme(
   strip.background = element_blank(),
-  strip.text.x = element_blank())
+  strip.text.x = element_blank()) + ylim(c(5,28)) + 
+  scale_color_manual(values = c("familiar" = "#268bd2", "novel" = "#cb4b16"))
+  
 
-infant_res_fig <- plot_grid(infant_bp, infant_simulation_plot, rel_widths = c(1, 2))
-adult_res_fig <- plot_grid(adult_bp, adult_simulation_plot, rel_widths = c(1, 2))
+infant_res_fig <- plot_grid(infant_bp, infant_simulation_plot, rel_widths = c(1, 1))
+adult_res_fig <- plot_grid(adult_bp, adult_simulation_plot, rel_widths = c(1, 1))
 
 ggsave(here('figs/infant_exp1_res.png'),infant_res_fig, width = 10, height = 5)
 ggsave(here('figs/adult_exp1_res.png'),adult_res_fig, width = 10, height = 5)
@@ -301,19 +307,18 @@ EIG is the optimal method for making sampling decisions [@lindley1956measure]. W
 
 ## Comparison with lesioned model 
 
-We tested the importance of two of RANCH's key assumptions by creating lesioned models. One assumes each perceptual sample is noiseless (``No noise model''), and the other assumes the sampling decision was random instead of based on the learning model (``No learning model''). Both lesioned models provided poor fits to the behavioral datasets (Table \@ref(tab:xtable)). Both the noisy perception assumption and the learning assumption appear to be critical to RANCH's performance.
+We tested the importance of two of RANCH's key assumptions by creating lesioned models. One assumes each perceptual sample is noiseless ("No noise"), and the other assumes the sampling decision was random instead of based on the learning model ("No learning"). Both lesioned models provided poor fits to the behavioral datasets (Table \@ref(tab:xtable)). Both the noisy perception assumption and the learning assumption appear to be critical to RANCH's performance.
 
 
 ## Parameter Interpretation / Developmental Comparison
 
-One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH’s fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see ‘Joint Scaling’ under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that sd_epsilon played a key role in improving fit. Conceptually, $\sigma_{\epsilon}$ represents an agent's beliefs about how much noise there is in their own perceptual input. We found that this value tends to be high for infants, and low for adults (Figure \@ref(fig:parameter_interpretation)). 
+One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH’s fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see ‘Joint Scaling’ under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that $\sigma_\epsilon$ played a key role in improving fit. A high $\sigma_\epsilon$ improved fit to the infant data, but a low $\sigma_\epsilon$ improved fit to the adult data (Figure \@ref(fig:parameter_interpretation)). Conceptually, $\sigma_{\epsilon}$ represents an agent's beliefs about how much noise there is in their own perceptual input, suggesting that infants' learning behavior in our task was adjusted to higher perceptual noise. 
 
 ## Discussion 
 
 Using within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs. novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. \@ref(fig:conceptual)A & \@ref(fig:conceptual)B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. \@ref(fig:conceptual)C). 
 
-We next test whether RANCH’s can make predictions in a novel dataset. 
-
+We next test whether RANCH’s can make predictions in a novel dataset.
 
 ```{r infant_exp1_res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1, infant results"}
 img <- png::readPNG("figs/infant_exp1_res.png")
