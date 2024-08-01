@@ -23,12 +23,15 @@ library(lmerTest)
 library(broom.mixed)
 library(magrittr)
 library(pbkrtest)
-library(xtable)
 library(ggpubr)
 library(ggthemes)
 library(colf)
+library(xtable)
 library(Metrics)
 library(cowplot)
+library(kableExtra)
+library(knitr)
+
 
 
 # behavioral data: infants 

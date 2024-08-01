@@ -264,12 +264,12 @@ grid::grid.raster(img)
 
 ## Behavioral and model results
 
-The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Infants clearly dishabituated on trials longer exposures (8 exposures: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, 9 exposures: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. \@ref(fig:conceptual)A&B).
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Infants clearly dishabituated on trials longer exposures (8 exposures: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, 9 exposures: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. Figure \@ref(fig:conceptual)A&B).
 
-RANCH predicted habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used K-fold cross-validation, computing the average RMSE across held-out samples. This procedure was conducted separately for both infant and adult data. Table \ref{tab:results1} shows these metrics. 
+RANCH predicted habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used K-fold cross-validation, computing the average RMSE across held-out samples. This procedure was conducted separately for both infant and adult data. 
 
 
-```{r xtable, results='asis', echo=FALSE}
+```{r xtable, results='asis', echo=FALSE, message=FALSE}
 
 #table for CV stats
 CV_table = tibble(`Linking Hypothesis` =  c("EIG", "KL", "Surprisal", "No learning", "No noise"))
@@ -294,11 +294,9 @@ CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(infant_resnet50_EIG
                                                         min(adult_kfold_resnet50_nolearning$mean_rmse),
                                                         min(adult_kfold_resnet50_nonoise$mean_rmse)))
 
-table <- xtable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)), caption = "Cross-validated RMSE across linking hypotheses and lesioned models. Mean RMSE is averaged across all parameter values, while best RMSE reflects the single best-performing parameter values.")
-
-print.xtable(table, include.rownames = FALSE, comment = FALSE,
-              size="\\fontsize{8pt}{9pt}\\selectfont")
-
+knitr::kable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)),
+                      caption = "Cross-validated RMSE across linking hypotheses and lesioned models. Mean RMSE is averaged across all parameter values, best RMSE is the single best-performing parameter set", format = "latex") %>% kable_styling(latex_options = "scale_down") %>% row_spec(0,bold=TRUE)
+             
 ```
 
 ## Comparison with alternative linking hypotheses 
@@ -312,7 +310,7 @@ We tested the importance of two of RANCH's key assumptions by creating lesioned 
 
 ## Parameter Interpretation / Developmental Comparison
 
-One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH’s fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see ‘Joint Scaling’ under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that $\sigma_\epsilon$ played a key role in improving fit. A high $\sigma_\epsilon$ improved fit to the infant data, but a low $\sigma_\epsilon$ improved fit to the adult data (Figure \@ref(fig:parameter_interpretation)). Conceptually, $\sigma_{\epsilon}$ represents an agent's beliefs about how much noise there is in their own perceptual input, suggesting that infants' learning behavior in our task was adjusted to higher perceptual noise. 
+One advantage of RANCH is the interpretability of its parameters. Beyond finding that RANCH’s fit to the data is robust across parameters, we can also ask which specific parameters maximize that fit. In particular, comparing the best fitting parameters between infants and adults could provide insights into the origin of the developmental differences in behavior (see ‘Joint Scaling’ under Methods for technical details). When investigating which parameters were most influential in achieving better fit, we found that $\sigma_\epsilon$ played a key role in improving fit. A high $\sigma_\epsilon$ improved fit to the infant data, but a low $\sigma_\epsilon$ improved fit to the adult data (Figure \@ref(fig:parameter-interpretation)). Conceptually, $\sigma_{\epsilon}$ represents an agent's beliefs about how much noise there is in their own perceptual input, suggesting that infants' learning behavior in our task was adjusted to higher perceptual noise. 
 
 ## Discussion 
 
@@ -320,12 +318,12 @@ Using within-subjects measurements of looking time, we examined the sensitivity 
 
 We next test whether RANCH’s can make predictions in a novel dataset.
 
-```{r infant_exp1_res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1, infant results"}
+```{r infant-exp1-res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1, infant results"}
 img <- png::readPNG("figs/infant_exp1_res.png")
 grid::grid.raster(img)
 ```
 
-```{r adult_exp1_res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 1, adult results"}
+```{r adult-exp1-res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 1, adult results"}
 img <- png::readPNG("figs/adult_exp1_res.png")
 grid::grid.raster(img)
 ```
