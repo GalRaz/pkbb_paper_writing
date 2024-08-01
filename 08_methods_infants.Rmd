@@ -72,7 +72,7 @@ In Experiment 2, each infant saw four blocks within a session - the background t
 
 #### Looking time coding 
 
-To code the infants’ looking time we used iCatcher+, a validated tool developed for robust and automatic annotation of infants’ gaze direction from video [@erel2022icatcher]. To obtain trial-wise looking time, we merged iCatcher+ annotations with trial timing information, thereby fully replacing manual coding of looking time. The correctness of iCatcher+ coding was manually supervised to check for failed face detections or distractions.
+To code the infants’ looking time we used iCatcher+, a validated tool developed for robust and automatic annotation of infants’ gaze direction from video [@erel2023icatcher]. To obtain trial-wise looking time, we merged iCatcher+ annotations with trial timing information, thereby fully replacing manual coding of looking time. The correctness of iCatcher+ coding was manually supervised to check for failed face detections or distractions.
 
 
 #### Statistical analysis

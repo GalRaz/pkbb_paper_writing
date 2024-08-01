@@ -10,41 +10,29 @@ output:
 
 We derived principled low dimensional representations of our stimuli from ResNet50 [@he2016deep]. We ran a Principal Component Analysis and used the first three principal components. This decision was made due to the computational demands of our model. Each added dimension would increase the total run time exponentially. The first three components captured 57.9% of the variance. 
 
-Given that we were using discrete grid approximation in our inference, the model was sensitive to the absolute values of the embeddings. When these embeddings values were close to or exceeded the range of the approximation grids, this would cause bias in our simulation result. We therefore scaled our embeddings down to fall squarely into our grid. This downscaling had to be more extreme for the stimulus type experiment, where embedding distances were larger, in particular for animacy violations. We ran simulations to confirm that embeddings that were too large would result in biased model behaviors (Figure \@ref(fig:wrong_scaling)).
+Given that we were using discrete grid approximation in our inference, the model was sensitive to the absolute values of the embeddings. When these embeddings values were close to or exceeded the range of the approximation grids, this would cause bias in our simulation result. We therefore scaled our embeddings down to fall squarely into our grid. This downscaling had to be more extreme for the stimulus type experiment, where embedding distances were larger, in particular for animacy violations. We ran simulations to confirm that embeddings that were too large would result in biased model behaviors (Figure \@ref(fig:wrong-scaling)).
 
 
 ### Linking Hypotheses
 
-We compared two additional information theoretic measures with Expected Information Gain (EIG): Kullback–Leibler divergence and Surprisal. Each of these measures has been invoked in the literature as a plausible account for explaining looking behaviors across developmental stages [KL divergence: @poli2020infants; Surprisal: @kidd2012goldilocks]. 
+We compared two additional information theoretic measures with Expected Information Gain (EIG): Kullback–Leibler divergence and Surprisal. Each of these measures has been invoked in the literature as a plausible account for explaining looking behaviors across developmental stages [KL divergence: @poli2020infants; surprisal: @kidd2012goldilocks]. 
 
-Our key linking hypothesis, EIG, is a forward-looking measure. It is computed as the product of the posterior predictive probability of the next perceptual sample ($p(z_{t+1}|\theta_t)$) and the information gained conditioned on that next hypothetical sample, via a grid approximation of possible subsequent samples ($S$). 
+Our key linking hypothesis, EIG, is a forward-looking measure. It is computed as the product of the posterior predictive probability of the next perceptual sample ($p(z_{t+1}|\theta_t)$) and the information about the concept $theta$ gained conditioned on that next hypothetical sample, using a grid of possible subsequent samples ($S$): $EIG(z_{t+1}) = \sum_{z_{t+1} \in S} p(z_{t+1}|\theta_t) * D_{KL}(\theta_{t+1} || p(\theta_t))$
 
-<!--
-\begin{eqnarray}
-$EIG(z_{t+1}) = \sum_{z_{t+1} \in S} p(z_{t+1}|\theta_t) * D_{KL}(\theta_{t+1} || p(\theta_t))$
-\end{eqnarray} 
-
-Both KL-divergence and Surprisal are backward-looking measures. The KL divergence at any given point is calculated by the posterior distribution after seeing the current perceptual sample and before seeing the current perceptual sample.
-
-<!--
-\begin{eqnarray}
-$D_{KL}(\theta_{t} || p(\theta_{t-1})) = \int {p(\theta_{t}) log \frac{p(\theta_{t})}{p(\theta_{t-1})}} d(\theta)$ 
-\end{eqnarray}-->
+Both KL-divergence and surprisal are backward-looking measures. The KL divergence at any given point is calculated by the posterior distribution after seeing the current perceptual sample and before seeing the current perceptual sample: $D_{KL}(\theta_{t} || p(\theta_{t-1})) = \int {p(\theta_{t}) log \frac{p(\theta_{t})}{p(\theta_{t-1})}} d(\theta)$ 
 
 
-Surprisal is calculated as the negative log likelihood of the current perceptual sample under the prior distribution 
-<!--
-\begin{eqnarray}
-$Surprisal_{z} = -log(p(z|\theta ))$
-\end{eqnarray}
--->
+
+Surprisal is calculated as the negative log likelihood of the current perceptual sample under the prior distribution: $surprisal({z_t}) = -log(p(z|\theta_{t-1}))$
+
+
 
 We ran individual simulation and parameter search for each of the three linking hypotheses to ensure fair comparison. 
 
 
 ### Scaling Procedure for Developmental Interpretation 
 
-To find the best fitting parameters for each age group we employ a strategy we call “joint scaling”. As in Fig. @FIXME, to evaluate model fit, we first map model samples onto looking times by finding the best linear scaling of model samples in a regression of the form `LT ~ model_samples`. The parameter set that minimizes the RMSE between the scaled model samples and looking times is what we consider the best parameter set. In the case of "joint scaling", we regress both the adult and the infant simulations against their looking times simultaneously, to find how varying the infant and adult parameters affect the fit of the scaled model samples to the adult and infant data. This joint scaling procedure puts pressure on the parameters, rather than the scaling, to account for the fact that adults’ looking times are a lot shorter than infants’ looking times. 
+To find the best fitting parameters for each age group we employ a strategy we call “joint scaling”. To evaluate model fit, we first map model samples onto looking times by finding the best linear scaling of model samples in a regression of the form `LT ~ model_samples`. The parameter set that minimizes the RMSE between the scaled model samples and looking times is what we consider the best parameter set. In the case of "joint scaling", we regress both the adult and the infant simulations against their looking times simultaneously, to find how varying the infant and adult parameters affect the fit of the scaled model samples to the adult and infant data. This joint scaling procedure puts pressure on the parameters, rather than the scaling, to account for the fact that adults’ looking times are a lot shorter than infants’ looking times. 
 
 The interpretable parameters of RANCH are the priors on $\mu$ and $\sigma$ and the priors on the noise. The priors on $\mu$ and $\sigma$ were parameterized by a normal inverse-gamma prior with $\mu_{prior}$, $\nu_{prior}$, $\alpha_{prior}$ and $\beta_{prior}$, the conjugate prior to a normal distribution with unknown mean and variance. While the mean was fixed to be 0 ($\mu_{prior}$), variation in the other parameters express distinct hypotheses about the precision of the location of the concept ($\nu_{prior}$), as well as the variance of the concept ($\alpha_{prior}$ and $\beta_{prior}$). The learner’s prior on noise are parameterized by gaussian distribution with a mean ($\mu_{noise}$) and standard deviation ($\sigma_{noise}$). In our parameter search, we only searched over the $\sigma_{noise}$.
 
