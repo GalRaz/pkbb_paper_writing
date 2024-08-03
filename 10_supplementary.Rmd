@@ -13,26 +13,26 @@ grid::grid.raster(img)
 
 ## Parameter robustness
 
-Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness.Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness.
+To evaluate RANCH’s robustness to different parameters, we tested its fit for all possible parameter settings. Performance across the 162 parameter settings was relatively stable, yielding a moderate range RMSE values for infants and adults across linking hypotheses. In both cases most parameter settings outperformed the fit achieved by baseline models (Table \@ref(tab:xtable)). The distribution of RMSE values across parameter settings are shown in the histograms below (Figure \@ref(fig:parameter-robustness)).
 
 ```{r parameter-robustness, echo=FALSE, warning=FALSE, message=FALSE, fig.pos="H", fig.width=20, fig.height=7, fig.cap="Histograms of RMSE for different linking hypotheses show that RANCH is largely robust to variations in parameters."}
 
 # infants
-infant_eig_hist = infant_resnet50_EIG_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Infants: EIG") 
-infant_kl_hist = infant_resnet50_KL_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "KL") + theme(plot.title = element_text(hjust = 0.5))
-infant_surprisal_hist = infant_resnet50_surprisal_short_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Surprisal") + theme(plot.title = element_text(hjust = 0.5))
+infant_eig_hist = infant_resnet50_EIG_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(15) + labs(title = "Infants: EIG") 
+infant_kl_hist = infant_resnet50_KL_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(15) + labs(title = "KL") + theme(plot.title = element_text(hjust = 0.5))
+infant_surprisal_hist = infant_resnet50_surprisal_short_CV %>% ggplot(aes(x = rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(15) + labs(title = "Surprisal") + theme(plot.title = element_text(hjust = 0.5)) 
 
 # adults
-adult_eig_hist = adult_kfold_resnet50_eig %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "Adults: EIG")
-adult_kl_hist = adult_kfold_resnet50_kl %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12) + labs(title = "KL") + theme(plot.title = element_text(hjust = 0.5))
-adult_surprisal_hist = adult_kfold_resnet50_surprisal %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(12)  + labs(title = "Surprisal") + theme(plot.title = element_text(hjust = 0.5))
+adult_eig_hist = adult_kfold_resnet50_eig %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(15) + labs(title = "Adults: EIG")
+adult_kl_hist = adult_kfold_resnet50_kl %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(15) + labs(title = "KL") + theme(plot.title = element_text(hjust = 0.5))
+adult_surprisal_hist = adult_kfold_resnet50_surprisal %>% ggplot(aes(x = mean_rmse)) + geom_histogram() + xlab('RMSE') + theme_classic(15)  + labs(title = "Surprisal") + theme(plot.title = element_text(hjust = 0.5))
 
 
 combined_plot <- ggarrange(
   ggarrange(infant_eig_hist, infant_kl_hist, infant_surprisal_hist, ncol = 3),
   ggarrange(adult_eig_hist, adult_kl_hist, adult_surprisal_hist, ncol = 3),
   nrow = 2
-)
+) + theme_classic(20)
 
 combined_plot
 
@@ -156,9 +156,21 @@ grid::grid.raster(img)
 ```
 
 
-## Control experiment for Experiment 2
+## Control experiment for Experiment 2 in infants
 
-Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.
+Given that the familiarization trial always consisted of a single animal, it is possible that differences in looking times during test trials of different types were a result of differences in interest in the stimuli themselves (e.g. our inanimate stimuli may have been intrinsically more interesting than our animals). To test whether infants were differently interested in our stimuli due to intrinsic stimulus properties, we ran a control experiment in which we showed infants our different stimulus types without any prior familiarization. Infants saw three types of stimuli for as long as they wanted, up to 60 seconds: single animals, fruits/vegetables, or pairs of animals. There were six trials per session, so infants saw two of each stimulus type.
+
+```{r, include=FALSE}
+
+exp2_control_infant_d$trial_type =  relevel(as.factor(exp2_control_infant_d$trial_type), ref = "single animal")
+model_control = lmer(log(LT) ~ trial_type + log(block_num) + (1|subject_num), data = exp2_control_infant_d)
+
+tidy_control_model = tidy(model_control) %>% mutate(across(where(is.numeric) & !c("p.value"), ~ round(., 2))) %>% mutate(p.value = round(p.value, 3))
+
+```
+
+We found no evidence for differences in baseline interest in our stimuli. as neither looking to inanimate stimuli nor animal pairs differed significantly from looking to single animals (inanimate stimuli: $\beta$ = `r filter(tidy_control_model, term == "trial_typeveggie")$estimate`; *SE* = `r filter(tidy_control_model, term == "trial_typeveggie")$std.error`; *t* = `r filter(tidy_control_model, term == "trial_typeveggie")$statistic`; *p* = `r  filter(tidy_control_model, term == "trial_typeveggie")$p.value`; animal pairs: $\beta$ = `r filter(tidy_control_model, term == "trial_typeanimal pair")$estimate`; *SE* = `r filter(tidy_control_model, term == "trial_typeanimal pair")$std.error`; *t* = `r filter(tidy_control_model, term == "trial_typeanimal pair")$statistic`; *p* = `r  filter(tidy_control_model, term == "trial_typeanimal pair")$p.value`). Therefore, the fact that animacy violations elicited the strongest dishabituation in the main Experiment 2 suggests that this resulted from the transition from animate to inanimate stimuli, rather than enhanced interest in inanimate stimuli themselves.
+
 ```{r, include=FALSE, message=FALSE, warning=FALSE}
 
 control_plot <- ggplot(exp2_control_infant_d %>% filter(!exclude, LT > 2) %>% mutate(trial_type = factor(trial_type, levels = c("single animal", "animal pair", "veggie"))), aes(x=trial_type, y=LT)) + geom_jitter(width = 0.03, alpha = 0.2) + stat_summary(fun.data = "mean_cl_boot", geom = "line", position = position_dodge(width = .1))  + 
@@ -169,11 +181,10 @@ ggsave(here('figs/control_exp.png'), control_plot, width = 10, height = 5)
 
 ```
 
-```{r control-exp, fig.env = "figure", fig.width=10, fig.height=5, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Control experiment for experiment 2, checking for baseline differences in interest."}
+```{r control-exp, fig.env = "figure", fig.width=10, fig.height=5, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Control experiment for experiment 2, checking for baseline differences in interest. No significant differences were found."}
 
 img <- png::readPNG("figs/control_exp.png")
 grid::grid.raster(img)
 
 ```
 
-# test 123

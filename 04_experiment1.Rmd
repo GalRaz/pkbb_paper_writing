@@ -318,12 +318,12 @@ Using within-subjects measurements of looking time, we examined the sensitivity 
 
 We next test whether RANCH’s can make predictions in a novel dataset.
 
-```{r infant-exp1-res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1, infant results"}
+```{r infant-exp1-res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1: Infant behavioral results and RANCH behavior (different linking hypotheses and lesioned models). The x-axes shows the number of prior exposures shown to infants and RANCH before measuring looking time / number of samples on the test trial, which was novel or familiar. The y-axis shows the looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. The scaling procedure was applied to each linking hypotheses/lesioned model separately."}
 img <- png::readPNG("figs/infant_exp1_res.png")
 grid::grid.raster(img)
 ```
 
-```{r adult-exp1-res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 1, adult results"}
+```{r adult-exp1-res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 1: Infant behavioral results and RANCH behavior (different linking hypotheses and lesioned models). The x-axes shows the number of prior exposures shown to infants and RANCH before measuring looking time / number of samples on the test trial, which was novel or familiar. The y-axis shows the looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. The scaling procedure was applied to each linking hypotheses/lesioned model separately."}
 img <- png::readPNG("figs/adult_exp1_res.png")
 grid::grid.raster(img)
 ```
