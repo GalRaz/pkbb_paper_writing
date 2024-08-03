@@ -257,7 +257,7 @@ We ran a self-paced looking time experiment on Prolific, collecting data from `r
 RANCH received the CNN-derived stimulus embeddings as input, presented in sequences mirroring the structure of in our infant and adult experiments (\@ref(fig:design)). To simulate a block of the infant experiment, the model was first presented with the "familiar" stimulus. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase was designed to be to the familiarization phase infants went through, since during the familiarization phase infants had no control over the progression of the stimulus sequence. After the familiarization phase, the model was presented with the test trial, which was either familiar or novel. We used the number of samples the model took on this test trial as a proxy for infant looking time. To simulate the self-paced adult experiment, we computed the number of samples taken by RANCH on every trial in each stimulus sequence.
 
 
-```{r design, echo=FALSE, fig.width=20, fig.height=14, fig.cap="Experimental design"}
+```{r design, echo=FALSE, fig.width=20, fig.height=14, fig.cap="Experimental design for Experiments 1 and 2, infants and adults: Experiment 1 varied exposure to a stimulus and measured looking to familiar or novel stimuli. Experiment 2 varied how the familiar stimulus was violated, by changing the pose, identity, number or animacy of the stimulus. Infants had fixed prior exposure durations (5 sec per exposure) and looking was measured until a 2-second lookaway. Adults responded on each trial via a keypress to continue to the next trial."}
 img <- png::readPNG("figs/design_fig.png")
 grid::grid.raster(img)
 ```
@@ -318,12 +318,12 @@ Using within-subjects measurements of looking time, we examined the sensitivity 
 
 We next test whether RANCH’s can make predictions in a novel dataset.
 
-```{r infant-exp1-res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1: Infant behavioral results and RANCH behavior (different linking hypotheses and lesioned models). The x-axes shows the number of prior exposures shown to infants and RANCH before measuring looking time / number of samples on the test trial, which was novel or familiar. The y-axis shows the looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. The scaling procedure was applied to each linking hypotheses/lesioned model separately."}
+```{r infant-exp1-res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1: Infant and RANCH simulations (different linking hypotheses and lesioned models). The x-axes show the number of prior exposures shown to infants and RANCH before measuring looking time / number of samples on the test trial, which was novel or familiar. The y-axes show the mean looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. The scaling procedure was applied to each linking hypotheses/lesioned model separately. Error bars show the standard error of the mean."}
 img <- png::readPNG("figs/infant_exp1_res.png")
 grid::grid.raster(img)
 ```
 
-```{r adult-exp1-res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 1: Infant behavioral results and RANCH behavior (different linking hypotheses and lesioned models). The x-axes shows the number of prior exposures shown to infants and RANCH before measuring looking time / number of samples on the test trial, which was novel or familiar. The y-axis shows the looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. The scaling procedure was applied to each linking hypotheses/lesioned model separately."}
+```{r adult-exp1-res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 1: Adult and RANCH behavior (different linking hypotheses and lesioned models). For adults and the corresponding RANCH simulations, looking time was measured on every trial, shown on the x-axes. The y-axes show the mean looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. Error bars show the standard error of the mean."}
 img <- png::readPNG("figs/adult_exp1_res.png")
 grid::grid.raster(img)
 ```

@@ -202,13 +202,13 @@ RANCH received the CNN-derived stimulus embeddings as input, presented in sequen
 \begin{figure}
 \centering
 \includegraphics{00_main_files/figure-latex/design-1.pdf}
-\caption{\label{fig:design}Experimental design}
+\caption{\label{fig:design}Experimental design for Experiments 1 and 2, infants and adults: Experiment 1 varied exposure to a stimulus and measured looking to familiar or novel stimuli. Experiment 2 varied how the familiar stimulus was violated, by changing the pose, identity, number or animacy of the stimulus. Infants had fixed prior exposure durations (5 sec per exposure) and looking was measured until a 2-second lookaway. Adults responded on each trial via a keypress to continue to the next trial.}
 \end{figure}
 
 \hypertarget{behavioral-and-model-results}{%
 \subsection{Behavioral and model results}\label{behavioral-and-model-results}}
 
-The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (\(\beta\) = -4.55; \emph{SE} = 0.92; \emph{t} = -4.92; \emph{p} \textless{} 0.001). Infants clearly dishabituated on trials longer exposures (8 exposures: \(\beta\) = 0.82; \emph{SE} = 0.22; \emph{t} = 3.81; \emph{p} \textless{} 0.001, 9 exposures: \(\beta\) = 0.51; \emph{SE} = 0.12; \emph{t} = 4.21; \emph{p} \textless{} 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: \(\beta\) = -0.01; Trial Type: \(\beta\) = 0.22; Both \emph{SE} \textless{} 0.001; Both \emph{p} \textless{} 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf.~\ref{fig:conceptual}A\&B).
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased (\(\beta\) = -4.55; \emph{SE} = 0.92; \emph{t} = -4.92; \emph{p} \textless{} 0.001). Infants clearly dishabituated on trials longer exposures (8 exposures: \(\beta\) = 0.82; \emph{SE} = 0.22; \emph{t} = 3.81; \emph{p} \textless{} 0.001, 9 exposures: \(\beta\) = 0.51; \emph{SE} = 0.12; \emph{t} = 4.21; \emph{p} \textless{} 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: \(\beta\) = -0.01; Trial Type: \(\beta\) = 0.22; Both \emph{SE} \textless{} 0.001; Both \emph{p} \textless{} 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf.~Figure \ref{fig:conceptual}A\&B).
 
 RANCH predicted habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used K-fold cross-validation, computing the average RMSE across held-out samples. This procedure was conducted separately for both infant and adult data.
 
@@ -259,13 +259,13 @@ We next test whether RANCH's can make predictions in a novel dataset.
 \begin{figure}
 \centering
 \includegraphics{00_main_files/figure-latex/infant-exp1-res-1.pdf}
-\caption{\label{fig:infant-exp1-res}Experiment 1, infant results}
+\caption{\label{fig:infant-exp1-res}Experiment 1: Infant and RANCH simulations (different linking hypotheses and lesioned models). The x-axes show the number of prior exposures shown to infants and RANCH before measuring looking time / number of samples on the test trial, which was novel or familiar. The y-axes show the mean looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. The scaling procedure was applied to each linking hypotheses/lesioned model separately. Error bars show the standard error of the mean.}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{00_main_files/figure-latex/adult-exp1-res-1.pdf}
-\caption{\label{fig:adult-exp1-res}Experiment 1, adult results}
+\caption{\label{fig:adult-exp1-res}Experiment 1: Adult and RANCH behavior (different linking hypotheses and lesioned models). For adults and the corresponding RANCH simulations, looking time was measured on every trial, shown on the x-axes. The y-axes show the mean looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. Error bars show the standard error of the mean.}
 \end{figure}
 
 \hypertarget{ranch-predicts-stimulus-similarity-based-dishabituation-in-infants-and-adults}{%
@@ -293,7 +293,7 @@ We additionally ran an adult experiment that was procedurally similar to the pre
 
 Our experiments successfully elicited differential dishabituation in both infants and adults. Infants showed dishabituation to all novel test trials; identity: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.08; \emph{p} = 0.04, number: \(\beta\) = 0.32; \emph{SE} = 0.17; \emph{t} = 1.92; \emph{p} = 0.057, animacy: \(\beta\) = 0.33; \emph{SE} = 0.16; \emph{t} = 2.02; \emph{p} = 0.046), except the pose violation, which elicited no significant dishabituation (pose: \(\beta\) = 0.13; \emph{SE} = 0.16; \emph{t} = 0.83; \emph{p} = 0.406).
 
-Our exact replication via Children Helping Science showed similar results: We again found that animacy and number resulted in the strongest dishabituation in infants (animacy: \(\beta\) = 0.34; \emph{SE} = 0.14; \emph{t} = ; \emph{p} = 0.015, number: \(\beta\) = 0.35; \emph{SE} = 0.13; \emph{t} = 2.68; \emph{p} = 0.008), and pose violations did not elicit dishabituation (\(\beta\) = 0.02; \emph{SE} = 0.13; \emph{t} = 0.14; \emph{p} = 0.888). However, unlike the Zoom study, the identity violation did not elicit significant dishabituation in our Lookit study (\(\beta\) = 0.07; \emph{SE} = 0.14; \emph{t} = 0.46; \emph{p} = 0.646). \footnote{Note that we pre-registered the identity violation as a data quality check, since we had replicated that effect in both infant experiments. However, surprisingly, the identity condition was the only condition that differed from the Zoom experiment, so here we deviate from pre-registration and report these Lookit findings regardless given the high value of having a second sample of infant data.}
+Our exact replication via Children Helping Science showed similar results: We again found that animacy and number resulted in the strongest dishabituation in infants (animacy: \(\beta\) = 0.34; \emph{SE} = 0.14; \emph{t} = 2.47; \emph{p} = 0.015, number: \(\beta\) = 0.35; \emph{SE} = 0.13; \emph{t} = 2.68; \emph{p} = 0.008), and pose violations did not elicit dishabituation (\(\beta\) = 0.02; \emph{SE} = 0.13; \emph{t} = 0.14; \emph{p} = 0.888). However, unlike the Zoom study, the identity violation did not elicit significant dishabituation in our Lookit study (\(\beta\) = 0.07; \emph{SE} = 0.14; \emph{t} = 0.46; \emph{p} = 0.646). \footnote{Note that we pre-registered the identity violation as a data quality check, since we had replicated that effect in both infant experiments. However, surprisingly, the identity condition was the only condition that differed from the Zoom experiment, so here we deviate from pre-registration and report these Lookit findings regardless given the high value of having a second sample of infant data.}
 
 \begin{figure}
 \centering
@@ -500,7 +500,7 @@ Below is an illustration of how predictions for a habituation/dishabituation exp
 \hypertarget{parameter-robustness}{%
 \subsection{Parameter robustness}\label{parameter-robustness}}
 
-Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness.Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness. Some text about parameter robustness.
+To evaluate RANCH's robustness to different parameters, we tested its fit for all possible parameter settings. Performance across the 162 parameter settings was relatively stable, yielding a moderate range RMSE values for infants and adults across linking hypotheses. In both cases most parameter settings outperformed the fit achieved by baseline models (Table \ref{tab:xtable}). The distribution of RMSE values across parameter settings are shown in the histograms below (Figure \ref{fig:parameter-robustness}).
 
 \begin{figure}
 \centering
@@ -551,19 +551,18 @@ Below we plot the embedding distances of the different violations. The lines con
 \caption{\label{fig:embedding-distances}Embedding distances of different violation types for 1) a base ResNet50 model, 2) a perceptually aligned embedding model (Lee, 2022) and 3) a ResNet50 model trained on SAYCAM data (Orhan et al., 2020)}
 \end{figure}
 
-\hypertarget{control-experiment-for-experiment-2}{%
-\subsection{Control experiment for Experiment 2}\label{control-experiment-for-experiment-2}}
+\hypertarget{control-experiment-for-experiment-2-in-infants}{%
+\subsection{Control experiment for Experiment 2 in infants}\label{control-experiment-for-experiment-2-in-infants}}
 
-Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.Some text about control experiment. Some text about control experiment.
+Given that the familiarization trial always consisted of a single animal, it is possible that differences in looking times during test trials of different types were a result of differences in interest in the stimuli themselves (e.g.~our inanimate stimuli may have been intrinsically more interesting than our animals). To test whether infants were differently interested in our stimuli due to intrinsic stimulus properties, we ran a control experiment in which we showed infants our different stimulus types without any prior familiarization. Infants saw three types of stimuli for as long as they wanted, up to 60 seconds: single animals, fruits/vegetables, or pairs of animals. There were six trials per session, so infants saw two of each stimulus type.
+
+We found no evidence for differences in baseline interest in our stimuli. as neither looking to inanimate stimuli nor animal pairs differed significantly from looking to single animals (inanimate stimuli: \(\beta\) = -0.02; \emph{SE} = 0.08; \emph{t} = -0.31; \emph{p} = 0.758; animal pairs: \(\beta\) = -0.11; \emph{SE} = 0.08; \emph{t} = -1.38; \emph{p} = 0.169). Therefore, the fact that animacy violations elicited the strongest dishabituation in the main Experiment 2 suggests that this resulted from the transition from animate to inanimate stimuli, rather than enhanced interest in inanimate stimuli themselves.
 
 \begin{figure}
 \centering
 \includegraphics{00_main_files/figure-latex/control-exp-1.pdf}
-\caption{\label{fig:control-exp}Control experiment for experiment 2, checking for baseline differences in interest.}
+\caption{\label{fig:control-exp}Control experiment for experiment 2, checking for baseline differences in interest. We found no significant differences in baseline looking.}
 \end{figure}
-
-\hypertarget{test-123}{%
-\section{test 123}\label{test-123}}
 
 \setlength{\parindent}{-0.1in} 
 \setlength{\leftskip}{0.125in}

@@ -181,7 +181,7 @@ ggsave(here('figs/control_exp.png'), control_plot, width = 10, height = 5)
 
 ```
 
-```{r control-exp, fig.env = "figure", fig.width=10, fig.height=5, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Control experiment for experiment 2, checking for baseline differences in interest. No significant differences were found."}
+```{r control-exp, fig.env = "figure", fig.width=10, fig.height=5, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Control experiment for experiment 2, checking for baseline differences in interest. We found no significant differences in baseline looking."}
 
 img <- png::readPNG("figs/control_exp.png")
 grid::grid.raster(img)
