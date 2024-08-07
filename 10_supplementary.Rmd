@@ -40,7 +40,7 @@ combined_plot
 
 ## Scaling the embedding space
 
-In order to achieve sensible results, it was important to bring the stimulus embeddings in line with the approximation grid used for inference. Below we show what happens embeddings exceeded or came close to the edges of the our approximation grids. In Experiment 1, unscaled embeddings resulted in a reversal of background vs. deviant model samples, such that the model takes more samples from the background than the deviant. In Experiment 2, unscaled embeddings resulted in an unintuitive ordering which is not in line with the embedding distances (Figure \@ref(fig:embedding_distances)). 
+In order to achieve sensible results, it was important to bring the stimulus embeddings in line with the approximation grid used for inference. Below we show what happens embeddings exceeded or came close to the edges of the our approximation grids. In Experiment 1, unscaled embeddings resulted in a reversal of background vs. deviant model samples, such that the model takes more samples from the background than the deviant. In Experiment 2, unscaled embeddings resulted in an unintuitive ordering which is not in line with the embedding distances (Figure \@ref(fig:embedding-distances)). 
 
 ```{r wrong-scaling, echo=FALSE, warning=FALSE, message=FALSE, fig.width=20, fig.height=7, fig.cap="The effect of scaling on model results. A) Experiment 1 with unscaled embeddings results in a reversal of background vs. deviant. B) Experiment 2 with unscaled embeddings results in an unintuitive ordering."}
 

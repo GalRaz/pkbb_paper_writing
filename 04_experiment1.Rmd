@@ -76,6 +76,20 @@ saveRDS(model_3c, here("cached_models/infants/model_3c.rds"))
 
 ```
 
+```{r}
+# Predicted reliability
+splithalf_df = exp1_infant_d %>%  mutate(block_type = ifelse(block_num %% 2 == 0, "even", "odd")) %>%
+  group_by(unique_id, block_type) %>%
+  summarize(mean_lt = mean(LT, na.rm = TRUE)) %>%
+  spread(block_type, mean_lt) 
+
+splithalf_corr = cor(splithalf_df$even,splithalf_df$odd)
+
+# spearman-brown formula
+adj_reliability = (2*splithalf_corr) /(1+splithalf_corr)
+
+```
+
 ```{r, eval=FALSE, include=FALSE}
 # results figure
 
@@ -244,7 +258,7 @@ The models in Figure \@ref(fig:conceptual) make contrasting predictions with reg
 
 ### Infant experiment 
 
-We tested infants in a novel experimental paradigm in which exposure duration to the familiar stimulus was manipulated in a within-subject design \@ref(fig:design) (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarization phase and a test trial. During the familiarization phase, one animal (designated the familiar stimulus) was presented 1 to 9 times. Next, infants' looking time was measured on a test trial. The test trial showed either the familiar stimulus, or a novel animal. We ran three versions of this experiment, each with three different numbers of familiarization events. We tested a combined sample of `r total_n_exp1` 7-10 month old infants, with `r n_subject_expA` infants in Exp 1A (0, 4 or 8 familiarization events), `r n_subject_expB` infants in Exp 1B (1, 3 or 9 familiarization events) and `r n_subject_expC` infants in Exp 1C (2, 4 or 6 familiarization events; total n=`r total_n_exp1`, $M_{age}$=`r mean_age_exp1` months, `r sex_exp1$n[sex_exp1$sex == 'F']` female).
+We tested infants in a novel experimental paradigm in which exposure duration to the familiar stimulus was manipulated in a within-subject design \@ref(fig:design) (Experiment 1, Infants). Each infant saw six blocks. In each block there was an familiarization phase and a test trial. During the familiarization phase, an animated animal (designated the familiar stimulus) was presented 1 to 9 times. Next, infants' looking time was measured on a test trial. The test trial showed either the familiar stimulus, or a novel animal. We ran three versions of this experiment, each with three different numbers of familiarization events. We tested a combined sample of `r total_n_exp1` 7-10 month old infants, with `r n_subject_expA` infants in Exp 1A (0, 4 or 8 familiarization events), `r n_subject_expB` infants in Exp 1B (1, 3 or 9 familiarization events) and `r n_subject_expC` infants in Exp 1C (2, 4 or 6 familiarization events; total n=`r total_n_exp1`, $M_{age}$=`r mean_age_exp1` months, `r sex_exp1$n[sex_exp1$sex == 'F']` female).
 
 
 ### Adult experiment 
@@ -257,16 +271,18 @@ We ran a self-paced looking time experiment on Prolific, collecting data from `r
 RANCH received the CNN-derived stimulus embeddings as input, presented in sequences mirroring the structure of in our infant and adult experiments (\@ref(fig:design)). To simulate a block of the infant experiment, the model was first presented with the "familiar" stimulus. For each stimulus, the model took 5 samples each and then moved on to the next stimulus. This phase was designed to be to the familiarization phase infants went through, since during the familiarization phase infants had no control over the progression of the stimulus sequence. After the familiarization phase, the model was presented with the test trial, which was either familiar or novel. We used the number of samples the model took on this test trial as a proxy for infant looking time. To simulate the self-paced adult experiment, we computed the number of samples taken by RANCH on every trial in each stimulus sequence.
 
 
-```{r design, echo=FALSE, fig.width=20, fig.height=14, fig.cap="Experimental design for Experiments 1 and 2, infants and adults: Experiment 1 varied exposure to a stimulus and measured looking to familiar or novel stimuli. Experiment 2 varied how the familiar stimulus was violated, by changing the pose, identity, number or animacy of the stimulus. Infants had fixed prior exposure durations (5 sec per exposure) and looking was measured until a 2-second lookaway. Adults responded on each trial via a keypress to continue to the next trial."}
+```{r design, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experimental design for Experiments 1 and 2, infants and adults: Experiment 1 varied exposure to a stimulus and measured looking to familiar or novel stimuli. Experiment 2 varied how the familiar stimulus was violated, by changing the pose, identity, number or animacy of the stimulus. Infants had fixed prior exposure durations (5 sec per exposure) and looking was measured until a 2-second lookaway. Adults responded on each trial via a keypress to continue to the next trial."}
 img <- png::readPNG("figs/design_fig.png")
 grid::grid.raster(img)
 ```
 
 ## Behavioral and model results
 
-The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Infants clearly dishabituated on trials longer exposures (8 exposures: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, 9 exposures: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. Figure \@ref(fig:conceptual)A&B).
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Infants clearly dishabituated on trials longer exposures (8 exposures: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, 9 exposures: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. Figure \@ref(fig:conceptual)A&B). 
 
-RANCH predicted habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used K-fold cross-validation, computing the average RMSE across held-out samples. This procedure was conducted separately for both infant and adult data. 
+We also tested the reliability of the infant data. To do so, we first determined the split-half correlation between looking to odd vs even blocks and adjusted it using the Spearman-Brown formula for predicted reliability $\rho^*$ [@brown1910some; @spearman1910correlation], which was fairly high at a value of $\rho^*$ = `r round(adj_reliability, 2)`.
+
+RANCH predicted habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used cross-validation, computing the average RMSE across held-out samples. Cross-validation on the infant data was split-half, and crossvalidation on the adult data used 10 folds due to the larger sample size. 
 
 
 ```{r xtable, results='asis', echo=FALSE, message=FALSE}
@@ -314,16 +330,14 @@ One advantage of RANCH is the interpretability of its parameters. Beyond finding
 
 ## Discussion 
 
-Using within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs. novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. \@ref(fig:conceptual)A & \@ref(fig:conceptual)B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. \@ref(fig:conceptual)C). 
+Using within-subjects measurements of looking time, we examined the sensitivity of looking to familiar vs. novel stimuli as a function of prior exposure. We did not find evidence for non-linearities predicted by prior models (Fig. \@ref(fig:conceptual)A & \@ref(fig:conceptual)B), and instead found that habituation and dishabituation followed monotonic trends as predicted by RANCH (Fig. \@ref(fig:conceptual)C). Next, we test whether RANCH can make predictions in a novel looking time experiment.
 
-We next test whether RANCH’s can make predictions in a novel dataset.
-
-```{r infant-exp1-res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1: Infant and RANCH simulations (different linking hypotheses and lesioned models). The x-axes show the number of prior exposures shown to infants and RANCH before measuring looking time / number of samples on the test trial, which was novel or familiar. The y-axes show the mean looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. The scaling procedure was applied to each linking hypotheses/lesioned model separately. Error bars show the standard error of the mean."}
+```{r infant-exp1-res,echo=FALSE,fig.width=20, fig.height=10, fig.cap="Experiment 1: Infant and RANCH behavior (different linking hypotheses and lesioned models). The x-axes show the number of prior exposures shown to infants and RANCH before measuring looking time / number of samples on the test trial, which was novel or familiar. The y-axes show the mean looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. The scaling procedure was applied to each linking hypotheses/lesioned model separately. We find evidence for habituation and dishabituation (after long prior exposures), but no evidence for familiarity preferences. Error bars show the standard error of the mean."}
 img <- png::readPNG("figs/infant_exp1_res.png")
 grid::grid.raster(img)
 ```
 
-```{r adult-exp1-res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 1: Adult and RANCH behavior (different linking hypotheses and lesioned models). For adults and the corresponding RANCH simulations, looking time was measured on every trial, shown on the x-axes. The y-axes show the mean looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. Error bars show the standard error of the mean."}
+```{r adult-exp1-res, echo=FALSE, fig.width=20, fig.height=10, fig.cap="Experiment 1: Adult and RANCH behavior (different linking hypotheses and lesioned models). For adults and the corresponding RANCH simulations, looking time was measured on every trial, shown on the x-axes. The y-axes show the mean looking time in seconds for the behavioral panel, and the scaled model samples for RANCH. Similar to infants, we find evidence for habituation and dishabituation, but no evidence for familiarity preferences. Error bars show the standard error of the mean."}
 img <- png::readPNG("figs/adult_exp1_res.png")
 grid::grid.raster(img)
 ```
