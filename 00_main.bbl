@@ -384,93 +384,6 @@
       \field{pages}{290\bibrangedash 302}
       \range{pages}{13}
     \endentry
-    \entry{cristia2016test}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=924366722e0a79def8e90a5f7430b62d}{%
-           family={Cristia},
-           familyi={C\bibinitperiod},
-           given={Alejandrina},
-           giveni={A\bibinitperiod}}}%
-        {{hash=11a0e35b9aa64812a8ad84d67af01d2d}{%
-           family={Seidl},
-           familyi={S\bibinitperiod},
-           given={Amanda},
-           giveni={A\bibinitperiod}}}%
-        {{hash=e676531c64f80ddee40d30da84f78620}{%
-           family={Singh},
-           familyi={S\bibinitperiod},
-           given={Leher},
-           giveni={L\bibinitperiod}}}%
-        {{hash=6c0a274ac7456d898dfb9e583f873939}{%
-           family={Houston},
-           familyi={H\bibinitperiod},
-           given={Derek},
-           giveni={D\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Wiley Online Library}%
-      }
-      \strng{namehash}{31f06875eacad1f624604b81a354adf0}
-      \strng{fullhash}{7f2eb906f675765280ba4741978d5dd2}
-      \strng{fullhashraw}{7f2eb906f675765280ba4741978d5dd2}
-      \strng{bibnamehash}{31f06875eacad1f624604b81a354adf0}
-      \strng{authorbibnamehash}{31f06875eacad1f624604b81a354adf0}
-      \strng{authornamehash}{31f06875eacad1f624604b81a354adf0}
-      \strng{authorfullhash}{7f2eb906f675765280ba4741978d5dd2}
-      \strng{authorfullhashraw}{7f2eb906f675765280ba4741978d5dd2}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Infancy}
-      \field{number}{5}
-      \field{title}{Test--retest reliability in infant speech perception tasks}
-      \field{volume}{21}
-      \field{year}{2016}
-      \field{pages}{648\bibrangedash 667}
-      \range{pages}{20}
-    \endentry
-    \entry{debolt2020robust}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=e8a54165525d61eb7a10335f7c6fbe5c}{%
-           family={DeBolt},
-           familyi={D\bibinitperiod},
-           given={Michaela\bibnamedelima C},
-           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=9369f66a27c0c6ff7d89efe182d380e2}{%
-           family={Rhemtulla},
-           familyi={R\bibinitperiod},
-           given={Mijke},
-           giveni={M\bibinitperiod}}}%
-        {{hash=a9129dfd5bd4b61a9f3300ecd0e7b7f8}{%
-           family={Oakes},
-           familyi={O\bibinitperiod},
-           given={Lisa\bibnamedelima M},
-           giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Wiley Online Library}%
-      }
-      \strng{namehash}{7b110da5a1374e19727a408b134e453e}
-      \strng{fullhash}{7b110da5a1374e19727a408b134e453e}
-      \strng{fullhashraw}{7b110da5a1374e19727a408b134e453e}
-      \strng{bibnamehash}{7b110da5a1374e19727a408b134e453e}
-      \strng{authorbibnamehash}{7b110da5a1374e19727a408b134e453e}
-      \strng{authornamehash}{7b110da5a1374e19727a408b134e453e}
-      \strng{authorfullhash}{7b110da5a1374e19727a408b134e453e}
-      \strng{authorfullhashraw}{7b110da5a1374e19727a408b134e453e}
-      \field{sortinit}{D}
-      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Infancy}
-      \field{number}{4}
-      \field{title}{Robust data and power in infant research: A case study of the effect of number of infants and number of trials in visual preference procedures}
-      \field{volume}{25}
-      \field{year}{2020}
-      \field{pages}{393\bibrangedash 419}
-      \range{pages}{27}
-    \endentry
     \entry{deng2009imagenet}{inproceedings}{}{}
       \name{author}{6}{}{%
         {{hash=0ae7fdc13773f928525f673b05f37149}{%
@@ -752,11 +665,8 @@
         {{hash=947b5ff2e5969eafe5136b3e017c5c01}{%
            family={Gershman},
            familyi={G\bibinitperiod},
-           given={Samuel\bibnamedelima J},
+           given={Samuel\bibnamedelima J.},
            giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {OSF}%
       }
       \strng{namehash}{947b5ff2e5969eafe5136b3e017c5c01}
       \strng{fullhash}{947b5ff2e5969eafe5136b3e017c5c01}
@@ -770,8 +680,25 @@
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{abstract}{Summary Habituation, the reduction of responding to repetitive stimuli, is often conceptualized as a kind of attentional filter, amplifying salient signals at the expense of non-salient signals. No prior account has explicitly formalized filtering principles that can explain the major characteristics of habituation. In this paper, a simple probabilistic model is developed which permits analysis of the optimal filtering problem. This model exhibits the major characteristics of habituation, while also shedding light on other, relatively neglected, characteristics. These results demonstrate that habituation can be understood as a form of optimal filtering.}
+      \field{issn}{2589-0042}
+      \field{journaltitle}{iScience}
+      \field{number}{8}
       \field{title}{Habituation as optimal filtering}
+      \field{volume}{27}
       \field{year}{2024}
+      \field{pages}{110523}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.isci.2024.110523
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S2589004224017486
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S2589004224017486
+      \endverb
+      \keyw{computational mathematics,Social sciences,Psychology}
     \endentry
     \entry{goodman2008rational}{article}{}{}
       \name{author}{4}{}{%
@@ -964,47 +891,6 @@
       \field{year}{2020}
       \field{pages}{1173\bibrangedash 1185}
       \range{pages}{13}
-    \endentry
-    \entry{horowitz1972infant}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=4fa14f9dd0f1ffe5a56fb8be08fb3c05}{%
-           family={Horowitz},
-           familyi={H\bibinitperiod},
-           given={Frances\bibnamedelima D},
-           giveni={F\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=48aa23be9beaf6d1ee2227b835c3f62d}{%
-           family={Paden},
-           familyi={P\bibinitperiod},
-           given={Lucile},
-           giveni={L\bibinitperiod}}}%
-        {{hash=c6f28803d803c06b2e1c017ee37cb8b5}{%
-           family={Bhana},
-           familyi={B\bibinitperiod},
-           given={Kastoor},
-           giveni={K\bibinitperiod}}}%
-        {{hash=157e9597fde48f9e5a6b43d3440cd592}{%
-           family={Self},
-           familyi={S\bibinitperiod},
-           given={Patricia},
-           giveni={P\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {American Psychological Association}%
-      }
-      \strng{namehash}{738a8ff23df97e8b72ecfdc79b7ce42c}
-      \strng{fullhash}{b83d701ba352192871d787d98226c579}
-      \strng{fullhashraw}{b83d701ba352192871d787d98226c579}
-      \strng{bibnamehash}{738a8ff23df97e8b72ecfdc79b7ce42c}
-      \strng{authorbibnamehash}{738a8ff23df97e8b72ecfdc79b7ce42c}
-      \strng{authornamehash}{738a8ff23df97e8b72ecfdc79b7ce42c}
-      \strng{authorfullhash}{b83d701ba352192871d787d98226c579}
-      \strng{authorfullhashraw}{b83d701ba352192871d787d98226c579}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{An infant-control procedure for studying infant visual fixations.}
-      \field{year}{1972}
     \endentry
     \entry{hunter1988multifactor}{article}{}{}
       \name{author}{2}{}{%
@@ -1347,6 +1233,37 @@
       \field{pages}{986\bibrangedash 1005}
       \range{pages}{20}
     \endentry
+    \entry{oakes2017sample}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=a9129dfd5bd4b61a9f3300ecd0e7b7f8}{%
+           family={Oakes},
+           familyi={O\bibinitperiod},
+           given={Lisa\bibnamedelima M},
+           giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{a9129dfd5bd4b61a9f3300ecd0e7b7f8}
+      \strng{fullhash}{a9129dfd5bd4b61a9f3300ecd0e7b7f8}
+      \strng{fullhashraw}{a9129dfd5bd4b61a9f3300ecd0e7b7f8}
+      \strng{bibnamehash}{a9129dfd5bd4b61a9f3300ecd0e7b7f8}
+      \strng{authorbibnamehash}{a9129dfd5bd4b61a9f3300ecd0e7b7f8}
+      \strng{authornamehash}{a9129dfd5bd4b61a9f3300ecd0e7b7f8}
+      \strng{authorfullhash}{a9129dfd5bd4b61a9f3300ecd0e7b7f8}
+      \strng{authorfullhashraw}{a9129dfd5bd4b61a9f3300ecd0e7b7f8}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Infancy}
+      \field{number}{4}
+      \field{title}{Sample size, statistical power, and false conclusions in infant looking-time research}
+      \field{volume}{22}
+      \field{year}{2017}
+      \field{pages}{436\bibrangedash 469}
+      \range{pages}{34}
+    \endentry
     \entry{oaksford1994rational}{article}{}{}
       \name{author}{2}{}{%
         {{hash=aafa17fb35a5123e14e0c21659088821}{%
@@ -1647,6 +1564,82 @@
       \field{pages}{247\bibrangedash 268}
       \range{pages}{22}
     \endentry
+    \entry{schreiner2022limited}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{hash=736c547ae7b29044311d366ea5094ed6}{%
+           family={Schreiner},
+           familyi={S\bibinitperiod},
+           given={Melanie\bibnamedelima S},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=f43b31a895e3b939de1b0c89eba91683}{%
+           family={Zettersten},
+           familyi={Z\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=68a71f59b5583b089a716366ff8b95eb}{%
+           family={Bergmann},
+           familyi={B\bibinitperiod},
+           given={Christina},
+           giveni={C\bibinitperiod}}}%
+        {{hash=34397283b94e67a1618493e4c967cb29}{%
+           family={Frank},
+           familyi={F\bibinitperiod},
+           given={Michael\bibnamedelima C},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=697a672351d1f1149c700e06173016ce}{%
+           family={Fritzsche},
+           familyi={F\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=eb022d4b7bf56325eee0bb7327aaef49}{%
+           family={Gonzalez-Gomez},
+           familyi={G\bibinithyphendelim G\bibinitperiod},
+           given={Nayeli},
+           giveni={N\bibinitperiod}}}%
+        {{hash=a951a58ce10917a9ae599cd46520a8bb}{%
+           family={Hamlin},
+           familyi={H\bibinitperiod},
+           given={Kiley},
+           giveni={K\bibinitperiod}}}%
+        {{hash=34805818a46fb229a031ca8d19ecd7c0}{%
+           family={Kartushina},
+           familyi={K\bibinitperiod},
+           given={Natalia},
+           giveni={N\bibinitperiod}}}%
+        {{hash=55cf3ea8198927753de5b9c8ed71b4ca}{%
+           family={Kellier},
+           familyi={K\bibinitperiod},
+           given={Danielle\bibnamedelima J},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=467e36af7f38a194f76b3d639dd7fea7}{%
+           family={Mani},
+           familyi={M\bibinitperiod},
+           given={Nivedita},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{b882a43d244e1278a2fba9d03e2e2ef8}
+      \strng{fullhash}{f740e45fa3c0c3df20c8002ce9d68830}
+      \strng{fullhashraw}{f740e45fa3c0c3df20c8002ce9d68830}
+      \strng{bibnamehash}{b882a43d244e1278a2fba9d03e2e2ef8}
+      \strng{authorbibnamehash}{b882a43d244e1278a2fba9d03e2e2ef8}
+      \strng{authornamehash}{b882a43d244e1278a2fba9d03e2e2ef8}
+      \strng{authorfullhash}{f740e45fa3c0c3df20c8002ce9d68830}
+      \strng{authorfullhashraw}{f740e45fa3c0c3df20c8002ce9d68830}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Developmental Science}
+      \field{title}{Limited evidence of test-retest reliability in infant-directed speech preference in a large preregistered infant experiment}
+      \field{year}{2022}
+      \field{pages}{e13551}
+      \range{pages}{-1}
+    \endentry
     \entry{schrimpf2020integrative}{article}{}{}
       \name{author}{6}{}{%
         {{hash=c656af2effce18b2a5255d0256734009}{%
@@ -1738,6 +1731,62 @@
       \field{year}{2017}
       \field{pages}{4\bibrangedash 14}
       \range{pages}{11}
+    \endentry
+    \entry{teglas2011pure}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=c5d5a5fb132208a9ae8f4de4e80e2ce7}{%
+           family={Téglás},
+           familyi={T\bibinitperiod},
+           given={Ernő},
+           giveni={E\bibinitperiod}}}%
+        {{hash=e549857b36a3548394a7dee6955a2af0}{%
+           family={Vul},
+           familyi={V\bibinitperiod},
+           given={Edward},
+           giveni={E\bibinitperiod}}}%
+        {{hash=254c82e28fd881b22297c30739a552d4}{%
+           family={Girotto},
+           familyi={G\bibinitperiod},
+           given={Vittorio},
+           giveni={V\bibinitperiod}}}%
+        {{hash=87377c149c56aa3e96a88c9c0b887459}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={Michel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=5c7ff02e1f8b4c4aa7bfddece14f23d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima B},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=40d926964460414ad4f7daef3bffc9f6}{%
+           family={Bonatti},
+           familyi={B\bibinitperiod},
+           given={Luca\bibnamedelima L},
+           giveni={L\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Association for the Advancement of Science}%
+      }
+      \strng{namehash}{ac1f58656ed629f83d2ee06128ded87e}
+      \strng{fullhash}{e9c7385eb96252e45932777bd2dd46f7}
+      \strng{fullhashraw}{e9c7385eb96252e45932777bd2dd46f7}
+      \strng{bibnamehash}{ac1f58656ed629f83d2ee06128ded87e}
+      \strng{authorbibnamehash}{ac1f58656ed629f83d2ee06128ded87e}
+      \strng{authornamehash}{ac1f58656ed629f83d2ee06128ded87e}
+      \strng{authorfullhash}{e9c7385eb96252e45932777bd2dd46f7}
+      \strng{authorfullhashraw}{e9c7385eb96252e45932777bd2dd46f7}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{science}
+      \field{number}{6033}
+      \field{title}{Pure reasoning in 12-month-old infants as probabilistic inference}
+      \field{volume}{332}
+      \field{year}{2011}
+      \field{pages}{1054\bibrangedash 1059}
+      \range{pages}{6}
     \endentry
     \entry{tenenbaum2011grow}{article}{}{}
       \name{author}{4}{}{%

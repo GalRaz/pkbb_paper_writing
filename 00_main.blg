@@ -1,15 +1,17 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [0] Config.pm:311> INFO - Logfile is '00_main.blg'
-[41] biber-darwin:340> INFO - === Sat Aug  3, 2024, 12:48:53
-[50] Biber.pm:420> INFO - Reading '00_main.bcf'
-[103] Biber.pm:994> INFO - Found 46 citekeys in bib section 0
-[111] Biber.pm:4463> INFO - Processing section 0
-[117] Biber.pm:4654> INFO - Looking for bibtex file 'library.bib' for section 0
-[119] bibtex.pm:1713> INFO - LaTeX decoding ...
-[150] bibtex.pm:1519> INFO - Found BibTeX data source 'library.bib'
-[353] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[353] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[353] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[353] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
-[377] bbl.pm:676> INFO - Writing '00_main.bbl' with encoding 'UTF-8'
-[389] bbl.pm:779> INFO - Output to 00_main.bbl
+[37] biber-darwin:340> INFO - === Tue Aug  6, 2024, 17:30:18
+[46] Biber.pm:420> INFO - Reading '00_main.bcf'
+[95] Biber.pm:994> INFO - Found 46 citekeys in bib section 0
+[103] Biber.pm:4463> INFO - Processing section 0
+[109] Biber.pm:4654> INFO - Looking for bibtex file 'library.bib' for section 0
+[111] bibtex.pm:1713> INFO - LaTeX decoding ...
+[141] bibtex.pm:1519> INFO - Found BibTeX data source 'library.bib'
+[342] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[342] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[342] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[342] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[369] bbl.pm:676> INFO - Writing '00_main.bbl' with encoding 'UTF-8'
+[381] bbl.pm:779> INFO - Output to 00_main.bbl
+[381] Biber.pm:131> WARN - Duplicate entry key: 'gershman2024habituation' in file 'library.bib', skipping ...
+[381] Biber.pm:133> INFO - WARNINGS: 1
