@@ -4,9 +4,9 @@
 
 #### Participants 
 
-Both experiments were run on Prolific (Experiment 1: N = XXX; Experiment: N = XXX). Two experiments have the same pre-registered exclusion criteria. We excluded participants if (1) the standard deviation of their reaction time across all trials was less than 0.15 (indicating key-smashing, Experiment 1: N = XXX; Experiment 2: N = XXX), (2) spent more than three absolute deviations above the median of the task completion time as reported by Prolific ( Experiment 1: N = XXX; Experiment 2: N = XXX), and (3) provided the wrong response to more than 20% of the memory task (Experiment 1: N = XXX; Experiment 2: N = XXX). A total of XXX and XXX participants met at least one of the three criteria and were excluded from the final analysis for Experiment 1 and Experiment 2, respectively. We also excluded a trial if the trial was three absolute deviations away from the median in the log-transformed space across reaction time from the remaining participants. 
+Both experiments were run on Prolific (Experiment 1: N = 522; Experiment: N = 536). Two experiments have the same pre-registered exclusion criteria. We excluded participants if (1) the standard deviation of their reaction time across all trials was less than 0.15 (indicating key-smashing, Experiment 1: N = 0; Experiment 2: N = 0), (2) spent more than three absolute deviations above the median of the task completion time as reported by Prolific (Experiment 1: N = 47; Experiment 2: N = 43), and (3) provided the wrong response to more than 20% of the memory task (Experiment 1: N = 13; Experiment 2: N = 33). A total of 54 and 67 participants met at least one of the three criteria and were excluded from the final analysis for Experiment 1 and Experiment 2, respectively. We also excluded a trial if the trial was three absolute deviations away from the median in the log-transformed space across reaction time from the remaining participants. 
 
-The final sample included XXXX participants (Experiment 1: Mean Age, SD Age; Experiment 2: Mean Age, SD Age). 
+The final sample included  468 participants for Experiment 1 and 469 participants for Experiment 2 (Experiment 1: Mean = *M* = 33.0, *SD* = 12.3; Experiment 2: *M* = 31.8, *SD* = 11.3). 
 
 #### Stimuli
 
