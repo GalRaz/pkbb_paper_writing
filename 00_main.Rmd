@@ -1,7 +1,12 @@
 ---
-title: "Rational curiosity predicts the dynamics of habituation and dishabituation in infants and adults"
-author: "Your Name"
-date: "2023-11-13"
+title: "A stimulus-computable rational model of habituation in infants and adults"
+author: |
+  | Gal Raz^1,\*^, Anjie Cao^2,\*^, Rebecca Saxe^1,3^, Michael C. Frank^2^
+  | ^1^Department of Brain and Cognitive Sciences, MIT, Cambridge, MA, USA
+  | ^2^Department of Psychology, Stanford University, Stanford, CA, USA
+  | ^3^McGovern Institute for Brain Research, MIT, Cambridge, MA, USA
+  | \*These authors contributed equally to this work.
+date: ""
 bibliography: library.bib
 output:
   bookdown::pdf_book:
@@ -9,8 +14,6 @@ output:
     keep_tex: true
     toc: false
     extra_dependencies: ["float"]
-    
-    
 ---
 
 ```{r, include = FALSE}
@@ -93,7 +96,7 @@ exp1_adult_model <- readRDS(here("cached_models/adults/exp1_adult_model.Rds"))
 ```
 
 
-# Abstract
+# Abstract {-}
 ```{r child = "01_abstract.Rmd"}
 
 ```
@@ -118,7 +121,7 @@ exp1_adult_model <- readRDS(here("cached_models/adults/exp1_adult_model.Rds"))
 
 ```
 
-# General Discussion 
+# General discussion
 
 ```{r child = "06_GD.Rmd"}
 

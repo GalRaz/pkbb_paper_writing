@@ -2,3 +2,12 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.run.xml
+*.html
+00_main.pdf
