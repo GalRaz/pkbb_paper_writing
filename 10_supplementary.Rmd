@@ -173,7 +173,8 @@ tidy_control_model = tidy(model_control) %>% mutate(across(where(is.numeric) & !
 
 We found no evidence for differences in baseline interest in our stimuli: neither looking to inanimate stimuli nor animal pairs differed significantly from looking to single animals (inanimate stimuli: $\beta$ = `r filter(tidy_control_model, term == "trial_typeveggie")$estimate`; *SE* = `r filter(tidy_control_model, term == "trial_typeveggie")$std.error`; *t* = `r filter(tidy_control_model, term == "trial_typeveggie")$statistic`; *p* = `r  filter(tidy_control_model, term == "trial_typeveggie")$p.value`; animal pairs: $\beta$ = `r filter(tidy_control_model, term == "trial_typeanimal pair")$estimate`; *SE* = `r filter(tidy_control_model, term == "trial_typeanimal pair")$std.error`; *t* = `r filter(tidy_control_model, term == "trial_typeanimal pair")$statistic`; *p* = `r  filter(tidy_control_model, term == "trial_typeanimal pair")$p.value`). In sum, infants showed equal interest in all categories of test stimuli, prior to habituation; the condition differences observed in Experiment 2 must derive from the cognitive processes of habituation and dishabituation.
 
-```{r, include=FALSE, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+# Figure image in figs/ is pre-rendered (as published); set eval=TRUE to regenerate it.
 
 control_plot <- ggplot(exp2_control_infant_d %>% filter(!exclude, LT > 2) %>% mutate(trial_type = factor(trial_type, levels = c("single animal", "animal pair", "veggie"))), aes(x=trial_type, y=LT)) + geom_jitter(width = 0.03, alpha = 0.2) + stat_summary(fun.data = "mean_cl_boot", geom = "line", position = position_dodge(width = .1))  + 
   stat_summary(fun.data = "mean_cl_boot", geom = "pointrange", position = position_dodge(width = .1), size = 1.2) + xlab('') + ylab('Looking time (sec)') + theme_grey(base_size = 20) + 

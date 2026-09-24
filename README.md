@@ -19,7 +19,9 @@ Manuscript sources, data, cached models and figures for the RANCH (Rational Acti
 
 ## Building
 
-Open `pkbb_paper_writing.Rproj` and knit `00_main.Rmd` (bookdown `pdf_book`, biblatex). Required packages are listed at the top of `00_main.Rmd`. Knitting writes `00_main.tex` and `00_main.pdf`.
+Open `pkbb_paper_writing.Rproj` and knit `00_main.Rmd` (bookdown `pdf_book`, biblatex; needs pandoc, a LaTeX distribution with biber, and the packages listed at the top of `00_main.Rmd`; `colf` is archived on CRAN and installs from https://cran.r-project.org/src/contrib/Archive/colf/). Knitting rewrites `00_main.tex` and the figure PDFs in `00_main_files/figure-latex/` and produces `00_main.pdf`.
+
+Verified 2026-09-24 with R 4.6.1 / pandoc 3.10 / TinyTeX: the knit reproduces the text of the published manuscript, and every reported statistic, except that the pose contrast in the combined Experiment 2 infant model (a live `lme4` refit) comes out as *t* = 0.66, *p* = 0.513 rather than the published 0.65 / 0.514. The result figures in `figs/` are the published images and are read in rather than regenerated (the chunks that draw them are `eval=FALSE`; set `eval=TRUE` to redraw, which needs `Hmisc`). The three supplementary plots drawn live from data (parameter robustness, parameter interpretation, unscaled embeddings) differ from the published PDFs only in ggplot2 defaults such as point size and histogram bin edges.
 
 The RANCH model code itself (PyTorch) and the simulation outputs that feed `data/` live on the OSF page.
 

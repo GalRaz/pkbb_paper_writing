@@ -118,7 +118,8 @@ adult_generalization_rmse <- rmse(scaled_data$scaled_samples, scaled_data$mean_l
 
 ```
 
-```{r, include=FALSE}
+```{r, eval=FALSE, include=FALSE}
+# Figure images in figs/ are pre-rendered (as published); set eval=TRUE to regenerate them.
 
 sim_infants = read_csv(here('data/results_plots/exp2_infant_plot.csv')) %>% mutate(trial_type = factor(trial_type, levels = c("familiar", "pose","identity", "number", "animacy")))
 
