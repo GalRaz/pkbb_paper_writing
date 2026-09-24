@@ -278,46 +278,42 @@ RANCH received the ResNet-50-derived stimulus embeddings as input, presented in 
 
 ## Behavioral and model results
 
-The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure phase increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Infants clearly dishabituated on trials with longer exposures (8 exposures: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, 9 exposures: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). 
+The paradigm successfully captured habituation in both infants and adults. In infants, as the number of trials in exposure phase increased, the looking time at the familiar stimulus in the test trials decreased ($\beta$ = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$estimate`; *SE* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$std.error`; *t* = `r filter(model_1a_df, term == "poly(fam_duration, 2)1")$statistic`; *p* < 0.001). Infants clearly dishabituated on trials with longer exposures, looking longer at the novel stimulus than the familiar stimulus after long exposure (8 exposures: $\beta$ = `r filter(model_3a_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3a_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3a_df, term == "test_typenov")$statistic`; *p* < 0.001, 9 exposures: $\beta$ = `r filter(model_3b_df, term == "test_typenov")$estimate`; *SE* = `r filter(model_3b_df, term == "test_typenov")$std.error`; *t* = `r filter(model_3b_df, term == "test_typenov")$statistic`; *p* < 0.001). The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. Figure \@ref(fig:conceptual)A&B). 
 
-The adult experimental paradigm also successfully captured habituation and dishabituation (Trial number: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_number")$estimate`; Trial Type: $\beta$ = `r filter(exp1_adult_model_df, term == "trial_typedeviant")$estimate`; Both *SE* < 0.001; Both *p* < 0.001). We found no evidence for familiarity preferences or non-linearities in the shape of the dishabituation curve in infants or adults (cf. Figure \@ref(fig:conceptual)A&B). 
-
-RANCH predictions qualitatively matched habituation and dishabituation in both infants and adults. To compare model samples to looking times, we fit a linear model adjusting the number of samples by an intercept and a scaling factor. We then computed the root mean squared error (RMSE) between the scaled model results and the looking time data. To avoid overfitting on these scaling parameters and the free parameters that we searched over, we used cross-validation, computing the average RMSE across held-out samples. Cross-validation on the infant data was split-half, and cross-validation on the adult data used 10 folds due to the larger sample size. 
+RANCH predictions qualitatively matched habituation and dishabituation in both infants and adults. To quantitatively evaluate these predictions, we fit a linear model (adjusting model-generated samples by an intercept and scaling factor) and then assessed two complementary metrics. First, the root mean squared error (RMSE) captures the absolute error in the same units as looking time. Second, the coefficient of determination ($R^2$) measures the relative variation in looking time that is explained by the scaled model predictions. Since each metric relies on different assumptions and highlights distinct aspects of predictive accuracy, they together provide a more robust assessment of model performance. We minimized overfitting by employing cross-validation -- using a split-half design for infant data and ten-fold for adult data -- to compute both RMSE and $R^2$ on held-out samples. Cross-validation provides numerical estimates of out-of-sample generalization performance that can be used for numerical model comparison. 
 
 
 ```{r xtable, results='asis', echo=FALSE, message=FALSE}
 
-#table for CV stats
-CV_table = tibble(`Linking Hypothesis` =  c("EIG", "KL", "Surprisal", "No learning", "No noise"))
+# table for cross-validated fit statistics (RMSE and R^2), infants and adults
+cv_row <- function(infant_df, adult_df) {
+  c(mean(infant_df$rmse), mean(infant_df$r2), min(infant_df$rmse), max(infant_df$r2),
+    mean(adult_df$mean_rmse), mean(adult_df$mean_rsquared), min(adult_df$mean_rmse), max(adult_df$mean_rsquared))
+}
 
-CV_table = CV_table %>% mutate(`Infants: Mean RMSE` = c(mean(infant_resnet50_EIG_CV$rmse),                                                                                            mean(infant_resnet50_KL_CV$rmse),
-                                                        mean(infant_resnet50_surprisal_short_CV$rmse), 
-                                                        mean(infant_resnet50_nolearning_CV$rmse),
-                                                        mean(infant_resnet50_nonoise_CV$rmse)), 
-                               `Infants: Best RMSE` = c(min(infant_resnet50_EIG_CV$rmse), 
-                                                        min(infant_resnet50_KL_CV$rmse),
-                                                        min(infant_resnet50_surprisal_short_CV$rmse),
-                                                        min(infant_resnet50_nolearning_CV$rmse),
-                                                        min(infant_resnet50_nonoise_CV$rmse)),
-                                `Adults: Mean RMSE` = c(mean(adult_kfold_resnet50_eig$mean_rmse),
-                                                        mean(adult_kfold_resnet50_kl$mean_rmse),
-                                                        mean(adult_kfold_resnet50_surprisal$mean_rmse),
-                                                        mean(adult_kfold_resnet50_nolearning$mean_rmse),
-                                                        mean(adult_kfold_resnet50_nonoise$mean_rmse)),
-                                `Adults: Best RMSE` = c(min(adult_kfold_resnet50_eig$mean_rmse),
-                                                        min(adult_kfold_resnet50_kl$mean_rmse),
-                                                        min(adult_kfold_resnet50_surprisal$mean_rmse),
-                                                        min(adult_kfold_resnet50_nolearning$mean_rmse),
-                                                        min(adult_kfold_resnet50_nonoise$mean_rmse)))
+CV_table <- rbind(
+  cv_row(infant_resnet50_EIG_CV, adult_kfold_resnet50_eig),
+  cv_row(infant_resnet50_KL_CV, adult_kfold_resnet50_kl),
+  cv_row(infant_resnet50_surprisal_short_CV, adult_kfold_resnet50_surprisal),
+  cv_row(infant_resnet50_nolearning_CV, adult_kfold_resnet50_nolearning),
+  cv_row(infant_resnet50_nonoise_CV, adult_kfold_resnet50_nonoise)) %>% 
+  round(3) %>% 
+  as.data.frame()
 
-knitr::kable(as.matrix(CV_table %>% as.data.frame() %>% mutate_if(is.numeric, round, digits=3)),
-                      caption = "Cross-validated RMSE across linking hypotheses and lesioned models. Mean RMSE is averaged across all parameter values, best RMSE is the single best-performing parameter set", format = "latex") %>% kable_styling(latex_options = "scale_down") %>% row_spec(0,bold=TRUE)
-             
+CV_table <- cbind(`Linking Hypothesis` = c("EIG", "KL", "Surprisal", "No learning", "No noise"), CV_table)
+
+knitr::kable(CV_table, format = "latex", escape = FALSE, align = c("l", rep("c", 8)), 
+             col.names = c("Linking Hypothesis", rep(c("Mean RMSE", "Mean $R^2$", "Best RMSE", "Best $R^2$"), 2)),
+             caption = "Cross-validated RMSE across linking hypotheses and lesioned models. Mean RMSE and $R^2$ is averaged across all parameter values, best RMSE and $R^2$ is the single best-performing parameter set.") %>% 
+  add_header_above(c(" " = 1, "Infants" = 4, "Adults" = 4), bold = TRUE) %>% 
+  kable_styling(latex_options = "scale_down") %>% 
+  row_spec(0, bold = TRUE)
+
 ```
 
 ## Comparison with alternative linking hypotheses 
 
-EIG is the optimal method for making sampling decisions [@lindley1956measure]. We compared this method to two other information-theoretic measures proposed in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying "learning progress", while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants' looking behaviors [@kidd2012goldilocks; @poli2020infants]. We then repeated the cross-validation process using these linking hypotheses and compared the model's performance based on the parameter that provides the best average fits to the test sets according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other but surprisal-based RANCH performed worse in both populations (Table \@ref(tab:xtable)). For both infants and adults, this poorer fit seems to have been primarily driven by the mismatch between our participants' and RANCH's looking to familiar stimuli (blue curves, Figures \@ref(fig:infant-exp1-res) and \@ref(fig:adult-exp1-res)). 
+Here we evaluated different ways of specifying RANCH's decision-making mechanism (i.e., different "linking hypotheses" within RANCH). EIG is the optimal method for making sampling decisions [@lindley1956measure]. We compared this method to two other information-theoretic measures proposed in prior literature: Kullback-Leibler divergence (KL-divergence) and surprisal. KL-divergence measures the information gained when one's beliefs are updated, effectively quantifying "learning progress", while surprisal captures how inconsistent incoming information is with prior expectations. Both have been shown to be associated with infants' looking behaviors [@kidd2012goldilocks; @poli2020infants]. We then repeated the cross-validation process using these linking hypotheses and compared the model's performance based on the parameter that provides the best average fits to the test sets according to RMSE. Out of the three linking hypotheses, we found that EIG and KL-divergence were comparable to each other but surprisal-based RANCH performed worse in both populations (Table \@ref(tab:xtable)). For both infants and adults, this poorer fit seems to have been primarily driven by the mismatch between our participants' and RANCH's looking to familiar stimuli (blue curves, Figures \@ref(fig:infant-exp1-res) and \@ref(fig:adult-exp1-res)). 
 
 ## Comparison with lesioned model 
 

@@ -22,3 +22,12 @@ Manuscript sources, data, cached models and figures for the RANCH (Rational Acti
 Open `pkbb_paper_writing.Rproj` and knit `00_main.Rmd` (bookdown `pdf_book`, biblatex). Required packages are listed at the top of `00_main.Rmd`. Knitting writes `00_main.tex` and `00_main.pdf`.
 
 The RANCH model code itself (PyTorch) and the simulation outputs that feed `data/` live on the OSF page.
+
+## Versions
+
+| Git tag | Manuscript |
+|---|---|
+| `elife-v1` | eLife reviewed preprint v1 (https://elifesciences.org/reviewed-preprints/102713v1). |
+| `elife-revision` | Revised manuscript submitted in response to the eLife reviews: title scoped to *visual* habituation, added scope paragraphs, an explicit statement on why competing models cannot be compared directly, cross-validated R² added to Table 1 and the fit-metric discussion, and the remaining reviewer-requested clarifications. `00_main.tex` at this tag is the compiled manuscript as edited on Overleaf. |
+
+Figures and all reported statistics are identical across the two versions; only the text changed.
