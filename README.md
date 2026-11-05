@@ -33,3 +33,5 @@ The RANCH model code itself (PyTorch) and the simulation outputs that feed `data
 | `elife-revision` | Revised manuscript submitted in response to the eLife reviews: title scoped to *visual* habituation, added scope paragraphs, an explicit statement on why competing models cannot be compared directly, cross-validated R² added to Table 1 and the fit-metric discussion, and the remaining reviewer-requested clarifications. `00_main.tex` at this tag is the compiled manuscript as edited on Overleaf. |
 
 Figures and all reported statistics are identical across the two versions; only the text changed.
+
+History rewritten on 2026-11-05 to remove participant identifiers; commit hashes from before this date no longer resolve.
